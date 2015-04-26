@@ -1,0 +1,662 @@
+[
+    {
+        "id": 29,
+        "parentId": 10,
+        "hasChild": true,
+        "name": "直属部门",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 30,
+        "parentId": 10,
+        "hasChild": true,
+        "name": "办事处",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 31,
+        "parentId": 10,
+        "hasChild": true,
+        "name": "驻区单位",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 32,
+        "parentId": 11,
+        "hasChild": false,
+        "name": "发展规划",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 33,
+        "parentId": 11,
+        "hasChild": false,
+        "name": "专项策划",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 34,
+        "parentId": 11,
+        "hasChild": false,
+        "name": "年度总结",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 35,
+        "parentId": 12,
+        "hasChild": false,
+        "name": "任前公示",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 36,
+        "parentId": 12,
+        "hasChild": false,
+        "name": "人事任免",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 37,
+        "parentId": 12,
+        "hasChild": false,
+        "name": "干部选拔",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 38,
+        "parentId": 12,
+        "hasChild": false,
+        "name": "公务员考试",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 39,
+        "parentId": 13,
+        "hasChild": false,
+        "name": "统计月份",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 40,
+        "parentId": 13,
+        "hasChild": false,
+        "name": "统计分析",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 41,
+        "parentId": 13,
+        "hasChild": false,
+        "name": "统计公报",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 42,
+        "parentId": 15,
+        "hasChild": false,
+        "name": "总体概况",
+        "iconName": {
+            "publishDate": "2014-07-17",
+            "title": "坪山新区总体概况",
+            "content": "<pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/uploadfiles/201407/20140717161856908_s.jpg\"/></p><div><pstyle=\"text-indent:2em;\">坪山新区位于深圳市东北部，于2009年6月30日正式挂牌成立,是市政府派出机构，肩负着市委、市政府赋予的建设“科学发展示范区、综合配套改革先行区，深圳新的区域发展极”的历史使命，是深圳未来三十年发展的重要战略支撑地，也是推动深圳新一轮急剧式、突变式增长的重要动力源。新区实行高度集约的部门设置，设13局（办）、1委、4中心、1大队，下辖坪山、坑梓2个办事处共23个社区，辖区总面积约168平方公里，总人口约60万，其中户籍人口约3.6万。</p><pstyle=\"text-indent:2em;\">优越的地理区位。新区东靠惠州大亚湾石化城，南连具有优美原生态的大鹏半岛，西邻世界最大的单体港——盐田港，北面是商贸发达、配套齐全的龙岗中心城，是深化深莞惠合作的重要战略节点。截至2013年底，新区剩余可建设用地近30平方公里，是深圳市可开发土地面积最大的区域之一，发展潜力巨大。</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/uploadfiles/201407/20140717162039204_s.jpg\"/></p><pstyle=\"text-indent:2em;\">畅达的交通网络。新区距盐田港、大亚湾港等交通枢纽约30至40公里，并有深汕公路、深汕高速公路、横坪公路等交通干道穿境而过。随着厦深铁路的开通，坪山新区与市区乃至以上海为中心的华东地区形成便利快捷的“半小时生活圈”。此外，直达深圳中心区的坪盐通道开工在建，规划建设中的杭福深城际铁路设站坪山（深圳东站），深圳地铁12号线、14号线、深圳东部过境通道、南坪快速干线相继连接坪山。</p><pstyle=\"text-indent:2em;\">雄厚的产业基础。截至2013年底，新区共有投产企业1357家，其中规模以上企业347家，外商投资企业381家，高新技术企业66家，世界500强投资企业10家，境内外上市公司26家，初步形成了以比亚迪为龙头的新能源汽车，以中芯国际、昱科环球、高先电子为代表的电子信息业，以赛诺菲、微芯生物为代表的生物医药产业和以震雄、中集为代表的装备制造业等四大主导产业。</p><pstyle=\"text-indent:2em;\">新型的体制机制。作为深圳市行政管理体制改革和产业园区管理体制创新的产物，新区积极创新政府运行机制，精简行政层级、缩短管理链条，坚持以“流程再造”为核心，致力于打造深圳市工作流程最短、效率最高、人员最精简的服务型政府。新区实行“一级政府三级管理”的模式，最大限度缩短了管理链条，分工明确，降低了行政管理成本，实现精干高效、充满活力。</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/uploadfiles/201407/20140717162251634_s.jpg\"/></p><pstyle=\"text-indent:2em;\">优良的生态人文资源。深圳主要河流——坪山河贯穿新区全境，北、东、南三面有规划中的坪山—龙岗城市绿廊、坪山—坑梓绿廊、马峦山森林郊野公园环抱。在这里，既能感受“文武帝宫”、客家围屋建筑“大万世居”和“龙田世居”、百年老校光祖中学的人文积淀，也可以体验曾生故居、东江纵队纪念馆的红色之旅，还能够欣赏马峦山、聚龙山景区的生态风情。</p><pstyle=\"text-indent:2em;\">2013年，新区经济社会等各项事业协调发展，特别是主要经济指标继续保持快速增长态势，全年新区实现地区生产总值372亿元，比上年增长13%。2014年，新区将全面贯彻落实党的十八大及十八届三中全会精神，牢牢把握“三化一平台”的主攻方向，始终坚持“以改革论英雄，以质量论高下，以作风论优劣”的工作理念，紧紧围绕“全面深化改革年、城市质量提升年”的总体要求，凝心聚力，快马加鞭，建设深圳美丽东部新城。</p></div>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 43,
+        "parentId": 15,
+        "hasChild": false,
+        "name": "行政体制",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "坪山新区行政体制",
+            "content": "<pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site31/20100927/000d607a9a320e0ad50d05.jpg\"/></p><div><pstyle=\"text-indent:2em;\">坪山新区辖区原隶属宝安县，分为坪山与坑梓两镇。1992年龙岗区成立，两镇隶属龙岗区管辖。1994年深圳市开始筹建大工业区。1997年大工业区正式动工建设，用地范围包括在坪山镇和坑梓镇的部分用地共38平方公里，设大工业区管理委员会实施管理。2004年，深圳撤销坪山、坑梓两镇，分别设立坪山街道办事处和坑梓街道办事处。</p><pstyle=\"text-indent:2em;\">2009年6月30日，深圳市委市政府为推进东部片区的统筹发展，促进全市区域协调发展，全面提升城市化水平，将原深圳市大工业区和原龙岗区坪山街道、坑梓街道，整合为坪山新区，设坪山新区管理委员会，原大工业区管委会同时撤销。</p><pstyle=\"text-indent:2em;\">作为深圳综合配套改革的重要内容，坪山新区采用新的的体制模式：新区管委会是深圳市政府派出机构，下设综合办公室、纪检监察局、组织人事局、经济服务局、发展和财政局、社会管理局、公共事业局、城市建设局、城市管理局9个局（办）和机关后勤服务中心、建设管理服务中心、社会事务服务中心3个正处级事业单位，构建一个高效的小政府、大服务的新型机构，为辖区企业和群众提供优质的公共服务。</p></div>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 44,
+        "parentId": 15,
+        "hasChild": false,
+        "name": "城市规划",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "坪山新区城市规划",
+            "content": "<pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site31/20100927/000d607a9a320e0ad63207.JPG\"/></p><div><pstyle=\"text-indent:2em;\">坪山新区充分发挥“改革创新试验区”的优势，利用深惠结合部，以及珠三角城市圈与海峡西岸经济区的深圳通道等区位条件，在规划方面以“区域协同”科学发展理念为指导，借鉴苏州等发达地区由工业园区向城市新区转变的成功经验，大力探索与引导坪山新区从经济社会后发展地区走向崛起的新路径，统筹谋划产业发展与城区建设，以园区规划为核心，打造“高端产业集聚区、绿色人居示范区”。</p><pstyle=\"text-indent:2em;\">一是建设现代产业园区。按照深圳市综合配套改革方案的要求，着力建设以现代服务业和先进制造业双轮驱动的主体产业群，形成产业结构高级化、产业发展集聚化、产业竞争力高端化的现代产业体系。结合新区现有产业发展基础，大力推进新能源汽车、电子信息、生物医药、先进装备制造四大支柱产业的发展，构建现代产业园区，着力建设成为深圳产业发展的战略支撑地。目前辖区内有一个国家级生物医药产业基地和一个出口加工区。</p><pstyle=\"text-indent:2em;\">二是建设生态样板城区。根据深圳市新一轮规划总体布局，将坪山新区定位辐射粤东地区的城市副中心，以生态和产业协调发展的科学理念为指导，规划先行，通过城市更新、土地整备、生态环境建设，将坪山新区建设成为按照城市规划刚性实施的生态样板城区。同时，借鉴先进的城市设计理念，统筹考虑生态保护用地与城市建设用地、城市生活用地与城市生产用地之间的协调与衔接，形成工业化带动城市化、城市化促进工业化的联动机制，呈现出“园在城中，城在园中”的生态生活生产共融的良好发展格局。坪山中心区占地约5平方公里，目前正在进行中心区概念规划的国际招标。2010年8月将基本完成中心区概念规划。</p></div>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 45,
+        "parentId": 15,
+        "hasChild": true,
+        "name": "地域特色",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 451,
+        "parentId": 45,
+        "hasChild": false,
+        "name": "客家黄酒",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "客家黄酒",
+            "content": "<pstyle=\"text-indent:2em;\">家酿美酒质朴味浓客家黄酒打造坪山独特客家文化品牌编者按</p><pstyle=\"text-indent:2em;\">坪山新区客家文化氛围浓郁，继坪山“舞麒麟”收录深圳市第二批非物质文化遗产名录后，作为最具坪山客家文化特性的客家黄酒以及茶果，因其悠久的历史和独特的制作工艺越来越受外界关注。为了让更多的人了解、传承、发扬和保护好这些传统客家文化，本报今日起陆续推出客家黄酒、茶果以及坑梓麒麟的深度报道，以期促进对坪山新区民间传统饮食文化、礼仪的传承和保护。</p><pstyle=\"text-indent:2em;\">传承坪山</p><pstyle=\"text-indent:2em;\">客家文化</p><pstyle=\"text-indent:2em;\">客家黄酒申报市第三批非物质文化遗产名录</p><pstyle=\"text-indent:2em;\">制作坪山客家黄酒是当地人在长期的生产劳动和生活中自然发展而形成的一种独特的习俗，有着深刻的历史烙印。通过研究它，能够还原反映出历史时期人们的生产生活状态，具有一定的历史保护价值。据了解，坪山客家黄酒目前正在申报深圳市第三批非物质文化遗产名录。</p><pstyle=\"text-indent:2em;\">随着时代的变化，如今能用传统工具做出客家黄酒的人越来越少，很多制作客家黄酒的工艺和方法也已改变，加上年轻一代对制作传统客家黄酒不感兴趣，这一习俗传承和发扬面临着严峻的挑战。为继承和保护“客家黄酒”酿造方法，鼓励、引导年轻一代学习和继承这一民间习俗，坪山办事处近年来投入5.5万元专项资金用于保护、扶持客家黄酒酿造事业，并成立了“坪山办事处非物质文化遗产管理委员会”，对“客家黄酒”进行了全面的调查研究、论证，对掌握传统技艺的民间艺人给予奖励，以对促进民间传统饮食文化创造、提高民间文化水平起到良好的保护作用。</p><pstyle=\"text-indent:2em;\">【核心提示】客家黄酒，和围龙屋、大襟衫、客家话、客家菜、客家山歌，并称客家文化的六大遗产。在坪山办事处，这里的人们长期有着做“客家黄酒”的民间习俗，每逢节庆之日、喜庆寿诞，黄酒是不可或缺的助兴佳品。</p><pstyle=\"text-indent:2em;\">酿酒历史逾百年</p><pstyle=\"text-indent:2em;\">坪山客家人的酿酒历史悠久，迄今已有一百多年。据王增能的《客家饮食文化》书中表述：“据说客家人用的酒饼源于畲族。过去畲族人将剩饭，不管是糯米饭还是粳米饭，撒上酒饼草便可酿酒喝。客家人正是从畲族人那里学得了这一技术，从而制作酒饼出售。开始也许不为社会所关注，个别人则经过长期的实践和不断改进，遂成为家传秘方，流传也不少。”坪山黄酒的酿造工艺一直以民间流传的方式传承着，黄酒在当地已经成为一种深入民心的民间饮品。</p><pstyle=\"text-indent:2em;\">在坪山人的饮食文化中，饮黄酒是很常见的习俗，坪山人年长的会饮，年小的也会饮。记者在当地采访听到过这样一句话：“有客家人的地方，就有客家黄酒。可以说，喝过客家黄酒的人，不一定是客家人，但没喝过客家黄酒的人绝对不敢说自己是客家人。”</p><pstyle=\"text-indent:2em;\">黄酒文化融入生活</p><pstyle=\"text-indent:2em;\">家家酿黄酒，人人喝黄酒，黄酒的普遍性可以说是坪山客家人极为独特的一种社会现象。黄酒由糯米制成，糯谷极易种植，且价格低廉，只比普通稻谷贵一成多，而蒸一缸酒，糯米的数量又可多可少，再加上酿制工序简单，坪山本地妇女人人会做。热情好客的坪山人，逢年过节或婚嫁喜庆设宴“请酒”时，黄酒是必备品，席间一人一碗，边喝边斟、边斟边喝，主人与客人、客人与客人之间相互敬酒，你来我往，推杯换盏，为宴席增添了热闹欢乐的气氛。</p><pstyle=\"text-indent:2em;\">坪山客家人在日常生活中喜欢摆筵席宴宾客，称之为“做酒”，如子女毕业要“做毕业酒”，婚娶要“做暖轿酒”、“做完婚酒”，小孩出生三天要“做三朝酒”，满月要“做满月酒”，周岁要“做周岁酒”，老人寿辰要“做生日酒”，工匠拜师学徒要“做拜师酒”、“做出师酒”。凡此种种，足以显示黄酒在客家人心目中占有极高的地位。</p><pstyle=\"text-indent:2em;\">坪山客家人的黄酒除了自饮待客外，也是亲友间来往时的礼品，特别是在婚礼中黄酒是女方回赠男方的重要礼品之一，女方将黄酒和其它礼品装在一起，用扁担挑送，俗称“送酒担”，而且所送的酒一般是由女方亲自酿制而成的。另外，客家人家里如生了小孩，婆家必备公鸡一只、黄酒一壶、鞭炮一挂，送往女方娘家报喜，俗称“报姜酒”。这种“酒文化”已深深融汇在坪山客家人的现实生活中。</p><pstyle=\"text-indent:2em;\">制作工艺相当考究</p><pstyle=\"text-indent:2em;\">坪山办事处六联社区的莲婶对黄酒制作有很深的感悟，她告诉记者，就酿酒而言，除了人的因素外，还有另外两个原因，第一是要选优质酒饼，第二是水质很关键，要用纯净而清甜的山泉水或井水。所以，客家俗语中，有句话叫做“蒸酒磨豆腐，唔（不）敢逞师傅”。</p><pstyle=\"text-indent:2em;\">具体到制作工艺，莲婶说主要有以下环节：先将糯米放入大水缸中浸透、淘净，然后捞起滤干，倒入大饭甑里蒸熟成饭。把糯米饭放置阴凉地方待温度降至20度左右时，均匀地拌入酒饼（一种发酵的酵母，系用米糠、中药细辛等制成），旋即反复搅拌，接着把饭扒平，从饭的中央挖一小井，盖好缸盖，移放到放有稻草的竹篓里，以利于保温发酵。夏天气温高，24小时后，启开缸盖，小井中即涌出香气四溢的酒液，谓之酒娘。继用勺子翻动酒娘糟，再盖上缸盖，但不宜盖得过紧，须留一气孔出气，否则酒易变酸。4至5天后，注入醴泉水，浸泡酒娘糟；又4至5天后，把酒糟倒入酒篓里，压榨出酒液来。然后，把酒液装入酒坛，密封坛口，等上半年便是黄酒了。</p><pstyle=\"text-indent:2em;\">婶说，当地人制作黄酒最好的选材是用“七七”水，也就是每年农历七月七日下的雨,这种雨水具有长期放置不变质的好功效。</p><pstyle=\"text-indent:2em;\">相关链接</p><pstyle=\"text-indent:2em;\">黄酒大体可分为四种，即：冬酒、冬浸酒、四双酒、单酒。</p><pstyle=\"text-indent:2em;\">冬酒就是说一入冬令季节，即酿造酒娘糟，装入酒坛密封，勿泄酒气，至翌年四月，酒娘糟仍不会变质。需制冬酒时，每斤酒娘糟注入醴泉水约半斤，浸一两天，把酒液压榨出来，装入酒坛密封。</p><pstyle=\"text-indent:2em;\">冬浸酒与冬酒一样，一入冬令季节，即酿造酒娘糟。到冬至那天，把酒娘糟舀入小口径的大水缸中，每斤酒娘糟加入经煮沸而后冷却的醴泉水l至2斤，然后盖紧缸口，勿令泄气。浸至春节时，启开缸盖，但见酒糟下沉，即可饮用。此酒色泽淡青，酒气浓郁，芳香可口，含乙醇35％左右，多用于春节时招待宾客。</p><pstyle=\"text-indent:2em;\">四双酒：一年四季均可酿造。每百斤酒娘糟加醴泉水一倍半至二倍半浸之，暑天浸3至4天，冬季则多浸几天。然后把酒娘糟投入酒篓压出酒液，装入酒坛密封。此酒香甜适口，含乙醇25％左右。</p><pstyle=\"text-indent:2em;\">单酒：“单”是“薄”的意思。以四双酒的酒糟复加醴泉水少许，浸2至3天，投入酒篓压出酒液。此酒含乙醇低，且价格低廉，极受妇孺欢迎。</p>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 452,
+        "parentId": 45,
+        "hasChild": false,
+        "name": "坪山舞麒麟",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "坪山舞麒麟",
+            "content": "<pstyle=\"text-indent:2em;\">开班育人，将舞麒麟传承下去——记坪山办事处舞麒麟</p><pstyle=\"text-indent:2em;\">第四代传人黄耀华</p><pstyle=\"text-indent:2em;\">核心提示</p><pstyle=\"text-indent:2em;\">从某种意义上说，非物质文化遗产是方法、技艺、巧思，是巧夺天工。它存在于一代代的口口相传、手手相递之中。坪山舞麒麟，一代代人以动作相传，成为非物质文化遗产独特篇章。作为第四代传人，黄耀华积极开设培训班教年轻人舞麒麟，其目的只有一个，就是为了让更多的人来学习，将舞麒麟这项民间艺术传承下去。3月27日，星期六。在坪山办事处石井社区草埔居民小组“光武堂”，一杆金黄镶黑边的三角大旗迎风飘舞。大旗下，唢呐、锣鼓等乐手一字排开，十几个身着短衣襟功夫服的青壮后生，环臂挺胸虎虎生威，人群正中间端坐着一位清瘦的长者，50岁上下的年纪，虽然一脸的平和，但眉宇间却透出一股不可近人的霸气！</p><pstyle=\"text-indent:2em;\">以上这些惯常出现在武侠小说中的情景，其实是坪山办事处舞麒麟培训的一个片断。这位端坐的长者，就是中国江西竹林寺螳螂派国术总会会长黄耀华。他一边招呼记者，一边给弟子们亲身示范每个动作要领。就读于坪山中学的曾志鹏在一旁看得正入神，黄师傅叫他就刚才的动作“表演”一番，随后，曾志鹏手捧麒麟头，“嘿、嘿、嘿”地舞得极其精彩，每个动作都扎扎实实，不带一点花架子。“其实以前志鹏是很内向的，自从参加‘舞麒麟’培训班后，整个人都变了，而且前段时间还专门画了一幅麒麟油画送给我呢。”谈起这个弟子，黄师傅一脸骄傲。</p><pstyle=\"text-indent:2em;\">在坪山，很多重要场合，比如婚庆、重大节日、祭祖等活动中，都要进行舞麒麟表演，而在这方面的权威当首推黄耀华师傅，他也是“市级非物质文化遗产项目代表性传承人”。</p><pstyle=\"text-indent:2em;\">“舞麒麟不是花架子”</p><pstyle=\"text-indent:2em;\">“这舞麒麟，不是麒麟舞！”今年元宵节过后，记者第一次到坪山采访黄师傅时，黄师傅很认真地纠正记者的口误。当时，黄师傅坐在他摆满了瓶瓶罐罐的专治跌打伤和蛇伤的中医诊所里。黄师傅是首任坪山人民医院中医门诊医生，离职后在家研习祖传医术及拳术。他的中医诊所也是螳螂派国术总会坪山分会的会馆，又称光武堂。</p><pstyle=\"text-indent:2em;\">据介绍，舞麒麟是客家传统民间文化。舞麒麟主要有两个目的，一是参加重大的节日，如乔迁、婚嫁、庆丰年等，二是习武之人练之以强身。与江西竹林寺螳螂派国术的悠久历史相应，舞麒麟不乏神秘之处，其中就有很多江湖规矩。也正因为如此，黄耀华师傅才纠正记者说“不是麒麟舞而是舞麒麟”。他说，现在有不少文艺团体演出时也表演舞麒麟，但他们舞的麒麟是经过舞蹈家重新编排的“麒麟舞”，是一种舞蹈，其中还借鉴了舞狮子的一些动作，更侧重于艺术上的美感，但对于正宗舞麒麟的武林中人来说，却坏了规矩，甚至有很多犯忌的地方。</p><pstyle=\"text-indent:2em;\">对舞麒麟有很深的感情</p><pstyle=\"text-indent:2em;\">黄师傅从小喜爱舞麒麟，对舞麒麟有很深的感情，舞麒麟已经成为他生活中不可分割的一部分。黄师傅说，他的曾祖父及父亲是武术及舞麒麟的高手，对他产生了潜移默化的影响，他从小就爱上舞麒麟和武术。</p><pstyle=\"text-indent:2em;\">多年来，每次重大节日，社区里的麒麟表演都能看到黄师傅的身影，他对麒麟的痴迷和执着追求，让居民都称赞不已。回忆学艺岁月，黄师傅印象最深的是半年如一日的“扎马”练习，以及一连串的功夫学习。“没有扎实的基本功，师傅绝不教下面的动作。”而最让黄师傅自豪的是，他学有所成后四处受邀演出。他告诉记者，其父黄毓光是坪山舞麒麟的第三代传人，1928年在坪山开设了以教授螳螂拳和舞麒麟的拳馆，来自惠州、东莞、香港等各地近百门徒拜其父亲为师。由于坪山舞麒麟名气很大，还曾被香港嘉禾电影公司邀请前去参加电影《黄飞鸿》的拍摄，着实让他父辈“威水”了一把。</p><pstyle=\"text-indent:2em;\">积极办班培养继承人</p><pstyle=\"text-indent:2em;\">黄师傅告诉记者，习武是一件很辛苦的事，可现在的年轻人能这样吃苦的太少了，整个坪山办事处坚持练习螳螂拳的不过二三十人。</p><pstyle=\"text-indent:2em;\">黄师傅说，培养舞麒麟的人才并非易事，必须要有吃苦的精神，现在要找继承舞麒麟的人不难，但要舞得专业就比较难。黄师傅感慨，趁现在自己精力旺盛，开办训练班，教年轻人舞麒麟，其目的只有一个，就是为了让更多的人来练，将舞麒麟这项民间艺术传承下去。</p><pstyle=\"text-indent:2em;\">令黄师傅感到欣慰的是，在石井社区草埔居民小组光武堂和坪山社区马东居民小组开设的两个培训班，目前已有50多人参加培训，人员从10多岁到20多岁不等。不过黄师傅还有点担忧，“如今的孩子太娇气，学习任务也重，不可能像我当年那样去训练他们。”黄师傅教导学生舞麒麟，看重的是学生的潜质。手脚不灵活、不协调的学生，再怎么练也很难成才。潜质筛选过后，是扎实基本功的培养。黄师傅希望自创的一套舞麒麟能在坪山乃至客家地区延续下去，带出来的徒弟能青出于蓝而胜于蓝。</p>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 453,
+        "parentId": 45,
+        "hasChild": false,
+        "name": "客家茶果",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "客家茶果",
+            "content": "<pstyle=\"text-indent:2em;\">客家茶果，是客家人日常生活主要食品中不可缺少的组成部分，无论在平时饮食还是节庆佳日、喜庆寿诞上，它充分体现了客家人饮食文化的内涵。</p><pstyle=\"text-indent:2em;\">有着丰富的历史底蕴</p><pstyle=\"text-indent:2em;\">坪山客家茶果蕴含着丰富的历史底蕴。从客家人的历史渊源说起，一千多年来，客家人从中原向外迁徙，足迹遍及大半个中国和海外各地。客家茶果是这个群体在发展过程中形成的，是为适应和改变生存条件而创造出来的独特的饮食。据了解，坪山客家茶果已有几百年的历史。</p><pstyle=\"text-indent:2em;\">在坪山客家人的饮食中，茶果是很普遍的食品，也是日常生活中的重要组成部分，几乎家家户户都会做茶果。茶果的种类繁多，如我们常吃的喜粄、艾粄、糍粑、粄头、寿桃、汤圆、青圆、粽子、晾粄、萝卜粄、萝卜干粄等。坪山客家茶果用糯米粉或用粘米粉制作外皮，茶果外包裹植物的叶,蒸熟即可食用。有咸、甜两味，内馅分别有虾米肉松、眉豆和花生、豆沙，咬下去又软又有嚼头。</p><pstyle=\"text-indent:2em;\">客家茶果的诞生是由于客家人喜欢聚在一起闲话家常，品茗太过单调，于是以糯米粉制作成咸、甜糕点，边吃边谈。由于它配茶吃最适合，所以命名为茶果。</p><pstyle=\"text-indent:2em;\">吃客家茶果还颇有讲究，如每年的清明节吃艾粄；每逢喜事吃喜粄；端午节吃粽子；元宵节吃汤圆等。</p><pstyle=\"text-indent:2em;\">制作工艺相当考</p><pstyle=\"text-indent:2em;\">究坪山办事处江岭社区的江先生告诉记者，做茶果的材料及工序非常讲究，直接关系到味道好坏。坪山客家茶果每一道制作工序都有严格要求，制作材料是经过精心挑选，制作工具是选用传统方法，因此具有独特的味道。江先生说，做茶果的好坏，是衡量一个客家妇女能干与否的标准。</p><pstyle=\"text-indent:2em;\">在坪山，客家人不管任何宴席，都必定备有茶果，茶果在坪山客家人的现实生活中有着极其重要的位置。它体现了客家人饮食文化的内涵，在客家人的日常生活习俗中占有重要的地位。</p><pstyle=\"text-indent:2em;\">传统制作亟待传承</p><pstyle=\"text-indent:2em;\">据介绍，坪山客家茶果制作经过了上百年的演变，一直传承到现在，可如今，随着时代的变化，会制作茶果的人越来越少，加上年轻一代对传统客家茶果制作不感兴趣，传承和发扬面临着严峻的挑战。</p><pstyle=\"text-indent:2em;\">记者从坪山办事处了解到，为继承和保护客家茶果制作，鼓励、引导年轻一代学习和继承这一民间习俗。近年来，坪山办事处投入专项资金用于保护扶持客家茶果制作事业，并成立了“坪山办事处非物质文化遗产管理委员会”，对客家茶果进行全面的调查、研究、论证，对掌握传统技艺的民间艺人给予奖励。目前，该办事处正将客家茶果申报第三批深圳市非物质文化遗产名录。这一系列举措，将对促进民间传统饮食文化创造，提高民间文化水平起到良好的保护作用。</p>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 46,
+        "parentId": 15,
+        "hasChild": true,
+        "name": "旅游特色",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 461,
+        "parentId": 46,
+        "hasChild": false,
+        "name": "访古寻根",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "访古寻根",
+            "content": "<pstyle=\"text-indent:2em;\">①大万世居</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site31/20101011/001422474d300e1d151a1a.jpg\"/></p><pstyle=\"text-indent:2em;\">大万世居全景图</p><pstyle=\"text-indent:2em;\">深圳是客家人的聚居地之一，在深圳本土的原住民当中，有大约六成是客家人。他们有自己独特的语言、文化、习俗，其中最有特色的就是客家围龙屋。</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site31/20101011/001422474d300e1d15281b.jpg\"/></p><pstyle=\"text-indent:2em;\">大万世居正门</p><pstyle=\"text-indent:2em;\">坪山街道曾氏“大万世居”，建筑占地均在25000平方米左右，可谓闽、赣、粤三省客家民居之“最”，是深圳较为典型的大型客家围屋建筑，四面高高围墙相连的大万世居，建于清乾隆年间，屋前照样是半月形的池塘，算是比较古的围屋了，四角还建有御敌的炮楼，围墙上也是走马廊相通。2002年7月被公布为省级文物保护单位。</p><pstyle=\"text-indent:2em;\">地址：深圳市坪山新区坪山办事处坪环大万社区</p><pstyle=\"text-indent:2em;\">电话：（86-755）28001182</p><pstyle=\"text-indent:2em;\">乘车路线：市区211路巴士-水库-365路;520路小巴-京鹏大厦-365路</p><pstyle=\"text-indent:2em;\">②龙田世居</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site31/20101011/001422474d300e1d15431c.jpg\"/></p><pstyle=\"text-indent:2em;\">龙田世居</p><pstyle=\"text-indent:2em;\">坑梓办事处黄氏“龙田世居”建于清道光十七年（公元1837年），相传由梅县迁来的黄氏族人所建，是深圳地区保存最为完整、最为精致的客家围屋。龙田世居的护城河是一个半圆形的大池塘，高大的外墙和半月形的池塘组成一个“龟背状”图案。这种城堡式的结构是典型的客家围屋结构，而龟背形图案更是龙田世居独有的设计，在各地土楼中均属罕见。</p><pstyle=\"text-indent:2em;\">1987年龙田世居被列为宝安县第一批重点文物保护单位，2002年8月，被核定为广东省第四批省级文物保护单位。</p><pstyle=\"text-indent:2em;\">建筑是凝固的历史，也是凝固的艺术，如今仍矗立在坪山的座座客家围屋，就是当年客民经济实力、建筑技术和艺术成就的纪念碑。</p><pstyle=\"text-indent:2em;\">地址：深圳市坪山新区坑梓办事处田心社区</p><pstyle=\"text-indent:2em;\">乘车路线：巴士380、855路</p>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 462,
+        "parentId": 46,
+        "hasChild": false,
+        "name": "红色记忆",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "红色记忆",
+            "content": "<pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site31/20101011/001422474d300e1d148b19.jpg\"/></p><pstyle=\"text-indent:2em;\">坪山东江纵队纪念馆</p><pstyle=\"text-indent:2em;\">坪山东江纵队纪念馆于2000年5月建成，占地面积5000平方米，建筑面积1500平方米。纪念馆由东江纵队史迹展厅、烈士名碑、曾生文物室、前进报社旧址（深圳市重点文物保护单位）、曾生祖居等几部分组成，通过展示沙盘、文字、图片、实物等集中体现了人民英雄的丰功伟绩以及在抗日战争、解放战争的艰苦卓绝战斗过程中百折不挠的精神。2001年12月该纪念馆被定为深圳市爱国主义教育基地。</p><pstyle=\"text-indent:2em;\">地址：深圳市坪山新区坪山办事处东纵路石灰陂社区</p><pstyle=\"text-indent:2em;\">电话：（86-755）84641081</p><pstyle=\"text-indent:2em;\">乘车路线：365路巴士</p>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 463,
+        "parentId": 46,
+        "hasChild": false,
+        "name": "新区结合红色文化、客家文化和生态文化设计旅游线路坪山一日游亮点纷呈",
+        "iconName": {
+            "publishDate": "2014-10-22",
+            "title": "新区结合红色文化、客家文化和生态文化设计旅游线路坪山一日游亮点纷呈",
+            "content": "<pstyle=\"text-indent:2em;\">坪山新区丰富的旅游文化资源将逐步与广大市民“亲密接触”。记者26日从坪山新区获悉，新区在首届旅游文化节里集中新区优秀景点，精心设计旅游线路，将红色文化、客家文化、生态文化有机结合在一起，推出坪山一日游活动（坑梓文化广场腰鼓展演—大万世居—海悦丽景酒店—东江纵队纪念馆—马峦山郊野公园）。</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site311/20101229/0027107d82c00e857cb81d.jpg\"/></p><pstyle=\"text-indent:2em;\">新区旅游文化节开幕式选在客家风情浓郁的大万世居。</p><pstyle=\"text-indent:2em;\"><imgsrc=\"http://www.psxq.gov.cn/images/attachement/jpg/site311/20101229/0027107d82c00e857cb81e.jpg\"/></p><pstyle=\"text-indent:2em;\">马峦山瀑布</p><pstyle=\"text-indent:2em;\">新区自然环境优美，森林资源较为丰富，有著名的马峦山、金龟山等，马峦山瀑布是目前发现的深圳市最大的天然瀑布群，金龟山是深圳市野生植物体系保存最完整的地方之一。人文景观有体现浓郁客家民俗风情的客家民居——大万世居、龙田世居等，还有革命传统教育基地——东江纵队纪念馆、曾生故居等。而坑梓腰鼓作为新区乃至深圳市的一项文化品牌，从引进到发展，从普及到提升，经历了10多年的孕育和积累，已成为一个地方特色文化品牌。</p><pstyle=\"text-indent:2em;\">据新区经济服务局有关人员介绍，坪山一日游旅游线路的推出，对于整合新区的旅游资源，完善新区文化旅游新格局必将起到积极的促进作用。为推动旅游相关产业的培植与拓展，新区还将在下一阶段结合市场需求推出多条主题线路，丰富市民和游客的选择。通过推出更多旅游节活动营造浓郁的旅游文化氛围，对坪山优质的生态人文资源进行推介，向社会各界展现生态优美、人文荟萃的新坪山，提升新区知名度和影响力，吸引更多的社会力量投入到坪山的建设。</p>"
+        },
+        "selected": 0
+    },
+    {
+        "id": 52,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "行业准营",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 53,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "劳动保障",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 54,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "设立变更",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 55,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "环境保护",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 56,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "纳税申报",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 57,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "劳动就业",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 58,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "综合其他",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 59,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "刻制印章",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 60,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "教育培训",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 61,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "出境入境",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 62,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "医疗卫生",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 63,
+        "parentId": 50,
+        "hasChild": false,
+        "name": "外商投资",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 64,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "证照资格",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 65,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "劳动保障",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 66,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "劳动就业",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 67,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "公安司法",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 68,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "养犬登记",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 69,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "综合其他",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 70,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "刻制印章",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 71,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "出境入境",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 72,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "社会保障",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 73,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "伤残救助",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 74,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "户籍身份",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 75,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "教育培训",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 76,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "婚姻登记",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 77,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "人才服务",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 78,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "生育收养",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 79,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "住房租赁",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 80,
+        "parentId": 51,
+        "hasChild": false,
+        "name": "医疗卫生",
+        "iconName": "null",
+        "selected": 1
+    },
+    {
+        "id": 81,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "综合办",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k21/a6864_42815.shtml",
+        "selected": 1
+    },
+    {
+        "id": 82,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "纪检监察局（审计局）",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j29/a205_42814.shtml",
+        "selected": 1
+    },
+    {
+        "id": 83,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "组织人事局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j24/a139_42813.shtml",
+        "selected": 1
+    },
+    {
+        "id": 84,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "社会事务服务中心",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k06/a461_42802.shtml",
+        "selected": 1
+    },
+    {
+        "id": 85,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "公共事业局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k20/a6769_42808.shtml",
+        "selected": 1
+    },
+    {
+        "id": 86,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "坪大惠合作办",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2014/e14/a19761_42798.shtml",
+        "selected": 1
+    },
+    {
+        "id": 87,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "社会工作委员会",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k14/a1049_42812.shtml",
+        "selected": 1
+    },
+    {
+        "id": 88,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "城市建设局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/l03/a10360_42807.shtml",
+        "selected": 1
+    },
+    {
+        "id": 89,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "机关后勤服务中心",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k29/a10165_42804.shtml",
+        "selected": 1
+    },
+    {
+        "id": 90,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "规划土地监察大队",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k14/a1003_42805.shtml",
+        "selected": 1
+    },
+    {
+        "id": 91,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "土地整备中心",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k13/a719_42801.shtml",
+        "selected": 1
+    },
+    {
+        "id": 92,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "经济服务局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k13/a769_42811.shtml",
+        "selected": 1
+    },
+    {
+        "id": 93,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "建设管理服务中心",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k12/a669_42803.shtml",
+        "selected": 1
+    },
+    {
+        "id": 94,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "城市管理局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k12/a645_42806.shtml",
+        "selected": 1
+    },
+    {
+        "id": 95,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "坪山河流域办",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k11/a639_42799.shtml",
+        "selected": 1
+    },
+    {
+        "id": 96,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "中心区开发建设办公室",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j29/a295_42800.shtml",
+        "selected": 1
+    },
+    {
+        "id": 961,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "发展和财政局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j23/a124_42810.shtml",
+        "selected": 1
+    },
+    {
+        "id": 962,
+        "parentId": 29,
+        "hasChild": false,
+        "name": "社会建设局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j23/a107_42809.shtml",
+        "selected": 1
+    },
+    {
+        "id": 97,
+        "parentId": 30,
+        "hasChild": false,
+        "name": "坑梓办事处",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k06/a488_42796.shtml",
+        "selected": 1
+    },
+    {
+        "id": 98,
+        "parentId": 30,
+        "hasChild": false,
+        "name": "坪山办事处",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j26/a197_42797.shtml",
+        "selected": 1
+    },
+    {
+        "id": 99,
+        "parentId": 31,
+        "hasChild": false,
+        "name": "深圳市市场监督管理局坪山分局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j24/a144_42793.shtml",
+        "selected": 1
+    },
+    {
+        "id": 100,
+        "parentId": 31,
+        "hasChild": false,
+        "name": "社保分局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k28/a10074_42791.shtml",
+        "selected": 1
+    },
+    {
+        "id": 101,
+        "parentId": 31,
+        "hasChild": false,
+        "name": "规土委坪山分局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/k13/a804_42795.shtml",
+        "selected": 1
+    },
+    {
+        "id": 102,
+        "parentId": 31,
+        "hasChild": false,
+        "name": "坪山公安分局",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2013/i09/a14965_42794.shtml",
+        "selected": 1
+    },
+    {
+        "id": 103,
+        "parentId": 31,
+        "hasChild": false,
+        "name": "坪山交警大队",
+        "iconName": "http://www.psxq.gov.cn/wexin/a/2012/j30/a340_42792.shtml",
+        "selected": 1
+    }
+]

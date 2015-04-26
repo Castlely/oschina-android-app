@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#1156E1" 
+    android:id="@+id/information_detail_header">
+
+    <TextView
+        android:id="@+id/information_detail_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="详细信息"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20" />
+
+    <ImageView
+        android:id="@+id/information_detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_margin="7dip"
+        android:paddingLeft="2dip"
+        android:src="@drawable/menu_back" />
+
+    <ProgressBar
+        android:id="@+id/information_detail_head_progress"
+        style="@style/loading_small"
+        android:layout_gravity="right|center"
+        android:layout_marginRight="5dip" />
+
+    <ImageView
+        android:id="@+id/information_detail_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_margin="7dip"
+        android:paddingRight="2dip"
+        android:src="@drawable/index_search" />
+
+</FrameLayout>

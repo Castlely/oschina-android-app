@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/net.oschina.designapp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="200dip"
+            android:background="#ffffff" >
+
+            <org.sqk.viewpager.widget.ViewFlow
+                android:id="@+id/viewflow"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+            </org.sqk.viewpager.widget.ViewFlow>
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#88252525"
+                android:padding="8dip" >
+
+                <TextView
+                    android:id="@+id/img_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:paddingLeft="2dip"
+                    android:text="深圳"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_15" />
+
+                <org.sqk.viewpager.widget.CircleFlowIndicator
+                    android:id="@+id/viewflowindic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:padding="2dip"
+                    android:paddingRight="2dip"
+                    app:activeColor="#ffffff"
+                    app:activeType="fill"
+                    app:circleSeparation="14dip"
+                    app:inactiveColor="#8f8080"
+                    app:inactiveType="fill"
+                    app:radius="4dip" >
+                </org.sqk.viewpager.widget.CircleFlowIndicator>
+            </FrameLayout>
+        </FrameLayout>
+
+        <GridView
+            android:id="@+id/main_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/framelayout"
+            android:background="#CCCCCC"
+            android:gravity="center"
+            android:horizontalSpacing="3.0dp"
+            android:listSelector="@null"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1.0dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/main_grid"
+            android:background="#CCCCCC" />
+    </RelativeLayout>
+
+</LinearLayout>

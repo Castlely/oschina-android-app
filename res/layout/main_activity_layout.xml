@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_activity_relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/main_layout_footer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#F5F5F5"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="2dip"
+        android:paddingTop="2dip" >
+
+        <RadioButton
+            android:id="@+id/main_footbar_gaikuang"
+            style="@style/main_footbar_button"
+            android:drawableTop="@drawable/jieshao"
+            android:text="概况" />
+
+        <RadioButton
+            android:id="@+id/main_footbar_lingdao"
+            style="@style/main_footbar_button"
+            android:drawableTop="@drawable/lingdao"
+            android:text="领导" />
+
+        <RadioButton
+            android:id="@+id/main_footbar_bumen"
+            style="@style/main_footbar_button"
+            android:drawableTop="@drawable/bumen"
+            android:text="部门" />
+
+        <RadioButton
+            android:id="@+id/main_footbar_dingyue"
+            style="@style/main_footbar_button"
+            android:drawableTop="@drawable/dingyue"
+            android:text="订阅" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/main_activity_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_layout_footer" >
+    </FrameLayout>
+
+</RelativeLayout>

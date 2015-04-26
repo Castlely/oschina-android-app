@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="4dip"
+    android:paddingLeft="12dip" >
+
+    <ImageView
+        android:id="@+id/lingdaoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/lingdaoName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lingdaoImage"
+        android:text="TextView01"
+        android:textColor="@color/author_text"
+        android:textSize="20dip" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/lingdaoZhiwu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lingdaoName"
+        android:layout_toRightOf="@+id/lingdaoImage"
+        android:text="TextView02"
+        android:textSize="16dip" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/lingdaoFengong"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lingdaoZhiwu"
+        android:layout_toRightOf="@+id/lingdaoImage"
+        android:text="TextView02"
+        android:textSize="16dip" >
+    </TextView>
+
+</RelativeLayout>

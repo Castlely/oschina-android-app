@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/information_detail_header" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6.0dip"
+        android:layout_marginRight="6.0dip"
+        android:layout_marginTop="8.0dip"
+         >
+
+        <ImageView
+            android:id="@+id/lingdao_detail_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/lingdao_detail_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lingdao_detail_image"
+            android:text="TextView01"
+            android:textColor="@color/author_text"
+            android:textSize="20dip" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/lingdao_detail_zhiwu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lingdao_detail_name"
+            android:layout_toRightOf="@+id/lingdao_detail_image"
+            android:text="TextView02"
+            android:textSize="16dip" >
+        </TextView>
+    </RelativeLayout>
+
+    <View style="@style/detail_cut_line" />
+
+    <WebView
+        android:id="@+id/lingdao_detail_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+</LinearLayout>
