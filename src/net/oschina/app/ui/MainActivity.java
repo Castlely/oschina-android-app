@@ -38,7 +38,8 @@ import android.widget.RelativeLayout;
 public class MainActivity extends BaseActionBarActivity implements FooterViewVisibility,
                                                        OnClickListener, BackHandledInterface {
     public static final String  TAG = MainActivity.class.getSimpleName();
-
+    private int footbar_selected = 0xff1056e2;
+    private int footbar_unselected = 0xff686868;
     private AppContext          appContext;
     private LinearLayout        footerLayout;
     private BackHandledFragment mBackHandedFragment;
@@ -94,7 +95,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         Drawable[] drawables;//左上右下
         if (checked == true && position == 1) {
             drawables = fbGaiKuang.getCompoundDrawables();
-            fbGaiKuang.setTextColor(R.color.footbar_selected);
+            fbGaiKuang.setTextColor(footbar_selected);
             drawables[1] = getResources().getDrawable(R.drawable.jieshao_selected);
             fbGaiKuang.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -102,7 +103,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == false && position == 1) {
             drawables = fbGaiKuang.getCompoundDrawables();
-            fbGaiKuang.setTextColor(R.color.footbar_unselected);
+            fbGaiKuang.setTextColor(footbar_unselected);
             drawables[1] = getResources().getDrawable(R.drawable.jieshao_unselected);
             fbGaiKuang.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -110,7 +111,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == true && position == 2) {
             drawables = fbLingDao.getCompoundDrawables();
-            fbLingDao.setTextColor(R.color.footbar_selected);
+            fbLingDao.setTextColor(footbar_selected);
             drawables[1] = getResources().getDrawable(R.drawable.lingdao_selected);
             fbLingDao.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -118,7 +119,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == false && position == 2) {
             drawables = fbLingDao.getCompoundDrawables();
-            fbLingDao.setTextColor(R.color.footbar_unselected);
+            fbLingDao.setTextColor(footbar_unselected);
             drawables[1] = getResources().getDrawable(R.drawable.lingdao_unselected);
             fbLingDao.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -126,7 +127,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == true && position == 3) {
             drawables = fbBuMen.getCompoundDrawables();
-            fbBuMen.setTextColor(R.color.footbar_selected);
+            fbBuMen.setTextColor(footbar_selected);
             drawables[1] = getResources().getDrawable(R.drawable.bumen_selected);
             fbBuMen.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -135,7 +136,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == false && position == 3) {
             drawables = fbBuMen.getCompoundDrawables();
-            fbBuMen.setTextColor(R.color.footbar_unselected);
+            fbBuMen.setTextColor(footbar_unselected);
             drawables[1] = getResources().getDrawable(R.drawable.bumen_unselected);
             fbBuMen.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -143,7 +144,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == true && position == 4) {
             drawables = fbDingYue.getCompoundDrawables();
-            fbDingYue.setTextColor(R.color.footbar_selected);
+            fbDingYue.setTextColor(footbar_selected);
             drawables[1] = getResources().getDrawable(R.drawable.dingyue_selected);
             fbDingYue.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);
@@ -151,7 +152,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         }
         if (checked == false && position == 4) {
             drawables = fbDingYue.getCompoundDrawables();
-            fbDingYue.setTextColor(R.color.footbar_unselected);
+            fbDingYue.setTextColor(footbar_unselected);
             drawables[1] = getResources().getDrawable(R.drawable.dingyue_unselected);
             fbDingYue.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
                 drawables[2], drawables[3]);

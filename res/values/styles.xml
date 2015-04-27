@@ -219,7 +219,7 @@
     <style name="main_footbar_button" parent="footbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#686868</item>
+        <item name="android:textColor">#ff686868</item>
         <item name="android:textSize">13dp</item>
         <item name="android:padding">1dip</item>
         <item name="android:drawablePadding">-3dip</item>
