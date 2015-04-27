@@ -12,31 +12,31 @@
         android:background="#F5F5F5"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="2dip"
-        android:paddingTop="2dip" >
+        android:paddingBottom="1dip"
+        android:paddingTop="1dip" >
 
         <RadioButton
             android:id="@+id/main_footbar_gaikuang"
             style="@style/main_footbar_button"
-            android:drawableTop="@drawable/jieshao"
+            android:drawableTop="@drawable/footbar_gaikuang"
             android:text="概况" />
 
         <RadioButton
             android:id="@+id/main_footbar_lingdao"
             style="@style/main_footbar_button"
-            android:drawableTop="@drawable/lingdao"
+            android:drawableTop="@drawable/footbar_lingdao"
             android:text="领导" />
 
         <RadioButton
             android:id="@+id/main_footbar_bumen"
             style="@style/main_footbar_button"
-            android:drawableTop="@drawable/bumen"
+            android:drawableTop="@drawable/footbar_bumen"
             android:text="部门" />
 
         <RadioButton
             android:id="@+id/main_footbar_dingyue"
             style="@style/main_footbar_button"
-            android:drawableTop="@drawable/dingyue"
+            android:drawableTop="@drawable/footbar_dingyue"
             android:text="订阅" />
     </LinearLayout>
 

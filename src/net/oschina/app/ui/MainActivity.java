@@ -5,7 +5,6 @@ import net.oschina.app.AppException;
 import net.oschina.app.bean.MyInformation;
 import net.oschina.app.bean.Notice;
 import net.oschina.app.common.AnimUtil;
-import net.oschina.app.common.BadgeManager;
 import net.oschina.app.common.BitmapManager;
 import net.oschina.app.common.UIHelper;
 import net.oschina.app.fragment.BuMenFragment;
@@ -17,7 +16,6 @@ import net.oschina.app.inteface.FooterViewVisibility;
 import net.oschina.designapp.R;
 import net.tsz.afinal.FinalHttp;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -75,7 +73,6 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
 
     }
 
-
     private void initFirstFragment() {
         IndexFragment indexFragment = new IndexFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -84,11 +81,85 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         fragmentTransaction.addToBackStack("tag");
         fragmentTransaction.commit();
     }
-    private void setFootBarImageSize(RadioButton radioButton,int actionBarHeight){
-        int size = actionBarHeight/10*8;
+
+    private void setFootBarImageSize(RadioButton radioButton, int actionBarHeight) {
+        int size = actionBarHeight / 10 * 14;
         Drawable[] drawables = radioButton.getCompoundDrawables();//左上右下
-        radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], zoomDrawable(drawables[1],size,size), drawables[2], drawables[3]);
+        radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0],
+            zoomDrawable(drawables[1], size, size), drawables[2], drawables[3]);
     }
+
+    private void setFootBarButtonState(int position, boolean checked) {
+        int actionBarHeight = getActionBar().getHeight();
+        Drawable[] drawables;//左上右下
+        if (checked == true && position == 1) {
+            drawables = fbGaiKuang.getCompoundDrawables();
+            fbGaiKuang.setTextColor(R.color.footbar_selected);
+            drawables[1] = getResources().getDrawable(R.drawable.jieshao_selected);
+            fbGaiKuang.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbGaiKuang, actionBarHeight);
+        }
+        if (checked == false && position == 1) {
+            drawables = fbGaiKuang.getCompoundDrawables();
+            fbGaiKuang.setTextColor(R.color.footbar_unselected);
+            drawables[1] = getResources().getDrawable(R.drawable.jieshao_unselected);
+            fbGaiKuang.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbGaiKuang, actionBarHeight);
+        }
+        if (checked == true && position == 2) {
+            drawables = fbLingDao.getCompoundDrawables();
+            fbLingDao.setTextColor(R.color.footbar_selected);
+            drawables[1] = getResources().getDrawable(R.drawable.lingdao_selected);
+            fbLingDao.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbLingDao, actionBarHeight);
+        }
+        if (checked == false && position == 2) {
+            drawables = fbLingDao.getCompoundDrawables();
+            fbLingDao.setTextColor(R.color.footbar_unselected);
+            drawables[1] = getResources().getDrawable(R.drawable.lingdao_unselected);
+            fbLingDao.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbLingDao, actionBarHeight);
+        }
+        if (checked == true && position == 3) {
+            drawables = fbBuMen.getCompoundDrawables();
+            fbBuMen.setTextColor(R.color.footbar_selected);
+            drawables[1] = getResources().getDrawable(R.drawable.bumen_selected);
+            fbBuMen.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbBuMen, actionBarHeight);
+
+        }
+        if (checked == false && position == 3) {
+            drawables = fbBuMen.getCompoundDrawables();
+            fbBuMen.setTextColor(R.color.footbar_unselected);
+            drawables[1] = getResources().getDrawable(R.drawable.bumen_unselected);
+            fbBuMen.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbBuMen, actionBarHeight);
+        }
+        if (checked == true && position == 4) {
+            drawables = fbDingYue.getCompoundDrawables();
+            fbDingYue.setTextColor(R.color.footbar_selected);
+            drawables[1] = getResources().getDrawable(R.drawable.dingyue_selected);
+            fbDingYue.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbDingYue, actionBarHeight);
+        }
+        if (checked == false && position == 4) {
+            drawables = fbDingYue.getCompoundDrawables();
+            fbDingYue.setTextColor(R.color.footbar_unselected);
+            drawables[1] = getResources().getDrawable(R.drawable.dingyue_unselected);
+            fbDingYue.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+            setFootBarImageSize(fbDingYue, actionBarHeight);
+        }
+
+    }
+
     private void setFooterView() {
         footerLayout = (LinearLayout) findViewById(R.id.main_layout_footer);
         footerLayout.post(new Runnable() {
@@ -100,8 +171,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                     .getLayoutParams();
                 lParams.height = actionBarHeight;
                 footerLayout.setLayoutParams(lParams);
-                
-                
+
                 setFootBarImageSize(fbGaiKuang, actionBarHeight);
                 setFootBarImageSize(fbLingDao, actionBarHeight);
                 setFootBarImageSize(fbBuMen, actionBarHeight);
@@ -120,9 +190,6 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         fbLingDao = (RadioButton) findViewById(R.id.main_footbar_lingdao);
         fbBuMen = (RadioButton) findViewById(R.id.main_footbar_bumen);
         fbDingYue = (RadioButton) findViewById(R.id.main_footbar_dingyue);
-       
-
-        fbGaiKuang.setChecked(true);
 
         fbGaiKuang.setOnClickListener(onClickListener);
         fbLingDao.setOnClickListener(onClickListener);
@@ -162,7 +229,10 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                              .beginTransaction();
                                                          switch (v.getId()) {
                                                              case R.id.main_footbar_gaikuang:
-                                                                 fbGaiKuang.setChecked(true);
+                                                                 setFootBarButtonState(1, true);
+                                                                 setFootBarButtonState(2, false);
+                                                                 setFootBarButtonState(3, false);
+                                                                 setFootBarButtonState(4, false);
                                                                  fTransaction
                                                                      .replace(
                                                                          R.id.main_activity_linearlayout,
@@ -170,7 +240,10 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                                      .commit();
                                                                  break;
                                                              case R.id.main_footbar_lingdao:
-                                                                 fbLingDao.setChecked(true);
+                                                                 setFootBarButtonState(1, false);
+                                                                 setFootBarButtonState(2, true);
+                                                                 setFootBarButtonState(3, false);
+                                                                 setFootBarButtonState(4, false);
                                                                  fTransaction
                                                                      .replace(
                                                                          R.id.main_activity_linearlayout,
@@ -178,7 +251,10 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                                      .commit();
                                                                  break;
                                                              case R.id.main_footbar_bumen:
-                                                                 fbBuMen.setChecked(true);
+                                                                 setFootBarButtonState(1, false);
+                                                                 setFootBarButtonState(2, false);
+                                                                 setFootBarButtonState(3, true);
+                                                                 setFootBarButtonState(4, false);
                                                                  fTransaction
                                                                      .replace(
                                                                          R.id.main_activity_linearlayout,
@@ -186,7 +262,10 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                                      .commit();
                                                                  break;
                                                              case R.id.main_footbar_dingyue:
-                                                                 fbDingYue.setChecked(true);
+                                                                 setFootBarButtonState(1, false);
+                                                                 setFootBarButtonState(2, false);
+                                                                 setFootBarButtonState(3, false);
+                                                                 setFootBarButtonState(4, true);
                                                                  fTransaction
                                                                      .replace(
                                                                          R.id.main_activity_linearlayout,
@@ -201,10 +280,10 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                  };
 
     private void resetRadioButton() {
-        fbGaiKuang.setChecked(false);
-        fbLingDao.setChecked(false);
-        fbBuMen.setChecked(false);
-        fbDingYue.setChecked(false);
+        setFootBarButtonState(1, false);
+        setFootBarButtonState(2, false);
+        setFootBarButtonState(3, false);
+        setFootBarButtonState(4, false);
     }
 
     @Override

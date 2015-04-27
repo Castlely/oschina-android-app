@@ -711,4 +711,7 @@
     <color name="write_location_address">#ff828282</color>
     <color name="writing_comment_hit_color">#ff999999</color>
     <color name="yellow">#ffff8000</color>
+    <color name="footbar_unselected">#6c6c6c</color>
+    <color name="footbar_selected">#c1056e2</color>
+    
 </resources>
