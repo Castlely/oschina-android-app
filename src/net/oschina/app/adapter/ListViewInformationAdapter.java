@@ -1,12 +1,14 @@
 package net.oschina.app.adapter;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.oschina.app.bean.Information;
-import net.oschina.app.common.BitmapManager;
 import net.oschina.app.common.HtmlRegexpUtils;
 import net.oschina.app.common.StringUtils;
 import net.oschina.designapp.R;
+import net.tsz.afinal.FinalBitmap;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +27,7 @@ public class ListViewInformationAdapter extends BaseAdapter {
     private List<Information> listItems;       //数据集合
     private LayoutInflater    listContainer;   //视图容器
     private int               itemViewResource; //自定义项视图源 
-    private BitmapManager     bitmapManager;
+    private FinalBitmap       finalBitmap;
 
     public static class ListItemView { //自定义控件集合  
         public TextView  title;
@@ -40,12 +42,13 @@ public class ListViewInformationAdapter extends BaseAdapter {
      * @param data
      * @param resource
      */
-    public ListViewInformationAdapter(Context context, List<Information> data, int resource) {
+    public ListViewInformationAdapter(FinalBitmap finalBitmap, Context context,
+                                      List<Information> data, int resource) {
+        this.finalBitmap = finalBitmap;
         this.context = context;
         this.listContainer = LayoutInflater.from(context); //创建视图容器并设置上下文
         this.itemViewResource = resource;
         this.listItems = data;
-        bitmapManager = new BitmapManager();
     }
 
     public int getCount() {
@@ -96,23 +99,56 @@ public class ListViewInformationAdapter extends BaseAdapter {
         titleString = titleString.trim();
         listItemView.title.setText(titleString);
         listItemView.title.setTag(information);//设置隐藏参数(实体类)
-        if (information.getDescription().indexOf("/uploadfiles/") != -1) {
-            String img = information.getDescription().substring(
-                information.getDescription().indexOf("/uploadfiles/"));
-            img = img.substring(0, img.indexOf("\">"));
-            img = "http://www.psxq.gov.cn" + img;
-            bitmapManager.loadBitmap(img, listItemView.img);
+        /*        if (information.getDescription().indexOf("/uploadfiles/") != -1) {
+                    String img = information.getDescription().substring(
+                        information.getDescription().indexOf("/uploadfiles/"));
+                    img = img.substring(0, img.indexOf("\">"));
+                    img = "http://www.psxq.gov.cn" + img;
+                    bitmapManager.loadBitmap(img, listItemView.img);
+                } else {
+                    listItemView.img.setVisibility(View.GONE);
+                }*/
+        if (information.getIs_picture() != null
+            && !StringUtils.isEmpty(information.getLink_picture())) {
+            finalBitmap.display(listItemView.img, "http://"+information.getLink_picture());
+            listItemView.img.setVisibility(View.VISIBLE);
         } else {
             listItemView.img.setVisibility(View.GONE);
         }
         String dateString = information.getLast_update();
         dateString = dateString.substring(0, 19);
         listItemView.lastUpdate.setText(StringUtils.friendly_time(dateString));
-        String descriptionString = HtmlRegexpUtils.filterHtml(information.getDescription());
-        descriptionString = descriptionString.replaceAll(" ", "");
-        descriptionString = descriptionString.trim();
-        listItemView.description.setText(descriptionString);
+        if (!StringUtils.isEmpty(information.getDescription())) {
+            String descriptionString = delHTMLTag(information.getDescription());
+            descriptionString = descriptionString.replaceAll("　", "");
+            descriptionString = descriptionString.replaceAll("\r\n", "");
+            descriptionString = descriptionString.replaceAll("&nbsp;", "");
+            descriptionString = descriptionString.trim();
+            listItemView.description.setText(descriptionString);
+        } else {
+            listItemView.description.setText("");
+        }
         convertView.setId(information.getId());
         return convertView;
+    }
+
+    public static String delHTMLTag(String htmlStr) {
+        String regEx_script = "<script[^>]*?>[\\s\\S]*?<\\/script>"; //定义script的正则表达式 
+        String regEx_style = "<style[^>]*?>[\\s\\S]*?<\\/style>"; //定义style的正则表达式 
+        String regEx_html = "<[^>]+>"; //定义HTML标签的正则表达式 
+
+        Pattern p_script = Pattern.compile(regEx_script, Pattern.CASE_INSENSITIVE);
+        Matcher m_script = p_script.matcher(htmlStr);
+        htmlStr = m_script.replaceAll(""); //过滤script标签 
+
+        Pattern p_style = Pattern.compile(regEx_style, Pattern.CASE_INSENSITIVE);
+        Matcher m_style = p_style.matcher(htmlStr);
+        htmlStr = m_style.replaceAll(""); //过滤style标签 
+
+        Pattern p_html = Pattern.compile(regEx_html, Pattern.CASE_INSENSITIVE);
+        Matcher m_html = p_html.matcher(htmlStr);
+        htmlStr = m_html.replaceAll(""); //过滤html标签 
+
+        return htmlStr.trim(); //返回文本字符串 
     }
 }

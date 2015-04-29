@@ -371,6 +371,7 @@ public class ApiClient {
         do {
             try {
                 httpClient = getHttpClient();
+                if(!url.startsWith("http://"))url="http://"+url;
                 httpGet = getHttpGet(url, null, null);
                 int statusCode = httpClient.executeMethod(httpGet);
                 if (statusCode != HttpStatus.SC_OK) {

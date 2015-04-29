@@ -5,7 +5,6 @@ import java.util.Map;
 
 import net.oschina.app.AppData;
 import net.oschina.app.bean.Information;
-import net.oschina.app.common.BitmapManager;
 import net.oschina.app.common.UIHelper;
 import net.oschina.app.ui.MainActivity;
 import net.oschina.designapp.R;
@@ -19,20 +18,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.common.collect.Lists;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ImageAdapter extends BaseAdapter {
     private Context                  mContext;
     private LayoutInflater           mInflater;
     private Map<String, Information> bitmapMap;
     private List<String>             bitmapList;
-    private BitmapManager            bitmapManager;
 
     public ImageAdapter(Context context, Map<String, Information> map) {
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         bitmapMap = map;
         bitmapList = Lists.newArrayList(bitmapMap.keySet());
-        bitmapManager = new BitmapManager();//初始化FinalBitmap模块
     }
 
     @Override
@@ -67,7 +65,8 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView.getTag();
         }
 
-        bitmapManager.loadBitmap(bitmapList.get(position % bitmapList.size()), imageView);
+        ImageLoader.getInstance().displayImage(bitmapList.get(position % bitmapList.size()),
+            imageView);
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

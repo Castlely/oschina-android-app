@@ -3,7 +3,6 @@ package net.oschina.app.ui;
 import net.oschina.app.AppContext;
 import net.oschina.app.AppException;
 import net.oschina.app.bean.Notice;
-import net.oschina.app.common.BitmapManager;
 import net.oschina.app.common.HtmlRegexpUtils;
 import net.oschina.app.common.UIHelper;
 import net.oschina.designapp.R;
@@ -13,15 +12,16 @@ import android.os.Message;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 博客详情
@@ -50,7 +50,6 @@ public class LingdaoDetail extends BaseActivity {
     private String             lingdaoZhiwu;
     private String             lingdaoWebSrc;
     private String             lingdaoImg;
-    private BitmapManager      bitmapManager;
 
     private final static int   VIEWSWITCH_TYPE_DETAIL = 0x001;
 
@@ -65,7 +64,6 @@ public class LingdaoDetail extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lingdao_detail);
-        bitmapManager = new BitmapManager();
         this.initView();
         this.initData();
 
@@ -113,7 +111,7 @@ public class LingdaoDetail extends BaseActivity {
                     mName.setText(lingdaoName);
                     mZhiwu.setText(lingdaoZhiwu);
 
-                    bitmapManager.loadBitmap(lingdaoImg, mImage);
+                    ImageLoader.getInstance().displayImage(lingdaoImg, mImage);
                     String body = UIHelper.WEB_STYLE + lingdaoWebSrc;
                     body = HtmlRegexpUtils.z(body);
                     //读取用户设置：是否加载文章图片--默认有wifi下始终加载图片

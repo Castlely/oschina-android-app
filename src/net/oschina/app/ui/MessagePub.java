@@ -65,9 +65,6 @@ public class MessagePub extends BaseActionBarActivity {
         //编辑器添加文本监听
         mContent.addTextChangedListener(UIHelper.getTextWatcher(this, tempMessageKey));
 
-        //显示临时编辑内容
-        UIHelper.showTempEditContent(this, mContent, tempMessageKey);
-
         mReceiver.setText("发送留言给  " + _friendname);
     }
 

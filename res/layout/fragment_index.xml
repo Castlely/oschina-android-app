@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
                     android:paddingLeft="2dip"
-                    android:text="深圳"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_15" />
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/framelayout"
-            android:background="#CCCCCC"
+            android:background="#e7e7e7"
             android:gravity="center"
             android:horizontalSpacing="3.0dp"
             android:listSelector="@null"
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/main_grid"
-            android:background="#CCCCCC" />
+            android:background="#e7e7e7" />
     </RelativeLayout>
 
 </LinearLayout>

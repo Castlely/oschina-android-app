@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.oschina.app.AppData;
-import net.oschina.app.common.BitmapManager;
 import net.oschina.app.common.StringUtils;
 import net.oschina.app.common.UIHelper;
 import net.oschina.app.ui.BackHandledFragment;
@@ -29,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * home2
@@ -38,7 +38,6 @@ import com.google.gson.reflect.TypeToken;
 public class LingDaoFragment extends BackHandledFragment implements OnClickListener {
     private static final String TAG = "LingDaoFragment";
     LayoutInflater              inflater;
-    BitmapManager               bitmapManager;
     ActionBar                   mActionBar;
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
@@ -60,7 +59,8 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
                 // TODO Auto-generated method stub
 
                 IndexFragment indexFragment = new IndexFragment();
-                FragmentManager fragmentManager = LingDaoFragment.this.getActivity().getSupportFragmentManager();
+                FragmentManager fragmentManager = LingDaoFragment.this.getActivity()
+                    .getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
             }
@@ -85,7 +85,6 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.inflater = inflater;
-        bitmapManager = new BitmapManager();
         View view = (View) inflater.inflate(R.layout.lingdao_list, container, false);
         ListView listView = (ListView) view.findViewById(R.id.LingdaoListView);
         InputStream in = getResources().openRawResource(R.raw.lingdao);
@@ -172,7 +171,7 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
             para.height = 200;
             para.width = 150;
             image.setLayoutParams(para);
-            bitmapManager.loadBitmap(imgUrl, image);
+            ImageLoader.getInstance().displayImage(imgUrl, image);
             itemView.setTag(obj);
             return itemView;
         }
@@ -188,7 +187,8 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     @Override
     protected boolean onBackPressed() {
         IndexFragment indexFragment = new IndexFragment();
-        FragmentManager fragmentManager = LingDaoFragment.this.getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = LingDaoFragment.this.getActivity()
+            .getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
         fragmentTransaction.commit();

@@ -61,9 +61,6 @@ public class QuestionPub extends BaseActionBarActivity {
         mTitle.addTextChangedListener(UIHelper.getTextWatcher(this, AppConfig.TEMP_POST_TITLE));
         mContent.addTextChangedListener(UIHelper.getTextWatcher(this, AppConfig.TEMP_POST_CONTENT));
 
-        //显示临时编辑内容
-        UIHelper.showTempEditContent(this, mTitle, AppConfig.TEMP_POST_TITLE);
-        UIHelper.showTempEditContent(this, mContent, AppConfig.TEMP_POST_CONTENT);
         //显示临时选择分类
         String position = ((AppContext) getApplication()).getProperty(AppConfig.TEMP_POST_CATALOG);
         mCatalog.setSelection(StringUtils.toInt(position, 0));

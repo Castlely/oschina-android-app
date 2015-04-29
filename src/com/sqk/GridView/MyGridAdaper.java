@@ -83,7 +83,7 @@ public class MyGridAdaper extends BaseAdapter {
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(Boolean)bundles.get(position).get("web")) {
+                if (!(Boolean) bundles.get(position).get("web")) {
                     GridMainFragment gridMainFragment = new GridMainFragment();
                     gridMainFragment.setArguments(bundles.get(position));
                     FragmentManager fragmentManager = fManager;

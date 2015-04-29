@@ -25,6 +25,7 @@
             android:id="@+id/information_listitem_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:layout_marginLeft="@dimen/news_list_item_text_margin_left"
             android:layout_toRightOf="@id/information_listitem_image"
             android:ellipsize="end"
@@ -36,17 +37,21 @@
             android:id="@+id/information_listitem_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:layout_below="@id/information_listitem_title"
-            android:layout_marginLeft="5.0dip"
+            android:layout_marginLeft="@dimen/news_list_item_text_margin_left"
             android:layout_toRightOf="@id/information_listitem_image"
+            android:ellipsize="end"
+            android:textColor="#ffa7a7a7"
             android:contentDescription="@null"
-            android:maxLength="20" />
+            android:maxLength="30" />
 
         <TextView
             android:id="@+id/information_listitem_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:textColor="#ffa7a7a7"
             android:layout_alignParentRight="true"
             android:layout_marginTop="1.0dip" />
     </RelativeLayout>

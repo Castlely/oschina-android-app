@@ -14,7 +14,6 @@ import net.oschina.app.AppContext;
 import net.oschina.app.AppData;
 import net.oschina.app.bean.Information;
 import net.oschina.app.bean.InformationList;
-import net.oschina.app.common.BitmapManager;
 import net.oschina.app.ui.BackHandledFragment;
 import net.oschina.designapp.R;
 import net.tsz.afinal.FinalHttp;
@@ -51,18 +50,17 @@ import com.sqk.GridView.MyGridAdaper;
 import com.sqk.viewpager.ImageAdapter;
 
 public class IndexFragment extends BackHandledFragment {
-    private ViewFlow      viewFlow;
-    private FinalHttp     fh = new FinalHttp();
-    GridView              MyGridView;
-    List<Grid_Item>       lists;
-    private ActionBar     mActionBar;
-    private FinalHttp     finalHttp;
-    private BitmapManager bitmapManager;
-    View                  viewTitleBar;
-    ImageView             weatherImageView;
-    TextView              weatherTextView;
-    private byte[]        weatherPicByte;
-    ImageView             rightBtn;
+    private ViewFlow  viewFlow;
+    private FinalHttp fh = new FinalHttp();
+    GridView          MyGridView;
+    List<Grid_Item>   lists;
+    private ActionBar mActionBar;
+    private FinalHttp finalHttp;
+    View              viewTitleBar;
+    ImageView         weatherImageView;
+    TextView          weatherTextView;
+    private byte[]    weatherPicByte;
+    ImageView         rightBtn;
 
     public static Drawable resizeImage(Bitmap bitmap, int w, int h) {
         Bitmap BitmapOrg = bitmap;
@@ -84,7 +82,7 @@ public class IndexFragment extends BackHandledFragment {
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
         mActionBar = this.getActivity().getActionBar();
-        
+
         ActionBar.LayoutParams lp = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
             ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER);
 
@@ -111,7 +109,8 @@ public class IndexFragment extends BackHandledFragment {
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(weatherPicByte, 0,
                                     weatherPicByte.length);
                                 Bitmap bitmap2 = transparentImage(bitmap);
-                                weatherImageView.setBackground(resizeImage(bitmap2, rightBtn.getWidth()+10, rightBtn.getHeight()+10));
+                                weatherImageView.setBackground(resizeImage(bitmap2,
+                                    rightBtn.getWidth() + 10, rightBtn.getHeight() + 10));
                                 //bitmapManager.loadBitmap("http://i.tq121.com.cn/i/wap/80bai/d01.png", weatherImageView);
                             }
                         }
@@ -194,9 +193,8 @@ public class IndexFragment extends BackHandledFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_index, container, false);
-        
+
         finalHttp = new FinalHttp();
-        bitmapManager = new BitmapManager();
         viewTitleBar = inflater.inflate(R.layout.action_bar_index, null);
         weatherImageView = (ImageView) viewTitleBar.findViewById(R.id.weather);
         weatherTextView = (TextView) viewTitleBar.findViewById(R.id.weather_text);
@@ -252,7 +250,6 @@ public class IndexFragment extends BackHandledFragment {
             if (entry.getValue() == true)
                 lists.add(new Grid_Item(AppData.ico.get(entry.getKey()), entry.getKey()));
         }
-
         MyGridAdaper adaper = new MyGridAdaper(IndexFragment.this.getActivity(), lists,
             this.getFragmentManager());
         MyGridView.setAdapter(adaper);

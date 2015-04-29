@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import net.oschina.app.AppContext;
-import net.oschina.app.AppData;
 import net.oschina.app.AppException;
 import net.oschina.app.adapter.ListViewInformationAdapter;
 import net.oschina.app.adapter.ListViewInformationAdapter.ListItemView;
@@ -15,21 +14,18 @@ import net.oschina.app.common.UIHelper;
 import net.oschina.app.widget.NewDataToast;
 import net.oschina.app.widget.PullToRefreshListView;
 import net.oschina.designapp.R;
-import android.app.ActionBar;
+import net.tsz.afinal.FinalBitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -41,7 +37,7 @@ public class InformationListFragment extends Fragment {
     private PullToRefreshListView      lvInformation;
 
     private ListViewInformationAdapter lvInformationAdapter;
-
+    private FinalBitmap                finalBitmap;
     private int                        lvInformationSumData;
     private View                       lvInformation_footer;
 
@@ -49,17 +45,18 @@ public class InformationListFragment extends Fragment {
 
     private ProgressBar                lvInformation_foot_progress;
     private AppContext                 appContext;
+    
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        finalBitmap = FinalBitmap.create(this.getActivity().getApplicationContext());
         // 初始化Handler
         appContext = (AppContext) this.getActivity().getApplication();
 
         String catalogName = this.getArguments().getString("catalogName");
         final String title = this.getArguments().getString("title");
         initInformationListView(catalogName, inflater, container);
-
         lvInformationHandler = this.getLvHandler(lvInformation, lvInformationAdapter,
             lvInformation_foot_more, lvInformation_foot_progress, AppContext.PAGE_SIZE);
         // 加载资讯数据
@@ -72,7 +69,7 @@ public class InformationListFragment extends Fragment {
 
     private void initInformationListView(final String catalog, LayoutInflater inflater,
                                          ViewGroup container) {
-        lvInformationAdapter = new ListViewInformationAdapter(
+        lvInformationAdapter = new ListViewInformationAdapter(finalBitmap,
             InformationListFragment.this.getActivity(), lvInformationData,
             R.layout.information_listitem);
         lvInformation_footer = inflater.inflate(R.layout.listview_footer, null);
@@ -85,7 +82,7 @@ public class InformationListFragment extends Fragment {
         //lvInformation.set
         lvInformation.addFooterView(lvInformation_footer);// 添加底部视图 必须在setAdapter前
         lvInformation.setAdapter(lvInformationAdapter);
-
+        
         lvInformation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // 点击头部、底部栏无效
@@ -93,9 +90,10 @@ public class InformationListFragment extends Fragment {
                     return;
                 ListItemView listItemView = (ListItemView) view.getTag();
                 Information information = (Information) listItemView.title.getTag();
-                // 跳转到留言详情
+                UIHelper.showWebDetail(view.getContext(), "http://" + information.getLink());
+                /*// 跳转到留言详情
                 UIHelper.showInformationDetail(view.getContext(), AppData.gsonBuilder.create()
-                    .toJson(information));
+                    .toJson(information));*/
             }
         });
         lvInformation.setOnScrollListener(new AbsListView.OnScrollListener() {

@@ -5,7 +5,6 @@ import net.oschina.app.AppException;
 import net.oschina.app.bean.MyInformation;
 import net.oschina.app.bean.Notice;
 import net.oschina.app.common.AnimUtil;
-import net.oschina.app.common.BitmapManager;
 import net.oschina.app.common.UIHelper;
 import net.oschina.app.fragment.BuMenFragment;
 import net.oschina.app.fragment.DingYueFragment;
@@ -37,9 +36,9 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends BaseActionBarActivity implements FooterViewVisibility,
                                                        OnClickListener, BackHandledInterface {
-    public static final String  TAG = MainActivity.class.getSimpleName();
-    private int footbar_selected = 0xff1056e2;
-    private int footbar_unselected = 0xff686868;
+    public static final String  TAG                = MainActivity.class.getSimpleName();
+    private int                 footbar_selected   = 0xff1056e2;
+    private int                 footbar_unselected = 0xff686868;
     private AppContext          appContext;
     private LinearLayout        footerLayout;
     private BackHandledFragment mBackHandedFragment;
@@ -48,13 +47,12 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
     private RadioButton         fbBuMen;
     private RadioButton         fbDingYue;
     private FinalHttp           finalHttp;
-    private BitmapManager       bitmapManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.main_activity_layout);
         finalHttp = new FinalHttp();
-        bitmapManager = new BitmapManager();
         appContext = (AppContext) getApplication();
 
         initFirstFragment();

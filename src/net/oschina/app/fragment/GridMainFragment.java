@@ -36,8 +36,12 @@ public class GridMainFragment extends MainFragment {
                 titles.add(key);
             }
         }
-
-        return new ActivePagerAdapter(this.getView(),getChildFragmentManager(), fragments, titles,catalogName);
+        for (int i = 0; i < titles.size(); i++) {
+            if (titles.get(i).toString().equals(catalogName)) {
+                super.setPageSelect(i);
+            }
+        }
+        return new ActivePagerAdapter(getChildFragmentManager(), fragments, titles);
     }
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
@@ -88,7 +92,10 @@ public class GridMainFragment extends MainFragment {
 
         Map<String, Object> menuMap = AppData.getMenu(getResources());
         for (String parentKey : menuMap.keySet()) {
-            if(menuMap.get(parentKey) instanceof Double){continue;};
+            if (menuMap.get(parentKey) instanceof Double) {
+                continue;
+            }
+            ;
             Map<String, Object> subMenuMap = (Map<String, Object>) menuMap.get(parentKey);
             if (subMenuMap.containsKey(catalogName)) {
                 parentString = parentKey;

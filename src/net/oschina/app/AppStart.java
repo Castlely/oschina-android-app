@@ -17,6 +17,9 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.LinearLayout;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 /**
  * 应用程序启动类：显示欢迎界面并跳转到主界面
  * @author liux (http://my.oschina.net/liux)
@@ -31,10 +34,12 @@ public class AppStart extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+            .build();
+        ImageLoader.getInstance().init(config);
         final View view = View.inflate(this, R.layout.start, null);
         LinearLayout wellcome = (LinearLayout) view.findViewById(R.id.app_start_view);
-        check(wellcome);
+        //check(wellcome);
         setContentView(view);
 
         //渐变展示启动屏

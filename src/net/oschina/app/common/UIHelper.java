@@ -6,14 +6,12 @@ import greendroid.widget.QuickAction;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.oschina.app.AppConfig;
 import net.oschina.app.AppContext;
 import net.oschina.app.AppException;
 import net.oschina.app.AppManager;
-import net.oschina.app.adapter.GridViewFaceAdapter;
 import net.oschina.app.api.ApiClient;
 import net.oschina.app.bean.AccessInfo;
 import net.oschina.app.bean.Active;
@@ -33,7 +31,6 @@ import net.oschina.app.fragment.LoginDialogFragment.LoginDialogListener;
 import net.oschina.app.fragment.ReportUi;
 import net.oschina.app.ui.About;
 import net.oschina.app.ui.BaseActionBarActivity;
-import net.oschina.app.ui.BlogDetail;
 import net.oschina.app.ui.Capture;
 import net.oschina.app.ui.CommentPub;
 import net.oschina.app.ui.FeedBack;
@@ -41,29 +38,14 @@ import net.oschina.app.ui.ImageDialog;
 import net.oschina.app.ui.ImageZoomDialog;
 import net.oschina.app.ui.InformationDetail;
 import net.oschina.app.ui.LingdaoDetail;
-import net.oschina.app.ui.MessageDetail;
 import net.oschina.app.ui.MessageForward;
 import net.oschina.app.ui.MessagePub;
-import net.oschina.app.ui.NewsDetail;
-import net.oschina.app.ui.QuestionDetail;
 import net.oschina.app.ui.QuestionPub;
-import net.oschina.app.ui.QuestionTag;
 import net.oschina.app.ui.ScreenShotShare;
-import net.oschina.app.ui.Search;
 import net.oschina.app.ui.SoftwareDetail;
-import net.oschina.app.ui.SoftwareLib;
-import net.oschina.app.ui.TweetDetail;
-import net.oschina.app.ui.TweetPub;
-import net.oschina.app.ui.TweetPubActivity;
-import net.oschina.app.ui.UserCenter;
-import net.oschina.app.ui.UserFavorite;
-import net.oschina.app.ui.UserFriend;
-import net.oschina.app.ui.UserInfo;
 import net.oschina.app.ui.WebDetail;
 import net.oschina.app.widget.LinkView;
 import net.oschina.app.widget.LinkView.MyURLSpan;
-import net.oschina.app.widget.PathChooseDialog;
-import net.oschina.app.widget.PathChooseDialog.ChooseCompleteListener;
 import net.oschina.app.widget.ScreenShotView;
 import net.oschina.app.widget.ScreenShotView.OnScreenShotListener;
 import net.oschina.designapp.R;
@@ -79,7 +61,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -98,7 +79,6 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
 import android.text.style.URLSpan;
 import android.util.Log;
@@ -200,89 +180,12 @@ public class UIHelper {
     }
 
     /**
-     * 显示新闻详情
-     * 
-     * @param context
-     * @param newsId
-     */
-    public static void showNewsDetail(Context context, int newsId) {
-        Intent intent = new Intent(context, NewsDetail.class);
-        intent.putExtra("news_id", newsId);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示帖子详情
-     * 
-     * @param context
-     * @param postId
-     */
-    public static void showQuestionDetail(Context context, int postId) {
-        Intent intent = new Intent(context, QuestionDetail.class);
-        intent.putExtra("post_id", postId);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示相关Tag帖子列表
-     * 
-     * @param context
-     * @param tag
-     */
-    public static void showQuestionListByTag(Context context, String tag) {
-        Intent intent = new Intent(context, QuestionTag.class);
-        intent.putExtra("post_tag", tag);
-        context.startActivity(intent);
-    }
-
-    /**
      * 显示新的我要提问页面
      * 
      * @param context
      */
     public static void showNewQuestionPub(Context context) {
         Intent intent = new Intent(context, QuestionPub.class);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示动弹详情及评论
-     * 
-     * @param context
-     * @param tweetId
-     */
-    public static void showTweetDetail(Context context, int tweetId) {
-        Intent intent = new Intent(context, TweetDetail.class);
-        intent.putExtra("tweet_id", tweetId);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示新的动弹一下页面
-     * 
-     * @param context
-     */
-    public static void showNewTweetPub(Activity context) {
-        Intent intent = new Intent(context, TweetPubActivity.class);
-        context.startActivityForResult(intent, REQUEST_CODE_FOR_RESULT);
-    }
-
-    public static void showNewTweetPub(Activity context, String atme, int atuid) {
-        Intent intent = new Intent(context, TweetPubActivity.class);
-        intent.putExtra("at_me", atme);
-        intent.putExtra("at_uid", atuid);
-        context.startActivityForResult(intent, REQUEST_CODE_FOR_RESULT);
-    }
-
-    /**
-     * 显示博客详情
-     * 
-     * @param context
-     * @param blogId
-     */
-    public static void showBlogDetail(Context context, int blogId) {
-        Intent intent = new Intent(context, BlogDetail.class);
-        intent.putExtra("blog_id", blogId);
         context.startActivity(intent);
     }
 
@@ -314,18 +217,11 @@ public class UIHelper {
             int newsType = news.getNewType().type;
             String objId = news.getNewType().attachment;
             switch (newsType) {
-                case News.NEWSTYPE_NEWS:
-                    showNewsDetail(context, newsId);
-                    break;
+
                 case News.NEWSTYPE_SOFTWARE:
                     showSoftwareDetail(context, objId);
                     break;
-                case News.NEWSTYPE_POST:
-                    showQuestionDetail(context, StringUtils.toInt(objId));
-                    break;
-                case News.NEWSTYPE_BLOG:
-                    showBlogDetail(context, StringUtils.toInt(objId));
-                    break;
+
             }
         } else {
             showUrlRedirect(context, url);
@@ -349,18 +245,6 @@ public class UIHelper {
             switch (catalog) {
                 case Active.CATALOG_OTHER:
                     // 其他-无跳转
-                    break;
-                case Active.CATALOG_NEWS:
-                    showNewsDetail(context, id);
-                    break;
-                case Active.CATALOG_POST:
-                    showQuestionDetail(context, id);
-                    break;
-                case Active.CATALOG_TWEET:
-                    showTweetDetail(context, id);
-                    break;
-                case Active.CATALOG_BLOG:
-                    showBlogDetail(context, id);
                     break;
             }
         } else {
@@ -457,20 +341,6 @@ public class UIHelper {
     public static void showInformationDetail(Context context, int informationId) {
         Intent intent = new Intent(context, InformationDetail.class);
         intent.putExtra("information_id", informationId);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示留言对话页面
-     * 
-     * @param context
-     * @param catalog
-     * @param friendid
-     */
-    public static void showMessageDetail(Context context, int friendid, String friendname) {
-        Intent intent = new Intent(context, MessageDetail.class);
-        intent.putExtra("friend_name", friendname);
-        intent.putExtra("friend_id", friendid);
         context.startActivity(intent);
     }
 
@@ -782,29 +652,6 @@ public class UIHelper {
     }
 
     /**
-     * 是否重新发布动弹操对话框
-     * 
-     * @param context
-     * @param thread
-     */
-    public static void showResendTweetDialog(final Context context, final Thread thread) {
-        new AlertDialog.Builder(context).setIcon(android.R.drawable.ic_dialog_info)
-            .setTitle(context.getString(R.string.republish_tweet))
-            .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    if (context == TweetPub.mContext && TweetPub.mMessage != null)
-                        TweetPub.mMessage.setVisibility(View.VISIBLE);
-                    thread.start();
-                }
-            }).setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            }).create().show();
-    }
-
-    /**
      * 显示图片对话框
      * 
      * @param context
@@ -823,107 +670,12 @@ public class UIHelper {
     }
 
     /**
-     * 显示搜索界面
-     * 
-     * @param context
-     */
-    public static void showSearch(Context context) {
-        Intent intent = new Intent(context, Search.class);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示新的搜索界面
-     * 
-     * @param context
-     */
-    public static void showNewSearch(Context context) {
-        Intent intent = new Intent(context, Search.class);
-        context.startActivity(intent);
-    }
-
-    /**
      * 显示扫一扫界面
      * 
      * @param context
      */
     public static void showCapture(Context context) {
         Intent intent = new Intent(context, Capture.class);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示软件界面
-     * 
-     * @param context
-     */
-    public static void showSoftware(Context context) {
-        Intent intent = new Intent(context, SoftwareLib.class);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示我的资料
-     * 
-     * @param context
-     */
-    public static void showUserInfo(FragmentActivity context) {
-        AppContext ac = (AppContext) context.getApplicationContext();
-        if (!ac.isLogin()) {
-            showLoginDialog(context.getSupportFragmentManager());
-        } else {
-            Intent intent = new Intent(context, UserInfo.class);
-            context.startActivity(intent);
-        }
-    }
-
-    /**
-     * 显示路径选择对话框
-     * 
-     * @param context
-     */
-    public static void showFilePathDialog(Activity context, ChooseCompleteListener listener) {
-        new PathChooseDialog(context, listener).show();
-    }
-
-    /**
-     * 显示用户动态
-     * 
-     * @param context
-     * @param uid
-     * @param hisuid
-     * @param hisname
-     */
-    public static void showUserCenter(Context context, int hisuid, String hisname) {
-        Intent intent = new Intent(context, UserCenter.class);
-        intent.putExtra("his_id", hisuid);
-        intent.putExtra("his_name", hisname);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示用户收藏夹
-     * 
-     * @param context
-     */
-    public static void showUserFavorite(Context context) {
-        Intent intent = new Intent(context, UserFavorite.class);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 显示用户好友
-     * 
-     * @param context 打开页面时显示的页面 FOOLOWERS : 显示自己的粉丝  FANS : 显示自己的关注者
-     * @param friendType 关注者的数目
-     * @param followers 粉丝的数目
-     * @param fans 
-     */
-    public static void showUserFriend(Context context, int friendType, int followers, int fans) {
-        Intent intent = new Intent(context, UserFriend.class);
-        intent.putExtra(UserFriend.INTENT_TYEP, friendType);
-        intent.putExtra(UserFriend.INTENT_FOOLOWERS, followers);
-        intent.putExtra(UserFriend.INTENT_FANS, fans);
         context.startActivity(intent);
     }
 
@@ -1021,26 +773,9 @@ public class UIHelper {
 
     public static void showLinkRedirect(Context context, int objType, int objId, String objKey) {
         switch (objType) {
-            case URLs.URL_OBJ_TYPE_NEWS:
-                showNewsDetail(context, objId);
-                break;
-            case URLs.URL_OBJ_TYPE_QUESTION:
-                showQuestionDetail(context, objId);
-                break;
-            case URLs.URL_OBJ_TYPE_QUESTION_TAG:
-                showQuestionListByTag(context, objKey);
-                break;
+
             case URLs.URL_OBJ_TYPE_SOFTWARE:
                 showSoftwareDetail(context, objKey);
-                break;
-            case URLs.URL_OBJ_TYPE_ZONE:
-                showUserCenter(context, objId, objKey);
-                break;
-            case URLs.URL_OBJ_TYPE_TWEET:
-                showTweetDetail(context, objId);
-                break;
-            case URLs.URL_OBJ_TYPE_BLOG:
-                showBlogDetail(context, objId);
                 break;
             case URLs.URL_OBJ_TYPE_OTHER:
                 openBrowser(context, objKey);
@@ -1100,52 +835,6 @@ public class UIHelper {
             public void afterTextChanged(Editable s) {
             }
         };
-    }
-
-    /**
-     * 编辑器显示保存的草稿
-     * 
-     * @param context
-     * @param editer
-     * @param temlKey
-     */
-    public static void showTempEditContent(Activity context, EditText editer, String temlKey) {
-        String tempContent = ((AppContext) context.getApplication()).getProperty(temlKey);
-        if (!StringUtils.isEmpty(tempContent)) {
-            SpannableStringBuilder builder = parseFaceByText(context, tempContent);
-            editer.setText(builder);
-            editer.setSelection(tempContent.length());// 设置光标位置
-        }
-    }
-
-    /**
-     * 将[12]之类的字符串替换为表情
-     * 
-     * @param context
-     * @param content
-     */
-    public static SpannableStringBuilder parseFaceByText(Context context, String content) {
-        SpannableStringBuilder builder = new SpannableStringBuilder(content);
-        Matcher matcher = facePattern.matcher(content);
-        while (matcher.find()) {
-            // 使用正则表达式找出其中的数字
-            int position = StringUtils.toInt(matcher.group(1));
-            int resId = 0;
-            try {
-                if (position > 65 && position < 102)
-                    position = position - 1;
-                else if (position > 102)
-                    position = position - 2;
-                resId = GridViewFaceAdapter.getImageIds()[position];
-                Drawable d = context.getResources().getDrawable(resId);
-                d.setBounds(0, 0, 35, 35);// 设置表情图片的显示大小
-                ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BOTTOM);
-                builder.setSpan(span, matcher.start(), matcher.end(),
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } catch (Exception e) {
-            }
-        }
-        return builder;
     }
 
     /**

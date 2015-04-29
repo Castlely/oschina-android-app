@@ -199,8 +199,7 @@ public class InformationDetail extends BaseActivity {
         // 编辑器添加文本监听
         mFootEditer.addTextChangedListener(UIHelper.getTextWatcher(this, tempCommentKey));
 
-        // 显示临时编辑内容
-        UIHelper.showTempEditContent(this, mFootEditer, tempCommentKey);
+       
 
     }
 

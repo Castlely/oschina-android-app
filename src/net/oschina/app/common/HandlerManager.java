@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.AppException;
-import net.oschina.app.adapter.ListViewSearchAdapter;
 import net.oschina.app.bean.Active;
 import net.oschina.app.bean.ActiveList;
 import net.oschina.app.bean.Blog;
@@ -126,79 +125,6 @@ public class HandlerManager {
         };
     }
 
-    public Handler getSearcHandler(final ListView lv, final ListViewSearchAdapter adapter,
-                                   final TextView more,
-                                   final ActionBarProgressBarVisibility abProgress,
-                                   final LoadListDataCallbacks callbacks) {
-        return new Handler() {
-
-            public void handleMessage(Message msg) {
-
-                if (msg.what >= 0) {
-                    SearchList list = (SearchList) msg.obj;
-                    Notice notice = list.getNotice();
-                    //处理listview数据
-                    switch (msg.arg1) {
-                        case UIHelper.LISTVIEW_ACTION_INIT:
-                        case UIHelper.LISTVIEW_ACTION_REFRESH:
-                        case UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG:
-                            data.setSearchSumData(msg.what);
-                            data.setSearchData(list.getResultlist());
-                            break;
-                        case UIHelper.LISTVIEW_ACTION_SCROLL:
-                            data.addSearchSumData(msg.what);
-                            if (data.getSearchDataSize() > 0) {
-                                for (SearchList.Result res1 : list.getResultlist()) {
-                                    boolean b = false;
-                                    for (SearchList.Result res2 : data.getSearchData()) {
-                                        if (res1.getObjid() == res2.getObjid()) {
-                                            b = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!b)
-                                        data.addSearchData(res1);
-                                }
-                            } else {
-                                data.addAllSearchData(list.getResultlist());
-                            }
-                            break;
-                    }
-
-                    callbacks.onLoadDataFinished(data);
-
-                    if (msg.what < 20) {
-                        lv.setTag(UIHelper.LISTVIEW_DATA_FULL);
-                        adapter.notifyDataSetChanged();
-                        more.setText(R.string.load_full);
-                    } else if (msg.what == 20) {
-                        lv.setTag(UIHelper.LISTVIEW_DATA_MORE);
-                        adapter.notifyDataSetChanged();
-                        more.setText(R.string.load_more);
-                    }
-                    //发送通知广播
-                    if (notice != null) {
-                        UIHelper.sendBroadCast(lv.getContext(), notice);
-                    }
-                } else if (msg.what == -1) {
-                    //有异常--显示加载出错 & 弹出错误消息
-                    lv.setTag(UIHelper.LISTVIEW_DATA_MORE);
-                    more.setText(R.string.load_error);
-                    ((AppException) msg.obj).makeToast(lv.getContext());
-                }
-                if (data.getSearchDataSize() == 0) {
-                    lv.setTag(UIHelper.LISTVIEW_DATA_EMPTY);
-                    more.setText(R.string.load_empty);
-                }
-                if (msg.arg1 != UIHelper.LISTVIEW_ACTION_SCROLL) {
-                    lv.setSelection(0);//返回头部
-                }
-
-                abProgress.setProgressBarVisibility(View.GONE);
-                lv.setVisibility(View.VISIBLE);
-            }
-        };
-    }
 
     /**
      * listview数据处理

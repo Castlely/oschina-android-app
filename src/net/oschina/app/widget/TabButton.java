@@ -52,7 +52,7 @@ public class TabButton extends HorizontalScrollView {
     private int                       sliderWidth;                      // 滑块宽度
     private int                       tabSize;                          // 选项卡的个数
     private int                       tabPadding;                       // 选项卡的边距
-    private int                       pageSelect;                       // 当前选中的页面
+    public int                       pageSelect;                       // 当前选中的页面
 
     private float                     scrollOffset;                     // 滑块已经滑动过的宽度
 
