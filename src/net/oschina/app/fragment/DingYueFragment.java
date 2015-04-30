@@ -1,5 +1,6 @@
 package net.oschina.app.fragment;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import android.widget.TextView;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.gson.reflect.TypeToken;
 
 public class DingYueFragment extends BackHandledFragment {
     ActionBar mActionBar;
@@ -81,7 +83,12 @@ public class DingYueFragment extends BackHandledFragment {
 
         List<Map<String, Object>> mData = Lists.newArrayList();
 
-        Map<String, Object> item = Maps.newHashMap();
+        
+        
+        
+        /*
+         * Map<String, Object> item = Maps.newHashMap();
+        
         item.put("img", R.drawable.grid1);
         item.put("title", "了解坪山");
         mData.add(item);
@@ -106,6 +113,7 @@ public class DingYueFragment extends BackHandledFragment {
         item.put("title", "服务地图");
         mData.add(item);
 
+ 
         item = Maps.newHashMap();
         item.put("img", R.drawable.grid1);
         item.put("title", "互动交流");
@@ -116,7 +124,23 @@ public class DingYueFragment extends BackHandledFragment {
         item.put("title", "乐在坪山");
         mData.add(item);
         
-
+        
+        */
+        
+        
+        /************/
+        // 郭总，这是我写的，用这种/*******/来括起来
+        // isShortCut null
+        if(AppData.isShortCut==null){
+        	AppData.isShortCut=new HashMap<String, Boolean>();
+        }
+        Map<String, Object> dataMap = (Map<String, Object>) AppData.getMenu(
+                DingYueFragment.this.getResources()).get(
+                getResources());
+        mData.add(dataMap);
+        // 郭总，这是我写的，用这种//来括起来
+        /************/
+        
         final MyAdapter adapter = new MyAdapter(this.getActivity(), mData);
         listView.setAdapter(adapter);
         listView.setItemsCanFocus(false);
@@ -131,6 +155,10 @@ public class DingYueFragment extends BackHandledFragment {
                     vHollder.cBox.toggle();
                     AppData.isShortCut.put(vHollder.title.getText().toString(),
                         vHollder.cBox.isChecked());
+                    
+                    /******************/
+                    AppData.set(, value, context);
+                    /******************/
                 } else {
                     //更新目录
                     adapter.clear();
