@@ -8,7 +8,7 @@ import java.util.Set;
 import net.oschina.app.common.StringUtils;
 import net.oschina.designapp.R;
 import android.app.Activity;
-import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
@@ -28,7 +28,7 @@ public class AppData {
     public static GsonBuilder               gsonBuilder = new GsonBuilder();
     public static final String              WEATHERAPI  = "http://api.map.baidu.com/telematics/v3/weather?location=%E6%B7%B1%E5%9C%B3&output=json&ak=BPGPMj8GameGHglMDsbgUILZ";
 
-    public static void set(String key, String value, Application context) {
+    public static void set(String key, String value, Context context) {
         SharedPreferences mySharedPreferences = context.getSharedPreferences("data",
             Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = mySharedPreferences.edit();
@@ -36,7 +36,7 @@ public class AppData {
         editor.commit();
     }
 
-    public static String get(String key, AppContext context) {
+    public static String get(String key, Context context) {
         SharedPreferences mySharedPreferences = context.getSharedPreferences("data",
             Activity.MODE_PRIVATE);
         return mySharedPreferences.getString(key, "");

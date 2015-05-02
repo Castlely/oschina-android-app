@@ -1,10 +1,10 @@
 package net.oschina.app.fragment;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import net.oschina.app.AppData;
+import net.oschina.app.common.StringUtils;
 import net.oschina.app.fragment.DingYueFragment.MyAdapter.ViewHolder;
 import net.oschina.app.ui.BackHandledFragment;
 import net.oschina.designapp.R;
@@ -13,6 +13,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,28 +84,24 @@ public class DingYueFragment extends BackHandledFragment {
 
         List<Map<String, Object>> mData = Lists.newArrayList();
 
-        
-        
-        
-        /*
-         * Map<String, Object> item = Maps.newHashMap();
-        
-        item.put("img", R.drawable.grid1);
+        Map<String, Object> item = Maps.newHashMap();
+
+        item.put("img", R.drawable.dingyue_listitem_1);
         item.put("title", "了解坪山");
         mData.add(item);
 
         item = Maps.newHashMap();
-        item.put("img", R.drawable.grid1);
+        item.put("img", R.drawable.dingyue_listitem_2);
         item.put("title", "信息公开");
         mData.add(item);
 
         item = Maps.newHashMap();
-        item.put("img", R.drawable.grid1);
+        item.put("img", R.drawable.dingyue_listitem_3);
         item.put("title", "名单名录");
         mData.add(item);
 
         item = Maps.newHashMap();
-        item.put("img", R.drawable.grid1);
+        item.put("img", R.drawable.dingyue_listitem_4);
         item.put("title", "办事服务");
         mData.add(item);
 
@@ -113,34 +110,27 @@ public class DingYueFragment extends BackHandledFragment {
         item.put("title", "服务地图");
         mData.add(item);
 
- 
         item = Maps.newHashMap();
-        item.put("img", R.drawable.grid1);
+        item.put("img", R.drawable.dingyue_listitem_5);
         item.put("title", "互动交流");
         mData.add(item);
 
         item = Maps.newHashMap();
-        item.put("img", R.drawable.grid1);
+        item.put("img", R.drawable.dingyue_listitem_6);
         item.put("title", "乐在坪山");
         mData.add(item);
-        
-        
-        */
-        
-        
-        /************/
-        // 郭总，这是我写的，用这种/*******/来括起来
-        // isShortCut null
-        if(AppData.isShortCut==null){
-        	AppData.isShortCut=new HashMap<String, Boolean>();
-        }
-        Map<String, Object> dataMap = (Map<String, Object>) AppData.getMenu(
-                DingYueFragment.this.getResources()).get(
-                getResources());
-        mData.add(dataMap);
-        // 郭总，这是我写的，用这种//来括起来
-        /************/
-        
+        /*if (!StringUtils.isEmpty(AppData.get("isShortCut", DingYueFragment.this.getActivity()))) {
+            AppData.set("isShortCut", AppData.gsonBuilder.create().toJson(AppData.isShortCut),
+                DingYueFragment.this.getActivity());
+        } else {
+            AppData.isShortCut = AppData.gsonBuilder.create().fromJson(
+                AppData.get("isShortCut", DingYueFragment.this.getActivity()),
+                new TypeToken<Map<String, Boolean>>() {
+                }.getType());
+        }*/
+        /*Map<String, Object> dataMap = (Map<String, Object>) AppData.getMenu(
+            DingYueFragment.this.getResources()).get(getResources());
+        mData.add(dataMap);*/
         final MyAdapter adapter = new MyAdapter(this.getActivity(), mData);
         listView.setAdapter(adapter);
         listView.setItemsCanFocus(false);
@@ -155,10 +145,9 @@ public class DingYueFragment extends BackHandledFragment {
                     vHollder.cBox.toggle();
                     AppData.isShortCut.put(vHollder.title.getText().toString(),
                         vHollder.cBox.isChecked());
-                    
-                    /******************/
-                    AppData.set(, value, context);
-                    /******************/
+                    AppData.set("isShortCut",
+                        AppData.gsonBuilder.create().toJson(AppData.isShortCut),
+                        DingYueFragment.this.getActivity());
                 } else {
                     //更新目录
                     adapter.clear();
@@ -176,7 +165,7 @@ public class DingYueFragment extends BackHandledFragment {
 
             }
         });
-        initActionBar(inflater,"订阅");
+        initActionBar(inflater, "订阅");
         return v;
     }
 
