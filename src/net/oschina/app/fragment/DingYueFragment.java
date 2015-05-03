@@ -4,16 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import net.oschina.app.AppData;
-import net.oschina.app.common.StringUtils;
+import net.oschina.app.common.BitmapUtil;
 import net.oschina.app.fragment.DingYueFragment.MyAdapter.ViewHolder;
 import net.oschina.app.ui.BackHandledFragment;
 import net.oschina.designapp.R;
 import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,6 @@ import android.widget.TextView;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.gson.reflect.TypeToken;
 
 public class DingYueFragment extends BackHandledFragment {
     ActionBar mActionBar;
@@ -84,41 +84,16 @@ public class DingYueFragment extends BackHandledFragment {
 
         List<Map<String, Object>> mData = Lists.newArrayList();
 
-        Map<String, Object> item = Maps.newHashMap();
-
-        item.put("img", R.drawable.dingyue_listitem_1);
-        item.put("title", "了解坪山");
-        mData.add(item);
-
-        item = Maps.newHashMap();
-        item.put("img", R.drawable.dingyue_listitem_2);
-        item.put("title", "信息公开");
-        mData.add(item);
-
-        item = Maps.newHashMap();
-        item.put("img", R.drawable.dingyue_listitem_3);
-        item.put("title", "名单名录");
-        mData.add(item);
-
-        item = Maps.newHashMap();
-        item.put("img", R.drawable.dingyue_listitem_4);
-        item.put("title", "办事服务");
-        mData.add(item);
-
-        item = Maps.newHashMap();
-        item.put("img", R.drawable.grid1);
-        item.put("title", "服务地图");
-        mData.add(item);
-
-        item = Maps.newHashMap();
-        item.put("img", R.drawable.dingyue_listitem_5);
-        item.put("title", "互动交流");
-        mData.add(item);
-
-        item = Maps.newHashMap();
-        item.put("img", R.drawable.dingyue_listitem_6);
-        item.put("title", "乐在坪山");
-        mData.add(item);
+        
+        Map<String, Object> menusMap = AppData.getMenu(getResources());
+        for(String key:menusMap.keySet())
+        {
+            Map<String, Object> item = Maps.newHashMap();
+            item.put("img", AppData.ico.get(key));
+            item.put("title", key);
+            mData.add(item);
+        }
+        
         /*if (!StringUtils.isEmpty(AppData.get("isShortCut", DingYueFragment.this.getActivity()))) {
             AppData.set("isShortCut", AppData.gsonBuilder.create().toJson(AppData.isShortCut),
                 DingYueFragment.this.getActivity());
@@ -140,7 +115,10 @@ public class DingYueFragment extends BackHandledFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ViewHolder vHollder = (ViewHolder) view.getTag();
-                if (AppData.isShortCut.containsKey(vHollder.title.getText().toString())) {
+                Map<String, Object> menusMap = AppData.getMenu(getResources());
+
+                if (!menusMap.containsKey(vHollder.title.getText().toString())
+                    || vHollder.title.getText().toString().equals("服务地图")) {
                     //在每次获取点击的item时将对于的checkbox状态改变，同时修改map的值。  
                     vHollder.cBox.toggle();
                     AppData.isShortCut.put(vHollder.title.getText().toString(),
@@ -157,6 +135,7 @@ public class DingYueFragment extends BackHandledFragment {
                     for (String key : dataMap.keySet()) {
                         Map<String, Object> item = Maps.newHashMap();
                         item = Maps.newHashMap();
+                        item.put("img", AppData.ico.get(key));
                         item.put("title", key);
                         adapter.add(item);
                     }
@@ -215,15 +194,24 @@ public class DingYueFragment extends BackHandledFragment {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            if ((Integer) mData.get(position).get("img") != null)
-                holder.img.setBackgroundResource((Integer) mData.get(position).get("img"));
+
+            Map<String, Object> menusMap = AppData.getMenu(getResources());
+            if ((Integer) mData.get(position).get("img") != null) {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                    (Integer) mData.get(position).get("img"));
+                holder.img.setBackground(BitmapUtil.bitmapToDrawable(BitmapUtil.getResizedBitmap(
+                    bitmap, 150, 150)));
+            }
+
             holder.title.setText(mData.get(position).get("title").toString());
-            Boolean isChecked = AppData.isShortCut.get(mData.get(position).get("title").toString());
-            if (isChecked == null)//主目录
+            if (menusMap.containsKey(mData.get(position).get("title").toString())
+                && !mData.get(position).get("title").toString().equals("服务地图"))//主目录
             {
                 holder.cBox.setVisibility(View.GONE);
-            } else
-                holder.cBox.setChecked(isChecked);
+            } else {
+                holder.cBox.setVisibility(View.VISIBLE);
+            }
+            holder.cBox.setChecked(AppData.isShortCut.get(holder.title.getText().toString()));
             /*
             if (position % 2 == 1) {
                 convertView.setBackgroundColor(R.color.even_color);

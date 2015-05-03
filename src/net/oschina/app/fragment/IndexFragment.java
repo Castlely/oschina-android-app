@@ -15,6 +15,7 @@ import net.oschina.app.AppData;
 import net.oschina.app.bean.Information;
 import net.oschina.app.bean.InformationList;
 import net.oschina.app.ui.BackHandledFragment;
+import net.oschina.app.ui.MainActivity;
 import net.oschina.designapp.R;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -239,14 +240,11 @@ public class IndexFragment extends BackHandledFragment {
         lists = new ArrayList<Grid_Item>();
         String isShortCutString = AppData.get("isShortCut", (AppContext) this.getActivity()
             .getApplication());
-        Map<String, Boolean> isShortCut = Maps.newHashMap();
         if (isShortCutString.length() != 0)
-            AppData.gsonBuilder.create().fromJson(isShortCutString,
+            AppData.isShortCut = AppData.gsonBuilder.create().fromJson(isShortCutString,
                 new TypeToken<Map<String, Boolean>>() {
                 }.getType());
-        else
-            isShortCut = AppData.isShortCut;
-        for (Entry<String, Boolean> entry : isShortCut.entrySet()) {
+        for (Entry<String, Boolean> entry : AppData.isShortCut.entrySet()) {
             if (entry.getValue() == true)
                 lists.add(new Grid_Item(AppData.ico.get(entry.getKey()), entry.getKey()));
         }
@@ -254,7 +252,17 @@ public class IndexFragment extends BackHandledFragment {
             this.getFragmentManager());
         MyGridView.setAdapter(adaper);
         initActionBar(inflater, "坪山新区政府在线");
+        view.post(new Runnable() {
 
+            @Override
+            public void run() {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.setFootBarButtonState(1, false);
+                mainActivity.setFootBarButtonState(2, false);
+                mainActivity.setFootBarButtonState(3, false);
+                mainActivity.setFootBarButtonState(4, false);
+            }
+        });
         return view;
     }
 

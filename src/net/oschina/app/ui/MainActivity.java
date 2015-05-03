@@ -88,7 +88,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
             zoomDrawable(drawables[1], size, size), drawables[2], drawables[3]);
     }
 
-    private void setFootBarButtonState(int position, boolean checked) {
+    public void setFootBarButtonState(int position, boolean checked) {
         int actionBarHeight = getActionBar().getHeight();
         Drawable[] drawables;//左上右下
         if (checked == true && position == 1) {

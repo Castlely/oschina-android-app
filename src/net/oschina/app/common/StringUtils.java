@@ -18,6 +18,13 @@ import java.util.regex.Pattern;
  * @created 2012-3-21
  */
 public class StringUtils {
+    public static String getSubString(String source, String begin, String end) {
+        String tmpString = source;
+        int beginIndex = source.indexOf(begin)+begin.length();
+        int endIndex = source.indexOf(end);
+        return tmpString.substring(beginIndex, endIndex);
+    }
+
     private final static Pattern                       emailer       = Pattern
                                                                          .compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
     // private final static SimpleDateFormat dateFormater = new

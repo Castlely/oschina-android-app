@@ -1,7 +1,5 @@
 package net.oschina.app.fragment;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +8,12 @@ import net.oschina.app.common.StringUtils;
 import net.oschina.app.common.UIHelper;
 import net.oschina.app.ui.BackHandledFragment;
 import net.oschina.designapp.R;
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +38,9 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     private static final String TAG = "LingDaoFragment";
     LayoutInflater              inflater;
     ActionBar                   mActionBar;
+    private FinalHttp           finalHttp;
+
+    
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
         mActionBar = LingDaoFragment.this.getActivity().getActionBar();
@@ -86,34 +88,38 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.inflater = inflater;
         View view = (View) inflater.inflate(R.layout.lingdao_list, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.LingdaoListView);
-        InputStream in = getResources().openRawResource(R.raw.lingdao);
-        String gsonString = null;
-        try {
-            gsonString = StringUtils.getStrFromInputSteam(in);
-        } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
-        }
-        List<Map<String, Object>> gsonList = AppData.gsonBuilder.create().fromJson(gsonString,
-            new TypeToken<List<Map<String, Object>>>() {
-            }.getType());
-        listView.setAdapter(new ListViewAdapter(gsonList));
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Map<String, Object> obj = null;
-                obj = (Map<String, Object>) view.getTag();
-                if (obj == null)
-                    return;
-                // 跳转到博客详情
-                String lingdaoName = (String) obj.get("title");
-                String lingdaoZhiwu = (String) obj.get("x_headship");
-                String lingdaoWebSrc = (String) obj.get("description");
-                String lingdaoImg = (String) obj.get("x_imgpath");
+        final ListView listView = (ListView) view.findViewById(R.id.LingdaoListView);
+        finalHttp = new FinalHttp();
+        finalHttp.get(AppData.urlList.get("领导成员"), new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String gsonString) {
+                String tmpString = StringUtils.getSubString(gsonString, "{\"dataList\":",
+                    ",\"pageNo\":null,");
+                List<Map<String, Object>> gsonList = AppData.gsonBuilder.create().fromJson(
+                    tmpString, new TypeToken<List<Map<String, Object>>>() {
+                    }.getType());
+                listView.setAdapter(new ListViewAdapter(gsonList));
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Map<String, Object> obj = null;
+                        obj = (Map<String, Object>) view.getTag();
+                        if (obj == null)
+                            return;
+                        /*// 跳转到博客详情
+                        String lingdaoName = (String) obj.get("title");
+                        String lingdaoZhiwu = (String) obj.get("x_headship");
+                        String lingdaoWebSrc = (String) obj.get("description");
+                        String lingdaoImg = (String) obj.get("x_imgpath");
 
-                UIHelper.showLingdaoDetail(LingDaoFragment.this.getActivity(), lingdaoName,
-                    lingdaoZhiwu, lingdaoImg, lingdaoWebSrc);
+                        UIHelper.showLingdaoDetail(LingDaoFragment.this.getActivity(), lingdaoName,
+                            lingdaoZhiwu, lingdaoImg, lingdaoWebSrc);*/
+                        UIHelper.showWebDetail(LingDaoFragment.this.getActivity(),
+                            "http://" + (String) obj.get("link"));
+                    }
+                });
             }
         });
+
         initActionBar(inflater, "领导成员");
         return view;
     }
@@ -122,18 +128,26 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     public void onClick(View v) {
 
     }
-
+    public static class ListItemView { //自定义控件集合  
+        public TextView  lingdaoName;
+        public TextView  lingdaoZhiwu;
+        public TextView  lingdaoFengong;
+        public ImageView lingdaoImage;
+    }
     class ListViewAdapter extends BaseAdapter {
         View[] itemViews;
 
         public ListViewAdapter(List<Map<String, Object>> list) {
             itemViews = new View[list.size()];
 
-            for (int i = 0; i < itemViews.length; ++i) {
+            for (int i = 0; i < list.size(); ++i) {
                 String nameStr = (String) list.get(i).get("title");
-                String zhiWuStr = (String) list.get(i).get("x_headship");
-                String fenGongStr = "分工：" + (String) list.get(i).get("x_duty");
-                String imgUrl = (String) list.get(i).get("x_imgpath");
+                //String zhiWuStr = (String) list.get(i).get("x_headship");
+                //String fenGongStr = "分工：" + (String) list.get(i).get("x_duty");
+                String zhiWuStr = "";
+                String fenGongStr = "";
+                String imgUrl = (String) list.get(i).get("link_picture");
+                imgUrl = "http://" + imgUrl;
                 if (fenGongStr.length() > 30)
                     fenGongStr = fenGongStr.substring(0, 30);
                 itemViews[i] = makeItemView(nameStr, zhiWuStr, fenGongStr, imgUrl, list.get(i));
@@ -178,9 +192,7 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null)
                 return itemViews[position];
-            return convertView;
         }
     }
 
