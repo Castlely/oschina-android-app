@@ -11,11 +11,11 @@
 		android:layout_height="fill_parent"
 		android:layout_weight="1">
 	
-		<net.oschina.app.widget.PullToRefreshListView
+		<cn.gov.psxq.widget.PullToRefreshListView
 		  	android:id="@+id/user_center_activelist"
 		    style="@style/widget_listview"/>
 		
-		<net.oschina.app.widget.PullToRefreshListView
+		<cn.gov.psxq.widget.PullToRefreshListView
 		  	android:id="@+id/user_center_bloglist"
 		    style="@style/widget_listview"
 			android:visibility="gone"/>

@@ -2,10 +2,6 @@ package com.sqk.GridView;
 
 import java.util.List;
 
-import net.oschina.app.AppData;
-import net.oschina.app.common.UIHelper;
-import net.oschina.app.fragment.GridMainFragment;
-import net.oschina.designapp.R;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +14,10 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import cn.gov.psxq.AppData;
+import cn.gov.psxq.R;
+import cn.gov.psxq.common.UIHelper;
+import cn.gov.psxq.fragment.GridMainFragment;
 
 import com.google.common.collect.Lists;
 

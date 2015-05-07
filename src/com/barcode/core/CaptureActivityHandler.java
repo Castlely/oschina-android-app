@@ -18,8 +18,6 @@ package com.barcode.core;
 
 import java.util.Collection;
 
-import net.oschina.app.ui.Capture;
-import net.oschina.designapp.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,6 +25,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import cn.gov.psxq.R;
+import cn.gov.psxq.ui.Capture;
 
 import com.barcode.camera.CameraManager;
 import com.google.zxing.BarcodeFormat;

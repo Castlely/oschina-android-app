@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.oschina.designapp"
-    android:versionCode="29"
-    android:versionName="1.0.0.4" >
+    package="cn.gov.psxq"
+    android:versionCode="1"
+    android:versionName="1.0.0.0" >
 
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="22" />
 
     <application
-        android:name="net.oschina.app.AppContext"
+        android:name="cn.gov.psxq.AppContext"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.OSChina" >
         <activity
-            android:name="net.oschina.app.AppStart"
+            android:name="cn.gov.psxq.AppStart"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
@@ -23,22 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="net.oschina.app.ui.BaseActionBarActivity" >
+        <activity android:name="cn.gov.psxq.ui.BaseActionBarActivity" >
         </activity>
         <activity
-            android:name="net.oschina.app.ui.About"
+            android:name="cn.gov.psxq.ui.About"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="net.oschina.app.ui.FeedBack"
+            android:name="cn.gov.psxq.ui.FeedBack"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.HalfTranslucent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
-            android:name="net.oschina.app.fragment.ReportUi"
+            android:name="cn.gov.psxq.fragment.ReportUi"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -46,137 +46,137 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <!-- Theme.NoTitleBar -->
         <activity
-            android:name="net.oschina.app.ui.NewsDetail"
+            android:name="cn.gov.psxq.ui.NewsDetail"
             android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
-            android:name="net.oschina.app.ui.SoftwareLib"
+            android:name="cn.gov.psxq.ui.SoftwareLib"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.OSChina" />
         <activity
-            android:name="net.oschina.app.ui.SoftwareDetail"
+            android:name="cn.gov.psxq.ui.SoftwareDetail"
             android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
-            android:name="net.oschina.app.ui.BlogDetail"
+            android:name="cn.gov.psxq.ui.BlogDetail"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name="net.oschina.app.ui.QuestionDetail"
+            android:name="cn.gov.psxq.ui.QuestionDetail"
             android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
-            android:name="net.oschina.app.ui.QuestionTag"
+            android:name="cn.gov.psxq.ui.QuestionTag"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="net.oschina.app.ui.QuestionPub"
+            android:name="cn.gov.psxq.ui.QuestionPub"
             android:configChanges="keyboardHidden|orientation"
-            android:parentActivityName="net.oschina.app.ui.MainActivity"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.oschina.app.test.ActivityTest" >
+                android:value="cn.gov.psxq.test.ActivityTest" >
             </meta-data>
         </activity>
         <activity
-            android:name="net.oschina.app.ui.TweetDetail"
+            android:name="cn.gov.psxq.ui.TweetDetail"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name="net.oschina.app.ui.TweetPub"
+            android:name="cn.gov.psxq.ui.TweetPub"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ZoomLight"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name="net.oschina.app.ui.MessageDetail"
+            android:name="cn.gov.psxq.ui.MessageDetail"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="net.oschina.app.ui.MessagePub"
+            android:name="cn.gov.psxq.ui.MessagePub"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name="net.oschina.app.ui.MessageForward"
+            android:name="cn.gov.psxq.ui.MessageForward"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name="net.oschina.app.ui.CommentPub"
+            android:name="cn.gov.psxq.ui.CommentPub"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name="net.oschina.app.ui.Setting"
+            android:name="cn.gov.psxq.ui.Setting"
             android:launchMode="singleTask"
-            android:parentActivityName="net.oschina.app.ui.MainActivity"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity"
             android:theme="@style/Theme.AppCompat.Light" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.oschina.app.test.ActivityTest" >
+                android:value="cn.gov.psxq.test.ActivityTest" >
             </meta-data>
         </activity>
         <activity
-            android:name="net.oschina.app.ui.Search"
+            android:name="cn.gov.psxq.ui.Search"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
-            android:parentActivityName="net.oschina.app.ui.MainActivity"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity"
             android:windowSoftInputMode="adjustResize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.oschina.app.test.ActivityTest" >
+                android:value="cn.gov.psxq.test.ActivityTest" >
             </meta-data>
         </activity>
         <activity
-            android:name="net.oschina.app.ui.UserInfo"
+            android:name="cn.gov.psxq.ui.UserInfo"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="net.oschina.app.ui.InformationDetail"
+            android:name="cn.gov.psxq.ui.InformationDetail"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.SlideTop" />
         <activity
-            android:name="net.oschina.app.ui.WebDetail"
+            android:name="cn.gov.psxq.ui.WebDetail"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.SlideTop" />
         <activity
-            android:name="net.oschina.app.ui.LingdaoDetail"
+            android:name="cn.gov.psxq.ui.LingdaoDetail"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.SlideTop" />
         <activity
-            android:name="net.oschina.app.ui.UserCenter"
+            android:name="cn.gov.psxq.ui.UserCenter"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.OSChina" />
         <activity
-            android:name="net.oschina.app.ui.UserFavorite"
+            android:name="cn.gov.psxq.ui.UserFavorite"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="net.oschina.app.ui.UserFriend"
+            android:name="cn.gov.psxq.ui.UserFriend"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.OSChina" />
         <activity
-            android:name="net.oschina.app.ui.ImageDialog"
+            android:name="cn.gov.psxq.ui.ImageDialog"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.HalfTranslucent" />
         <activity
-            android:name="net.oschina.app.ui.ImageZoomDialog"
+            android:name="cn.gov.psxq.ui.ImageZoomDialog"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:theme="@style/Theme.ZoomLight.Fullscreen" />
         <activity
-            android:name="net.oschina.app.ui.ScreenShotShare"
+            android:name="cn.gov.psxq.ui.ScreenShotShare"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -184,29 +184,29 @@
         <activity
             android:name="com.tencent.weibo.webview.OAuthV1AuthorizeWebView"
             android:label="@string/app_name" />
-        <activity android:name="net.oschina.app.common.QQWeiboHelper2" />
+        <activity android:name="cn.gov.psxq.common.QQWeiboHelper2" />
         <activity
-            android:name="net.oschina.app.ui.Capture"
+            android:name="cn.gov.psxq.ui.Capture"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name="net.oschina.app.ui.TweetPubActivity"
-            android:parentActivityName="net.oschina.app.ui.MainActivity" >
+            android:name="cn.gov.psxq.ui.TweetPubActivity"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.oschina.app.test.ActivityTest" >
+                android:value="cn.gov.psxq.test.ActivityTest" >
             </meta-data>
         </activity>
         <!-- test -->
         <activity
-            android:name="net.oschina.app.ui.MainActivity"
+            android:name="cn.gov.psxq.ui.MainActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        <activity android:name="net.oschina.app.ui.WebOpenActivity" >
+        <activity android:name="cn.gov.psxq.ui.WebOpenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -240,9 +240,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="net.oschina.app.ui.BroadCast" >
+        <receiver android:name="cn.gov.psxq.ui.BroadCast" >
             <intent-filter>
-                <action android:name="net.oschina.app.action.APPWIDGET_UPDATE" />
+                <action android:name="cn.gov.psxq.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
         <!-- newui -->

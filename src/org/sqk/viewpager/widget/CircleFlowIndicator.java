@@ -15,7 +15,6 @@
  */
 package org.sqk.viewpager.widget;
 
-import net.oschina.designapp.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -27,6 +26,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import cn.gov.psxq.R;
 
 /**
  * A FlowIndicator which draws circles (one for each view). 

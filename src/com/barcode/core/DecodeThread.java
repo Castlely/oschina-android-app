@@ -22,9 +22,9 @@ import java.util.EnumSet;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-import net.oschina.app.ui.Capture;
 import android.os.Handler;
 import android.os.Looper;
+import cn.gov.psxq.ui.Capture;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;

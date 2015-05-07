@@ -18,7 +18,6 @@ package org.sqk.viewpager.widget;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import net.oschina.designapp.R;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -36,6 +35,7 @@ import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Scroller;
+import cn.gov.psxq.R;
 
 /**
  * A horizontally scrollable {@link ViewGroup} with items populated from an

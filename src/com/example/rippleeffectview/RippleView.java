@@ -24,7 +24,6 @@
 
 package com.example.rippleeffectview;
 
-import net.oschina.designapp.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -42,6 +41,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
+import cn.gov.psxq.R;
 
 /**
  * Author :    Chutaux Robin

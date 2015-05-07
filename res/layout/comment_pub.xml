@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <net.oschina.app.widget.LinkView
+    <cn.gov.psxq.widget.LinkView
         android:id="@+id/comment_pub_quote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

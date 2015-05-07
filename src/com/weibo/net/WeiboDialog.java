@@ -8,7 +8,6 @@ import java.net.Proxy;
 import java.net.SocketAddress;
 import java.net.URL;
 
-import net.oschina.designapp.R;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -30,6 +29,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import cn.gov.psxq.R;
 
 public class WeiboDialog extends Dialog {
 

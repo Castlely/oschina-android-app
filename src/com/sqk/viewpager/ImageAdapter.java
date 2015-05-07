@@ -3,11 +3,6 @@ package com.sqk.viewpager;
 import java.util.List;
 import java.util.Map;
 
-import net.oschina.app.AppData;
-import net.oschina.app.bean.Information;
-import net.oschina.app.common.UIHelper;
-import net.oschina.app.ui.MainActivity;
-import net.oschina.designapp.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import cn.gov.psxq.R;
+import cn.gov.psxq.bean.Information;
+import cn.gov.psxq.common.UIHelper;
+import cn.gov.psxq.ui.MainActivity;
 
 import com.google.common.collect.Lists;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -70,10 +69,11 @@ public class ImageAdapter extends BaseAdapter {
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                UIHelper.showInformationDetail(
+/*                UIHelper.showInformationDetail(
                     mContext,
                     AppData.gsonBuilder.create().toJson(
-                        bitmapMap.get(bitmapList.get(position % bitmapList.size()))));
+                        bitmapMap.get(bitmapList.get(position % bitmapList.size()))));*/
+                UIHelper.showWebDetail(mContext, "http://"+bitmapMap.get(bitmapList.get(position % bitmapList.size())).getLink());
             }
         });
         return convertView;

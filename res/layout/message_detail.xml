@@ -10,7 +10,7 @@
 		android:layout_height="match_parent"
 		android:background="@color/white">
 	   	
-		<net.oschina.app.widget.PullToRefreshListView
+		<cn.gov.psxq.widget.PullToRefreshListView
 		  	android:id="@+id/message_list_listview"
 		    style="@style/widget_listview"
 		    android:divider="@null"/>

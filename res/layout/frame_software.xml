@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <net.oschina.app.widget.ScrollLayout
+    <cn.gov.psxq.widget.ScrollLayout
         android:id="@+id/frame_software_scrolllayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -18,9 +18,9 @@
             android:id="@+id/frame_software_listview_tag"
             style="@style/widget_listview" />
 
-        <net.oschina.app.widget.PullToRefreshListView
+        <cn.gov.psxq.widget.PullToRefreshListView
             android:id="@+id/frame_software_listview"
             style="@style/widget_listview" />
-    </net.oschina.app.widget.ScrollLayout>
+    </cn.gov.psxq.widget.ScrollLayout>
 
 </LinearLayout>

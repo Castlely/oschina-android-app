@@ -10,7 +10,7 @@
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:background="@color/white" >
-	    <net.oschina.app.widget.ExtentScrollView
+	    <cn.gov.psxq.widget.ExtentScrollView
 	    	android:id="@+id/blog_detail_scrollview" 
 	    	android:layout_width="fill_parent"
 	    	android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
 		        	android:scrollbars="vertical"
 			        android:background="@color/white"/>
 	        </LinearLayout>	
-	    </net.oschina.app.widget.ExtentScrollView>
+	    </cn.gov.psxq.widget.ExtentScrollView>
     	    
 	    <include layout="@layout/comment_list"/>
 	    

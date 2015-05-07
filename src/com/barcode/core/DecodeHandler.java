@@ -18,14 +18,14 @@ package com.barcode.core;
 
 import java.util.Map;
 
-import net.oschina.app.ui.Capture;
-import net.oschina.designapp.R;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import cn.gov.psxq.R;
+import cn.gov.psxq.ui.Capture;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;

@@ -6,13 +6,13 @@
     android:focusableInTouchMode="true"
     android:background="@color/white" >
     
-    <net.oschina.app.widget.TabButton
+    <cn.gov.psxq.widget.TabButton
         android:id="@+id/search_tabs"
         android:layout_width="match_parent"
         android:layout_height="42.0dip"
         android:layout_alignParentTop="true" >
 
-    </net.oschina.app.widget.TabButton>
+    </cn.gov.psxq.widget.TabButton>
 
     <RelativeLayout
         android:id="@+id/search_btn_layout"
