@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -23,6 +24,7 @@ import cn.gov.psxq.bean.Information;
 import cn.gov.psxq.bean.InformationList;
 import cn.gov.psxq.inteface.ActionBarProgressBarVisibility;
 import cn.gov.psxq.ui.BackHandledFragment;
+import cn.gov.psxq.widget.ExtendedViewPager;
 import cn.gov.psxq.widget.TabButton;
 
 import com.google.common.collect.Maps;
@@ -31,14 +33,14 @@ import com.sqk.viewpager.ImageAdapter;
 
 public abstract class MainFragment extends BackHandledFragment implements
                                                               ActionBarProgressBarVisibility {
-    private ViewPager   viewPager;
-    private FinalHttp   fh;
-    private ViewFlow    viewFlow;
-    private int         pageSelect   = 0;
-    private FrameLayout optional;
-    View                view;
-    String              parentString = null;
-    ActionBar           mActionBar;
+    private ExtendedViewPager viewPager;
+    private FinalHttp         fh;
+    private ViewFlow          viewFlow;
+    private int               pageSelect   = 0;
+    private FrameLayout       optional;
+    View                      view;
+    String                    parentString = null;
+    ActionBar                 mActionBar;
 
     public void setPageSelect(int pageSelect) {
         this.pageSelect = pageSelect;
@@ -46,9 +48,17 @@ public abstract class MainFragment extends BackHandledFragment implements
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
-        viewPager = (ViewPager) view.findViewById(R.id.fragment_main_viewpager);
+        viewPager = (ExtendedViewPager) view.findViewById(R.id.fragment_main_viewpager);
         viewPager.setAdapter(getPagerAdapter());
         viewPager.setCurrentItem(pageSelect, true);
+       /* viewPager.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+            
+        });*/
         TabButton tabsButton = (TabButton) view.findViewById(R.id.fragment_main_tabsbutton);
         tabsButton.setViewPager(viewPager);
         tabsButton.pageSelect = pageSelect;
@@ -67,8 +77,8 @@ public abstract class MainFragment extends BackHandledFragment implements
                 public void onSuccess(String resultString) {
 
                     Gson gson = AppData.gsonBuilder.create();
-                    InformationList informationList = gson
-                        .fromJson(resultString, InformationList.class);
+                    InformationList informationList = gson.fromJson(resultString,
+                        InformationList.class);
                     Map<String, Information> imgMap = Maps.newHashMap();
                     int count = 0;
                     for (int n = 0; n < 30; n++) {
@@ -115,7 +125,7 @@ public abstract class MainFragment extends BackHandledFragment implements
 
     abstract PagerAdapter getPagerAdapter();
 
-    protected Fragment addBundle(Fragment fragment, String catlogName, String title,Boolean web) {
+    protected Fragment addBundle(Fragment fragment, String catlogName, String title, Boolean web) {
         Bundle bundle = new Bundle();
         bundle.putString("catalogName", catlogName);
         bundle.putString("title", title);
@@ -123,4 +133,5 @@ public abstract class MainFragment extends BackHandledFragment implements
         fragment.setArguments(bundle);
         return fragment;
     }
+
 }

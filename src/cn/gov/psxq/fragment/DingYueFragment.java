@@ -32,7 +32,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class DingYueFragment extends BackHandledFragment {
-    ActionBar mActionBar;
+    ActionBar       mActionBar;
+    private boolean isMain;
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
         mActionBar = DingYueFragment.this.getActivity().getActionBar();
@@ -84,16 +85,14 @@ public class DingYueFragment extends BackHandledFragment {
 
         List<Map<String, Object>> mData = Lists.newArrayList();
 
-        
         Map<String, Object> menusMap = AppData.getMenu(getResources());
-        for(String key:menusMap.keySet())
-        {
+        for (String key : menusMap.keySet()) {
             Map<String, Object> item = Maps.newHashMap();
             item.put("img", AppData.ico.get(key));
             item.put("title", key);
             mData.add(item);
         }
-        
+
         /*if (!StringUtils.isEmpty(AppData.get("isShortCut", DingYueFragment.this.getActivity()))) {
             AppData.set("isShortCut", AppData.gsonBuilder.create().toJson(AppData.isShortCut),
                 DingYueFragment.this.getActivity());
@@ -119,6 +118,7 @@ public class DingYueFragment extends BackHandledFragment {
 
                 if (!menusMap.containsKey(vHollder.title.getText().toString())
                     || vHollder.title.getText().toString().equals("服务地图")) {
+                    isMain = true;
                     //在每次获取点击的item时将对于的checkbox状态改变，同时修改map的值。  
                     vHollder.cBox.toggle();
                     AppData.isShortCut.put(vHollder.title.getText().toString(),
@@ -128,6 +128,7 @@ public class DingYueFragment extends BackHandledFragment {
                         DingYueFragment.this.getActivity());
                 } else {
                     //更新目录
+                    isMain = false;
                     adapter.clear();
                     Map<String, Object> dataMap = (Map<String, Object>) AppData.getMenu(
                         DingYueFragment.this.getResources()).get(
@@ -229,11 +230,22 @@ public class DingYueFragment extends BackHandledFragment {
 
     @Override
     protected boolean onBackPressed() {
-        IndexFragment indexFragment = new IndexFragment();
-        FragmentManager fragmentManager = DingYueFragment.this.getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
-        fragmentTransaction.commit();
-        return true;
+        if (isMain) {
+            IndexFragment indexFragment = new IndexFragment();
+            FragmentManager fragmentManager = DingYueFragment.this.getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
+            fragmentTransaction.commit();
+            return true;
+        } else {
+            isMain = true;
+            DingYueFragment dingYueFragment = new DingYueFragment();
+            FragmentManager fragmentManager = DingYueFragment.this.getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_activity_linearlayout, dingYueFragment);
+            fragmentTransaction.commit();
+            return true;
+        
+        }
     }
 }

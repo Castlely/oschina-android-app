@@ -11,6 +11,22 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="ApplicationTheme" parent="@android:style/Theme.Holo"></style>
+
+    <style name="ApplicationTheme.ListMainItem">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="RowSmallLight">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="RowVerySmallLight">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#787878</item>
+    </style>
+
     <!-- GreenDroid UI Tool -->
     <style name="GreenDroid" />
 
@@ -322,7 +338,7 @@
 
     <style name="popupMenu" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/head_in</item>
-  //进入时的动画           <item name="@android:windowExitAnimation">@anim/head_out</item>
+  //进入时的动画                   <item name="@android:windowExitAnimation">@anim/head_out</item>
     //退出时的动画   </style>
 
     <style name="ActionBarProgressBar" parent="@android:attr/progressBarStyleSmall">

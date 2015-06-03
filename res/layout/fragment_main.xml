@@ -16,8 +16,7 @@
         android:id="@+id/optional"
         android:layout_width="fill_parent"
         android:layout_height="200dip"
-        android:background="#ffffff"
-         >
+        android:background="#ffffff" >
 
         <org.sqk.viewpager.widget.ViewFlow
             android:id="@+id/viewflow"
@@ -59,11 +58,10 @@
         </FrameLayout>
     </FrameLayout>
 
-    <android.support.v4.view.ViewPager
+    <cn.gov.psxq.widget.ExtendedViewPager
         android:id="@+id/fragment_main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center" >
-    </android.support.v4.view.ViewPager>
+        android:layout_gravity="center" />
 
 </LinearLayout>

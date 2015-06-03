@@ -26,6 +26,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import cn.gov.psxq.AppContext;
 import cn.gov.psxq.AppData;
 import cn.gov.psxq.AppException;
@@ -64,7 +65,6 @@ import cn.gov.psxq.common.ImageUtils;
 import cn.gov.psxq.common.StringUtils;
 
 import com.google.gson.Gson;
-import com.tencent.mm.sdk.platformtools.Log;
 
 /**
  * API客户端接口：用于访问网络数据

@@ -26,6 +26,8 @@ public class Information extends Entity {
 
     private String  link_picture;
 
+    private String  x_imgpath;
+
     public void setId(Integer id) {
         super.id = id;
     }
@@ -108,6 +110,24 @@ public class Information extends Entity {
 
     public void setLink_picture(String link_picture) {
         this.link_picture = link_picture;
+    }
+
+    /**
+     * Getter method for property <tt>x_imgpath</tt>.
+     * 
+     * @return property value of x_imgpath
+     */
+    public String getX_imgpath() {
+        return x_imgpath;
+    }
+
+    /**
+     * Setter method for property <tt>x_imgpath</tt>.
+     * 
+     * @param x_imgpath value to be assigned to property x_imgpath
+     */
+    public void setX_imgpath(String x_imgpath) {
+        this.x_imgpath = x_imgpath;
     }
 
 }

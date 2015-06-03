@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import cn.gov.psxq.AppData;
 import cn.gov.psxq.R;
+import cn.gov.psxq.common.HtmlRegexpUtils;
 import cn.gov.psxq.common.StringUtils;
 import cn.gov.psxq.common.UIHelper;
 import cn.gov.psxq.ui.BackHandledFragment;
@@ -39,8 +40,6 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     LayoutInflater              inflater;
     ActionBar                   mActionBar;
     private FinalHttp           finalHttp;
-
-    
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
         mActionBar = LingDaoFragment.this.getActivity().getActionBar();
@@ -105,16 +104,16 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
                         obj = (Map<String, Object>) view.getTag();
                         if (obj == null)
                             return;
-                        /*// 跳转到博客详情
+                        // 跳转到博客详情
                         String lingdaoName = (String) obj.get("title");
                         String lingdaoZhiwu = (String) obj.get("x_headship");
                         String lingdaoWebSrc = (String) obj.get("description");
                         String lingdaoImg = (String) obj.get("x_imgpath");
 
-                        UIHelper.showLingdaoDetail(LingDaoFragment.this.getActivity(), lingdaoName,
+                        /*UIHelper.showLingdaoDetail(LingDaoFragment.this.getActivity(), lingdaoName,
                             lingdaoZhiwu, lingdaoImg, lingdaoWebSrc);*/
                         UIHelper.showWebDetail(LingDaoFragment.this.getActivity(),
-                            "http://" + (String) obj.get("link"));
+                            "http://" + (String) obj.get("link"),"领导成员","领导成员");
                     }
                 });
             }
@@ -128,12 +127,14 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
     public void onClick(View v) {
 
     }
+
     public static class ListItemView { //自定义控件集合  
         public TextView  lingdaoName;
         public TextView  lingdaoZhiwu;
         public TextView  lingdaoFengong;
         public ImageView lingdaoImage;
     }
+
     class ListViewAdapter extends BaseAdapter {
         View[] itemViews;
 
@@ -142,10 +143,14 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
 
             for (int i = 0; i < list.size(); ++i) {
                 String nameStr = (String) list.get(i).get("title");
-                //String zhiWuStr = (String) list.get(i).get("x_headship");
-                //String fenGongStr = "分工：" + (String) list.get(i).get("x_duty");
-                String zhiWuStr = "";
-                String fenGongStr = "";
+                String zhiWuStr = (String) list.get(i).get("x_headship");
+                String fenGongStr = (String) list.get(i).get("x_duty");
+                zhiWuStr = HtmlRegexpUtils.filterHtml(zhiWuStr).trim();
+                fenGongStr = HtmlRegexpUtils.filterHtml(fenGongStr).trim();
+                zhiWuStr = zhiWuStr.replaceAll(" ", "").replaceAll("　", "").replaceAll("\r\n", "");
+                fenGongStr = fenGongStr.replaceAll(" ", "").replaceAll("　", "").replaceAll("\r\n", "");
+                //String zhiWuStr = "";
+                //String fenGongStr = "";
                 String imgUrl = (String) list.get(i).get("link_picture");
                 imgUrl = "http://" + imgUrl;
                 if (fenGongStr.length() > 30)
@@ -192,7 +197,7 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-                return itemViews[position];
+            return itemViews[position];
         }
     }
 

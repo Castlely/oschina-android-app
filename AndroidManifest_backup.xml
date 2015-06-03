@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.gov.psxq"
+    android:versionCode="1"
+    android:versionName="1.0.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="22" />
+
+    <application
+        android:name="cn.gov.psxq.AppContext"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.OSChina" >
+        <activity
+            android:name="cn.gov.psxq.AppStart"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="cn.gov.psxq.ui.BaseActionBarActivity" >
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.About"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.gov.psxq.ui.FeedBack"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HalfTranslucent"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name="cn.gov.psxq.fragment.ReportUi"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HalfTranslucent"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <!-- Theme.NoTitleBar -->
+        <activity
+            android:name="cn.gov.psxq.ui.NewsDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.SoftwareLib"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.OSChina" />
+        <activity
+            android:name="cn.gov.psxq.ui.SoftwareDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.BlogDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="cn.gov.psxq.ui.QuestionDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.QuestionTag"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.QuestionPub"
+            android:configChanges="keyboardHidden|orientation"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.gov.psxq.test.ActivityTest" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.TweetDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="cn.gov.psxq.ui.TweetPub"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ZoomLight"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name="cn.gov.psxq.ui.MessageDetail"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.gov.psxq.ui.MessagePub"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name="cn.gov.psxq.ui.MessageForward"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name="cn.gov.psxq.ui.CommentPub"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name="cn.gov.psxq.ui.Setting"
+            android:launchMode="singleTask"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.gov.psxq.test.ActivityTest" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.Search"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity"
+            android:windowSoftInputMode="adjustResize" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.gov.psxq.test.ActivityTest" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.UserInfo"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.gov.psxq.ui.InformationDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.SlideTop" />
+        <activity
+            android:name="cn.gov.psxq.ui.WebDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.SlideTop" />
+        <activity
+            android:name="cn.gov.psxq.ui.LingdaoDetail"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.SlideTop" />
+        <activity
+            android:name="cn.gov.psxq.ui.UserCenter"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.OSChina" />
+        <activity
+            android:name="cn.gov.psxq.ui.UserFavorite"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.gov.psxq.ui.UserFriend"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.OSChina" />
+        <activity
+            android:name="cn.gov.psxq.ui.ImageDialog"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HalfTranslucent" />
+        <activity
+            android:name="cn.gov.psxq.ui.ImageZoomDialog"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.ZoomLight.Fullscreen" />
+        <activity
+            android:name="cn.gov.psxq.ui.ScreenShotShare"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.ScreenShotShare" />
+        <activity
+            android:name="com.tencent.weibo.webview.OAuthV1AuthorizeWebView"
+            android:label="@string/app_name" />
+        <activity android:name="cn.gov.psxq.common.QQWeiboHelper2" />
+        <activity
+            android:name="cn.gov.psxq.ui.Capture"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name="cn.gov.psxq.ui.TweetPubActivity"
+            android:parentActivityName="cn.gov.psxq.ui.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.gov.psxq.test.ActivityTest" >
+            </meta-data>
+        </activity>
+        <!-- test -->
+        <activity
+            android:name="cn.gov.psxq.ui.MainActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity android:name="cn.gov.psxq.ui.WebOpenActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.oschina.net"
+                    android:pathPrefix="/news/"
+                    android:scheme="http" />
+                <data
+                    android:host="www.oschina.net"
+                    android:pathPrefix="/question/"
+                    android:scheme="http" />
+                <data
+                    android:host="www.oschina.net"
+                    android:pathPrefix="/p/"
+                    android:scheme="http" />
+                <data
+                    android:host="my.oschina.net"
+                    android:pathPrefix="/u/"
+                    android:scheme="http" />
+                <data
+                    android:host="my.oschina.net"
+                    android:pathPattern=".+/tweet/.+"
+                    android:scheme="http" />
+                <data
+                    android:host="my.oschina.net"
+                    android:pathPrefix=".+/blog/.+"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="cn.gov.psxq.ui.BroadCast" >
+            <intent-filter>
+                <action android:name="cn.gov.psxq.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <!-- newui -->
+
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <meta-data
+        android:name="com.baidu.lbsapi.API_KEY"
+        android:value="NI1PngwxUo59BOIbiEPB6hZW" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+</manifest>

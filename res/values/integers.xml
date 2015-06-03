@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="footer_anim_time" >700</integer>
-    <integer name="detail_footer_anim_time" >500</integer>
+
+    <integer name="footer_anim_time">700</integer>
+    <integer name="detail_footer_anim_time">500</integer>
+    <integer name="default_start_page_items_number">9</integer>
+    <integer name="favicon_size">20</integer>
+    <integer name="application_button_size">50</integer>
+    <integer name="tab_title_length">30</integer>
+
 </resources>

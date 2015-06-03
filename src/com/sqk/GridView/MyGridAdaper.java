@@ -83,7 +83,12 @@ public class MyGridAdaper extends BaseAdapter {
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(Boolean) bundles.get(position).get("web")) {
+                //if (!(Boolean) bundles.get(position).get("web")) {
+                if (bundles.get(position).get(
+                        "catalogName").equals("服务地图")) {
+                    UIHelper.showWebDetail(context,
+                        AppData.urlList.get(bundles.get(position).get("catalogName")),"服务地图","服务地图");
+                } else {
                     GridMainFragment gridMainFragment = new GridMainFragment();
                     gridMainFragment.setArguments(bundles.get(position));
                     FragmentManager fragmentManager = fManager;
@@ -91,10 +96,11 @@ public class MyGridAdaper extends BaseAdapter {
                     fragmentTransaction.replace(R.id.main_activity_linearlayout, gridMainFragment);
                     //fragmentTransaction.addToBackStack(bundles.get(position).getString("catalogName"));
                     fragmentTransaction.commit();
-                } else {
+                }
+                /*} else {
                     UIHelper.showWebDetail(context,
                         AppData.urlList.get(bundles.get(position).get("catalogName")));
-                }
+                }*/
             }
         });
         return convertView;

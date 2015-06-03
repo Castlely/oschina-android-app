@@ -69,11 +69,15 @@ public class ImageAdapter extends BaseAdapter {
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-/*                UIHelper.showInformationDetail(
+                /*                UIHelper.showInformationDetail(
+                                    mContext,
+                                    AppData.gsonBuilder.create().toJson(
+                                        bitmapMap.get(bitmapList.get(position % bitmapList.size()))));*/
+                UIHelper.showWebDetail(
                     mContext,
-                    AppData.gsonBuilder.create().toJson(
-                        bitmapMap.get(bitmapList.get(position % bitmapList.size()))));*/
-                UIHelper.showWebDetail(mContext, "http://"+bitmapMap.get(bitmapList.get(position % bitmapList.size())).getLink());
+                    "http://"
+                            + bitmapMap.get(bitmapList.get(position % bitmapList.size())).getLink(),
+                    "详细信息", bitmapMap.get(bitmapList.get(position % bitmapList.size())).getTitle());
             }
         });
         return convertView;

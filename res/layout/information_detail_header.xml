@@ -28,7 +28,8 @@
         android:id="@+id/information_detail_head_progress"
         style="@style/loading_small"
         android:layout_gravity="right|center"
-        android:layout_marginRight="5dip" />
+        android:layout_marginRight="5dip"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/information_detail_refresh"

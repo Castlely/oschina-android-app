@@ -37,12 +37,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import cn.gov.psxq.AppContext;
 import cn.gov.psxq.AppData;
+import cn.gov.psxq.AppException;
 import cn.gov.psxq.R;
 import cn.gov.psxq.bean.Information;
 import cn.gov.psxq.bean.InformationList;
 import cn.gov.psxq.ui.BackHandledFragment;
 import cn.gov.psxq.ui.MainActivity;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -96,61 +98,69 @@ public class IndexFragment extends BackHandledFragment {
                 Map<String, Object> weather = AppData.gsonBuilder.create().fromJson(t,
                     new TypeToken<Map<String, Object>>() {
                     }.getType());
-                Map<String, Object> dataMap = (Map<String, Object>) ((List) ((Map<String, Object>) ((List) weather
-                    .get("results")).get(0)).get("weather_data")).get(0);
-                final String imgUrl = (String) dataMap.get("dayPictureUrl");
-                String text = (String) dataMap.get("temperature");
+                if (weather != null && ((Double) weather.get("error")) == 0) {
 
-                final Handler handle = new Handler() {
-                    @Override
-                    public void handleMessage(Message msg) {
-                        super.handleMessage(msg);
-                        if (msg.what == 1) {
-                            if (weatherPicByte != null) {
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(weatherPicByte, 0,
-                                    weatherPicByte.length);
-                                Bitmap bitmap2 = transparentImage(bitmap);
-                                weatherImageView.setBackground(resizeImage(bitmap2,
-                                    rightBtn.getWidth() + 10, rightBtn.getHeight() + 10));
-                                //bitmapManager.loadBitmap("http://i.tq121.com.cn/i/wap/80bai/d01.png", weatherImageView);
-                            }
-                        }
-                    }
-                };
-
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            URL url = new URL("http://i.tq121.com.cn/i/wap/80bai/d01.png");
-                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                            conn.setRequestMethod("GET");
-                            conn.setReadTimeout(10000);
-
-                            if (conn.getResponseCode() == 200) {
-                                InputStream fis = conn.getInputStream();
-                                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                                byte[] bytes = new byte[1024];
-                                int length = -1;
-                                while ((length = fis.read(bytes)) != -1) {
-                                    bos.write(bytes, 0, length);
+                    Map<String, Object> dataMap = (Map<String, Object>) ((List) ((Map<String, Object>) ((List) weather
+                        .get("results")).get(0)).get("weather_data")).get(0);
+                    final String imgUrl = (String) dataMap.get("dayPictureUrl");
+                    String text = (String) dataMap.get("temperature");
+                    /*ImageLoader.getInstance().displayImage(
+                        imgUrl,
+                        weatherImageView);*/
+                    final Handler handle = new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            super.handleMessage(msg);
+                            if (msg.what == 1) {
+                                if (weatherPicByte != null) {
+                                    try {
+                                        Bitmap bitmap = BitmapFactory.decodeByteArray(
+                                            weatherPicByte, 0, weatherPicByte.length);
+                                        Bitmap bitmap2 = transparentImage(bitmap);
+                                        weatherImageView
+                                            .setBackground(resizeImage(bitmap2, 126, 90));
+                                    } catch (Exception e) {
+                                    }
+                                    //bitmapManager.loadBitmap("http://i.tq121.com.cn/i/wap/80bai/d01.png", weatherImageView);
                                 }
-                                weatherPicByte = bos.toByteArray();
-                                bos.close();
-                                fis.close();
-
-                                Message message = new Message();
-                                message.what = 1;
-                                handle.sendMessage(message);
                             }
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
-                    }
-                };
-                new Thread(runnable).start();
-                weatherTextView.setText(text);
+                    };
+
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                URL url = new URL(imgUrl);
+                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                conn.setRequestMethod("GET");
+                                conn.setReadTimeout(10000);
+
+                                if (conn.getResponseCode() == 200) {
+                                    InputStream fis = conn.getInputStream();
+                                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                                    byte[] bytes = new byte[1024];
+                                    int length = -1;
+                                    while ((length = fis.read(bytes)) != -1) {
+                                        bos.write(bytes, 0, length);
+                                    }
+                                    weatherPicByte = bos.toByteArray();
+                                    bos.close();
+                                    fis.close();
+
+                                    Message message = new Message();
+                                    message.what = 1;
+                                    handle.sendMessage(message);
+                                }
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    new Thread(runnable).start();
+                    weatherTextView.setText(text);
+                }
             }
         });
         mActionBar.setCustomView(viewTitleBar, lp);
@@ -179,7 +189,7 @@ public class IndexFragment extends BackHandledFragment {
         m_ImageHeigth = bmp.getHeight();
         int[] m_BmpPixel = new int[m_ImageWidth * m_ImageHeigth];
         bmp.getPixels(m_BmpPixel, 0, m_ImageWidth, 0, 0, m_ImageWidth, m_ImageHeigth);
-        int pin = m_BmpPixel[0];
+        int pin = m_BmpPixel[m_ImageWidth * (m_ImageHeigth / 2)];
         for (int i = 0; i < m_ImageWidth * m_ImageHeigth; i++) {
             if (m_BmpPixel[i] == pin) {
                 m_BmpPixel[i] = 0x001156E1;
@@ -260,7 +270,14 @@ public class IndexFragment extends BackHandledFragment {
             if (entry.getValue() == true)
                 lists.add(new Grid_Item(AppData.ico.get(entry.getKey()), entry.getKey()));
         }
-        MyGridAdaper adaper = new MyGridAdaper(IndexFragment.this.getActivity(), lists,
+        //排序list
+        List<Grid_Item> tmpList = Lists.newArrayList();
+        for (String pin : AppData.list) {
+            if (containItem(lists, pin))
+                tmpList.add(new Grid_Item(AppData.ico.get(pin), pin));
+        }
+
+        MyGridAdaper adaper = new MyGridAdaper(IndexFragment.this.getActivity(), tmpList,
             this.getFragmentManager());
         MyGridView.setAdapter(adaper);
         initActionBar(inflater, "坪山新区政府在线");
@@ -281,5 +298,14 @@ public class IndexFragment extends BackHandledFragment {
     @Override
     protected boolean onBackPressed() {
         return true;
+    }
+
+    private boolean containItem(List<Grid_Item> list, String res) {
+
+        for (Grid_Item grid_Item : list) {
+            if (grid_Item.Item_title.equals(res))
+                return true;
+        }
+        return false;
     }
 }

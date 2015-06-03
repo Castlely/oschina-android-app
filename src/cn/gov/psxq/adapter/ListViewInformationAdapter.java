@@ -112,7 +112,12 @@ public class ListViewInformationAdapter extends BaseAdapter {
                 listItemView.img);
             listItemView.img.setVisibility(View.VISIBLE);
         } else {
-            listItemView.img.setVisibility(View.GONE);
+            if (StringUtils.isEmpty(information.getX_imgpath()))
+                listItemView.img.setVisibility(View.GONE);
+            else {
+                ImageLoader.getInstance().displayImage("http://" + information.getX_imgpath(),
+                    listItemView.img);
+            }
         }
         String dateString = information.getLast_update();
         dateString = dateString.substring(0, 19);

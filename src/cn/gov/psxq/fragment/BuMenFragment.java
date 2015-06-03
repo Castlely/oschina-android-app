@@ -126,7 +126,7 @@ public class BuMenFragment extends BackHandledFragment implements OnClickListene
 
                 } else {
                     UIHelper.showWebDetail(BuMenFragment.this.getActivity(),
-                        (String) map.get("iconName"));
+                        (String) map.get("iconName"),"部门信息","部门信息");
                 }
 
             }

@@ -2,6 +2,7 @@ package cn.gov.psxq;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import android.content.res.Resources;
 import android.util.Log;
 import cn.gov.psxq.common.StringUtils;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.GsonBuilder;
@@ -23,10 +25,11 @@ public class AppData {
     public static Map<String, Boolean>      isShortCut;
     public static Map<String, Boolean>      isLink;
     public static Map<String, Integer>      ico;
+    public static Map<String, Boolean>      LBS;
     public static Set<String>               optionSet;
     public static GsonBuilder               gsonBuilder = new GsonBuilder();
     public static final String              WEATHERAPI  = "http://api.map.baidu.com/telematics/v3/weather?location=%E6%B7%B1%E5%9C%B3&output=json&ak=BPGPMj8GameGHglMDsbgUILZ";
-
+    public static List<String> list;
     public static void set(String key, String value, Context context) {
         SharedPreferences mySharedPreferences = context.getSharedPreferences("data",
             Activity.MODE_PRIVATE);
@@ -65,6 +68,8 @@ public class AppData {
         isShortCut = Maps.newHashMap();
         isLink = Maps.newHashMap();
         ico = Maps.newHashMap();
+        LBS = Maps.newHashMap();
+        list = Lists.newArrayList();
         optionSet = Sets.newHashSet("信息公开", "政务动态", "通知公告", "领导成员", "规范性文件", "财政资金", "发展规划",
             "政府工作报告");
         urlList.put("了解坪山", "");
@@ -103,12 +108,12 @@ public class AppData {
         urlList.put("诊所", "http://www.psxq.gov.cn/app/opendata/getData/68447?pageSize=10&pageNo=");
         urlList
             .put("社康中心", "http://www.psxq.gov.cn/app/opendata/getData/68448?pageSize=10&pageNo=");
-        urlList.put("WIFI热点", "");
+        urlList.put("WIFI热点", "http://www.psxq.gov.cn/wechat/wxwtssp/html/appwifitest.jsp?x=113.493629&y=24.363468&type=2");
         urlList.put("办事服务", "");
         urlList.put("办事指南", "http://www.psxq.gov.cn/app/bsdt/index.html");
-        urlList.put("在线服务", "");
+        urlList.put("在线服务", "http://www.psxq.gov.cn/wexin/menu/10012/index.shtml");
         urlList.put("信息自主申报", "http://www.psxq.gov.cn/wexin/zzsbxt/index.shtml");
-        urlList.put("服务地图", "");
+        urlList.put("服务地图", "http://www.psxq.gov.cn/wechat/wxwtssp/html/appservermap.jsp?x=113.493629&y=24.363468&type=2");
         urlList.put("互动交流", "");
         urlList.put("网上民声", "http://www.psxq.gov.cn/smartchat/chat/app/index");
         urlList.put("微调查", "http://www.psxq.gov.cn/wexin/menu/10013/index.shtml");
@@ -205,6 +210,47 @@ public class AppData {
         isLink.put("公积金查询", true);
         isLink.put("地铁查询", true);
 
+        LBS.put("了解坪山", false);
+        LBS.put("坪山概况", false);
+        LBS.put("文化坪山", false);
+        LBS.put("产业坪山", false);
+        LBS.put("信息公开", false);
+        LBS.put("政务动态", false);
+        LBS.put("通知公告", false);
+        LBS.put("领导成员", false);
+        LBS.put("规范性文件", false);
+        LBS.put("财政资金", false);
+        LBS.put("发展规划", false);
+        LBS.put("政府工作报告", false);
+        LBS.put("名单名录", false);
+        LBS.put("直属部门", false);
+        LBS.put("驻区单位", false);
+        LBS.put("办事处", false);
+        LBS.put("中学", false);
+        LBS.put("小学", false);
+        LBS.put("幼儿园", false);
+        LBS.put("医院", false);
+        LBS.put("药店", false);
+        LBS.put("诊所", false);
+        LBS.put("社康中心", false);
+        LBS.put("WIFI热点", true);
+        LBS.put("办事服务", false);
+        LBS.put("办事指南", false);
+        LBS.put("在线服务", false);
+        LBS.put("信息自主申报", false);
+        LBS.put("服务地图", false);
+        LBS.put("互动交流", false);
+        LBS.put("网上民声", false);
+        LBS.put("微调查", false);
+        LBS.put("乐在坪山", false);
+        LBS.put("吃在坪山", false);
+        LBS.put("游在坪山", false);
+        LBS.put("挂号预约", false);
+        LBS.put("婚姻登记预约", false);
+        LBS.put("社保查询", false);
+        LBS.put("公积金查询", false);
+        LBS.put("地铁查询", false);
+
         ico.put("了解坪山", R.drawable.grid1);
         ico.put("坪山概况", R.drawable.grid8);
         ico.put("文化坪山", R.drawable.grid9);
@@ -246,6 +292,46 @@ public class AppData {
         ico.put("公积金查询", R.drawable.grid32);
         ico.put("地铁查询", R.drawable.grid33);
 
+        list.add("了解坪山");
+        list.add("坪山概况");
+        list.add("文化坪山");
+        list.add("产业坪山");
+        list.add("信息公开");
+        list.add("政务动态");
+        list.add("通知公告");
+        list.add("领导成员");
+        list.add("规范性文件");
+        list.add("财政资金");
+        list.add("发展规划");
+        list.add("政府工作报告");
+        list.add("名单名录");
+        list.add("直属部门");
+        list.add("驻区单位");
+        list.add("办事处");
+        list.add("中学");
+        list.add("小学");
+        list.add("幼儿园");
+        list.add("医院");
+        list.add("药店");
+        list.add("诊所");
+        list.add("社康中心");
+        list.add("WIFI热点");
+        list.add("办事服务");
+        list.add("办事指南");
+        list.add("在线服务");
+        list.add("信息自主申报");
+        list.add("服务地图");
+        list.add("互动交流");
+        list.add("网上民声");
+        list.add("微调查");
+        list.add("乐在坪山");
+        list.add("吃在坪山");
+        list.add("游在坪山");
+        list.add("挂号预约");
+        list.add("婚姻登记预约");
+        list.add("社保查询");
+        list.add("公积金查询");
+        list.add("地铁查询");
     }
 
 }

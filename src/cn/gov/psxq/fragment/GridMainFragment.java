@@ -25,9 +25,12 @@ public class GridMainFragment extends MainFragment {
     ActionBar           mActionBar;
     String              parentString = null;
 
+    List<Fragment>      fragments;
+    List<CharSequence>  titles;
+
     PagerAdapter getPagerAdapter() {
-        List<Fragment> fragments = new ArrayList<Fragment>();
-        List<CharSequence> titles = new ArrayList<CharSequence>();
+        fragments = new ArrayList<Fragment>();
+        titles = new ArrayList<CharSequence>();
 
         for (String key : data.keySet()) {
             if (!AppData.isLink.get(key)) {
@@ -94,6 +97,7 @@ public class GridMainFragment extends MainFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         catalogName = this.getArguments().getString("catalogName");
         //判断是否是二级目录
 

@@ -3,7 +3,6 @@ package cn.gov.psxq.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
 import android.view.WindowManager.LayoutParams;
@@ -35,7 +34,6 @@ public class UserInfoWindow extends DialogFragment {
     private TextView  mLatestonline;
 
     @Override
-    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         UserInfoDialog userInfo = new UserInfoDialog(getActivity());
         init(userInfo);

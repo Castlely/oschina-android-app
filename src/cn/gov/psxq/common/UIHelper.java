@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
+import net.tsz.afinal.FinalActivity;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -47,6 +48,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
+import android.webkit.GeolocationPermissions;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
@@ -87,6 +91,7 @@ import cn.gov.psxq.ui.ImageDialog;
 import cn.gov.psxq.ui.ImageZoomDialog;
 import cn.gov.psxq.ui.InformationDetail;
 import cn.gov.psxq.ui.LingdaoDetail;
+import cn.gov.psxq.ui.MainActivity;
 import cn.gov.psxq.ui.MessageForward;
 import cn.gov.psxq.ui.MessagePub;
 import cn.gov.psxq.ui.QuestionPub;
@@ -310,9 +315,11 @@ public class UIHelper {
      * @param context
      * @param blogId
      */
-    public static void showWebDetail(Context context, String url) {
+    public static void showWebDetail(Context context, String url, String title, String share) {
         Intent intent = new Intent(context, WebDetail.class);
         intent.putExtra("url", url);
+        intent.putExtra("title", title);
+        intent.putExtra("share", share);
         context.startActivity(intent);
     }
 
@@ -807,11 +814,31 @@ public class UIHelper {
      */
     public static WebViewClient getWebViewClient() {
         return new WebViewClient() {
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                showUrlRedirect(view.getContext(), url);
+                //showUrlRedirect(view.getContext(), url);
+                view.loadUrl(url);
                 return true;
             }
+        };
+    }
+
+    /**
+     * 获取webviewClient对象
+     * 
+     * @return
+     */
+    public static WebChromeClient getWebChromeClient() {
+        return new WebChromeClient() {
+            public void onGeolocationPermissionsShowPrompt(String origin,
+                                                           GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, false);
+                super.onGeolocationPermissionsShowPrompt(origin, callback);
+            }
+
+           
+
         };
     }
 

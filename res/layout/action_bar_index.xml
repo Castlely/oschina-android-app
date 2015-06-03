@@ -52,6 +52,7 @@
         android:layout_gravity="right|center_vertical"
         android:paddingRight="2dip"
         android:src="@drawable/index_search"
+        android:visibility="gone"
         android:layout_margin="7dip" />
 
 </FrameLayout>

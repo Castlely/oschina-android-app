@@ -86,7 +86,7 @@ public class InformationListFragment extends Fragment {
                     return;
                 ListItemView listItemView = (ListItemView) view.getTag();
                 Information information = (Information) listItemView.title.getTag();
-                UIHelper.showWebDetail(view.getContext(), "http://" + information.getLink());
+                UIHelper.showWebDetail(view.getContext(), "http://" + information.getLink(),"详细信息",listItemView.title.getText().toString());
                 /*// 跳转到留言详情
                 UIHelper.showInformationDetail(view.getContext(), AppData.gsonBuilder.create()
                     .toJson(information));*/

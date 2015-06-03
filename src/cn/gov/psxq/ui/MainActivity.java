@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import cn.gov.psxq.AppContext;
+import cn.gov.psxq.AppData;
 import cn.gov.psxq.AppException;
 import cn.gov.psxq.R;
 import cn.gov.psxq.bean.MyInformation;
@@ -30,6 +31,7 @@ import cn.gov.psxq.common.UIHelper;
 import cn.gov.psxq.fragment.BuMenFragment;
 import cn.gov.psxq.fragment.DingYueFragment;
 import cn.gov.psxq.fragment.GaiKuangFragment;
+import cn.gov.psxq.fragment.GridMainFragment;
 import cn.gov.psxq.fragment.IndexFragment;
 import cn.gov.psxq.fragment.LingDaoFragment;
 import cn.gov.psxq.inteface.FooterViewVisibility;
@@ -50,7 +52,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.main_activity_layout);
         finalHttp = new FinalHttp();
         appContext = (AppContext) getApplication();
@@ -232,11 +234,23 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                                  setFootBarButtonState(2, false);
                                                                  setFootBarButtonState(3, false);
                                                                  setFootBarButtonState(4, false);
-                                                                 fTransaction
+                                                                 /*fTransaction
                                                                      .replace(
                                                                          R.id.main_activity_linearlayout,
                                                                          new GaiKuangFragment())
-                                                                     .commit();
+                                                                     .commit();*/
+                                                                 {
+                                                                     Bundle args = new Bundle();
+                                                                     args.putString("catalogName", "了解坪山");
+                                                                     args.putBoolean("web", AppData.isLink.get("了解坪山"));
+                                                                     GridMainFragment gridMainFragment = new GridMainFragment();
+                                                                     gridMainFragment.setArguments(args);
+                                                                     FragmentManager fragmentManager = fManager;
+                                                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                                     fragmentTransaction.replace(R.id.main_activity_linearlayout, gridMainFragment);
+                                                                     //fragmentTransaction.addToBackStack(bundles.get(position).getString("catalogName"));
+                                                                     fragmentTransaction.commit();
+                                                                 }
                                                                  break;
                                                              case R.id.main_footbar_lingdao:
                                                                  setFootBarButtonState(1, false);

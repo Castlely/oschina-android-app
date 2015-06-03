@@ -14,15 +14,20 @@ import java.util.Hashtable;
 import java.util.Properties;
 import java.util.UUID;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import cn.gov.psxq.api.ApiClient;
@@ -67,7 +72,6 @@ import cn.gov.psxq.common.UIHelper;
  * @created 2012-3-21
  */
 public class AppContext extends Application {
-
     public static final int           NETTYPE_WIFI   = 0x01;
     public static final int           NETTYPE_CMWAP  = 0x02;
     public static final int           NETTYPE_CMNET  = 0x03;
@@ -104,10 +108,55 @@ public class AppContext extends Application {
         super.onCreate();
         appContext = this;
         //注册App异常崩溃处理器
-        //Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
+        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
 
         init();
+        //getLocation(this);
+
     }
+
+    /*public static void getLocation(final Context context) {
+        LocationManager manager = (LocationManager) context
+            .getSystemService(Activity.LOCATION_SERVICE);
+        Location currentLocation = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (currentLocation == null) {
+            manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,
+                new LocationListener() {
+
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+                    }
+
+                    @Override
+                    public void onProviderEnabled(String provider) {
+                    }
+
+                    @Override
+                    public void onProviderDisabled(String provider) {
+                        UIHelper.ToastMessage(context, "无法获取当前位置");
+                    }
+
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+                        String url = "http://www.psxq.gov.cn/wechat/wxwtssp/html/appwifitest.jsp?"
+                                     + "y=" + latitude + "&x=" + longitude + "&type=2";
+                        AppData.urlList.put("WIFI热点", url);
+                        String url2 = "http://www.psxq.gov.cn/wechat/wxwtssp/html/appservermap.jsp?"+ "y=" + latitude + "&x=" + longitude + "&type=2";
+                        AppData.urlList.put("服务地图", url2);
+                    }
+                });
+        } else {
+            double latitude = currentLocation.getLatitude();
+            double longitude = currentLocation.getLongitude();
+            String url = "http://www.psxq.gov.cn/wechat/wxwtssp/html/appwifitest.jsp?" + "y="
+                         + latitude + "&x=" + longitude + "&type=2";
+            AppData.urlList.put("WIFI热点", url);
+            String url2 = "http://www.psxq.gov.cn/wechat/wxwtssp/html/appservermap.jsp?"+ "y=" + latitude + "&x=" + longitude + "&type=2";
+            AppData.urlList.put("服务地图", url2);
+        }
+    }*/
 
     /**
      * 初始化
