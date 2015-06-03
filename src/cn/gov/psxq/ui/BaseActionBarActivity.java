@@ -1,5 +1,6 @@
 package cn.gov.psxq.ui;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,7 +16,11 @@ public class BaseActionBarActivity extends ActionBarActivity {
     public boolean isAllowFullScreen() {
         return allowFullScreen;
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+       super.onActivityResult(requestCode, resultCode, intent);
+       
+    }
     /**
      * 设置是否可以全屏
      * 

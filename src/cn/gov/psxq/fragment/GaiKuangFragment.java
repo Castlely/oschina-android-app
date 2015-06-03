@@ -54,7 +54,7 @@ public class GaiKuangFragment extends BackHandledFragment {
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 IndexFragment indexFragment = new IndexFragment();
-                FragmentManager fragmentManager = GaiKuangFragment.this.getFragmentManager();
+                FragmentManager fragmentManager = GaiKuangFragment.this.getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
                 fragmentTransaction.commit();

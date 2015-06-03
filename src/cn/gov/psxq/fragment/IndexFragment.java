@@ -17,6 +17,7 @@ import org.sqk.viewpager.widget.CircleFlowIndicator;
 import org.sqk.viewpager.widget.ViewFlow;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -64,7 +65,7 @@ public class IndexFragment extends BackHandledFragment {
     TextView          weatherTextView;
     private byte[]    weatherPicByte;
     ImageView         rightBtn;
-
+   
     public static Drawable resizeImage(Bitmap bitmap, int w, int h) {
         Bitmap BitmapOrg = bitmap;
         int width = BitmapOrg.getWidth();
@@ -278,7 +279,7 @@ public class IndexFragment extends BackHandledFragment {
         }
 
         MyGridAdaper adaper = new MyGridAdaper(IndexFragment.this.getActivity(), tmpList,
-            this.getFragmentManager());
+            IndexFragment.this.getActivity().getSupportFragmentManager());
         MyGridView.setAdapter(adaper);
         initActionBar(inflater, "坪山新区政府在线");
         view.post(new Runnable() {

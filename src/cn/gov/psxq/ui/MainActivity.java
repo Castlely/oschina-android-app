@@ -1,6 +1,8 @@
 package cn.gov.psxq.ui;
 
 import net.tsz.afinal.FinalHttp;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,6 +10,7 @@ import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -49,7 +52,11 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
     private RadioButton         fbBuMen;
     private RadioButton         fbDingYue;
     private FinalHttp           finalHttp;
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+       super.onActivityResult(requestCode, resultCode, intent);
+       
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,7 +28,10 @@ public class GridMainFragment extends MainFragment {
 
     List<Fragment>      fragments;
     List<CharSequence>  titles;
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+       super.onActivityResult(requestCode, resultCode, intent);
+    }
     PagerAdapter getPagerAdapter() {
         fragments = new ArrayList<Fragment>();
         titles = new ArrayList<CharSequence>();
@@ -51,7 +55,7 @@ public class GridMainFragment extends MainFragment {
                 super.setPageSelect(i);
             }
         }
-        return new ActivePagerAdapter(getChildFragmentManager(), fragments, titles);
+        return new ActivePagerAdapter(GridMainFragment.this.getActivity().getSupportFragmentManager(), fragments, titles);
     }
 
     private void initActionBar(LayoutInflater inflater, String titleString) {
@@ -72,7 +76,7 @@ public class GridMainFragment extends MainFragment {
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 IndexFragment indexFragment = new IndexFragment();
-                FragmentManager fragmentManager = GridMainFragment.this.getFragmentManager();
+                FragmentManager fragmentManager = GridMainFragment.this.getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
                 fragmentTransaction.commit();
@@ -129,7 +133,7 @@ public class GridMainFragment extends MainFragment {
     @Override
     protected boolean onBackPressed() {
         IndexFragment indexFragment = new IndexFragment();
-        FragmentManager fragmentManager = GridMainFragment.this.getFragmentManager();
+        FragmentManager fragmentManager = GridMainFragment.this.getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
         fragmentTransaction.commit();

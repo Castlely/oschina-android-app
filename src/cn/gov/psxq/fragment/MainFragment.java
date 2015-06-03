@@ -9,6 +9,7 @@ import org.sqk.viewpager.widget.CircleFlowIndicator;
 import org.sqk.viewpager.widget.ViewFlow;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -45,7 +46,10 @@ public abstract class MainFragment extends BackHandledFragment implements
     public void setPageSelect(int pageSelect) {
         this.pageSelect = pageSelect;
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+       super.onActivityResult(requestCode, resultCode, intent);
+    }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
         viewPager = (ExtendedViewPager) view.findViewById(R.id.fragment_main_viewpager);

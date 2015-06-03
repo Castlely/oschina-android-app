@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class WebFragment extends BackHandledFragment {
             mUploadMessage.onReceiveValue(result);
             mUploadMessage = null;
         }
+       
     }
 
     @Override
@@ -44,7 +46,7 @@ public class WebFragment extends BackHandledFragment {
         webView = (ExtendedWebView) view.findViewById(R.id.web_detail_webview);
         String catalogName = this.getArguments().getString("catalogName");
         String title = this.getArguments().getString("title");
-
+        FragmentManager fm=this.getFragmentManager();
         webView.loadUrl(AppData.urlList.get(catalogName));
         webView.setWebChromeClient(new WebChromeClient() {
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
@@ -65,6 +67,7 @@ public class WebFragment extends BackHandledFragment {
             }
 
             // For Android 3.0+  
+            @SuppressWarnings("unchecked")
             public void openFileChooser(ValueCallback uploadMsg, String acceptType) {
                 mUploadMessage = uploadMsg;
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);

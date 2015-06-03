@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-import net.tsz.afinal.FinalActivity;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -49,7 +48,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.GeolocationPermissions;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -84,18 +82,15 @@ import cn.gov.psxq.fragment.LoginDialogFragment.LoginDialogListener;
 import cn.gov.psxq.fragment.ReportUi;
 import cn.gov.psxq.ui.About;
 import cn.gov.psxq.ui.BaseActionBarActivity;
-import cn.gov.psxq.ui.Capture;
 import cn.gov.psxq.ui.CommentPub;
 import cn.gov.psxq.ui.FeedBack;
 import cn.gov.psxq.ui.ImageDialog;
 import cn.gov.psxq.ui.ImageZoomDialog;
 import cn.gov.psxq.ui.InformationDetail;
 import cn.gov.psxq.ui.LingdaoDetail;
-import cn.gov.psxq.ui.MainActivity;
 import cn.gov.psxq.ui.MessageForward;
 import cn.gov.psxq.ui.MessagePub;
 import cn.gov.psxq.ui.QuestionPub;
-import cn.gov.psxq.ui.ScreenShotShare;
 import cn.gov.psxq.ui.SoftwareDetail;
 import cn.gov.psxq.ui.WebDetail;
 import cn.gov.psxq.widget.LinkView;
@@ -455,25 +450,7 @@ public class UIHelper {
                     case 2:// 微信朋友圈
                         WXFriendsHelper.shareToWXFriends(context, title, url);
                         break;
-                    case 3:// 截图分享
-                        addScreenShot(context, new OnScreenShotListener() {
 
-                            public void onComplete(Bitmap bm) {
-                                Intent intent = new Intent(context, ScreenShotShare.class);
-                                intent.putExtra("title", title);
-                                intent.putExtra("url", url);
-                                intent.putExtra("cut_image_tmp_path",
-                                    ScreenShotView.TEMP_SHARE_FILE_NAME);
-                                try {
-                                    ImageUtils.saveImageToSD(context,
-                                        ScreenShotView.TEMP_SHARE_FILE_NAME, bm, 100);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                context.startActivity(intent);
-                            }
-                        });
-                        break;
                     case 4:// 更多
                         showShareMore(context, title, url);
                         break;
@@ -677,16 +654,6 @@ public class UIHelper {
     }
 
     /**
-     * 显示扫一扫界面
-     * 
-     * @param context
-     */
-    public static void showCapture(Context context) {
-        Intent intent = new Intent(context, Capture.class);
-        context.startActivity(intent);
-    }
-
-    /**
      * 加载显示用户头像
      * 
      * @param imgFace
@@ -836,8 +803,6 @@ public class UIHelper {
                 callback.invoke(origin, true, false);
                 super.onGeolocationPermissionsShowPrompt(origin, callback);
             }
-
-           
 
         };
     }
