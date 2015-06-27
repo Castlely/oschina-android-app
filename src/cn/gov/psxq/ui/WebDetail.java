@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -337,6 +338,7 @@ public class WebDetail extends BaseActivity {
         yxCircleHandler.addToSocialSDK();
 
     }
+
     private ValueCallback<Uri> mUploadMessage;
     private final static int   FILECHOOSER_RESULTCODE = 1;
 
@@ -351,10 +353,14 @@ public class WebDetail extends BaseActivity {
             mUploadMessage = null;
         }
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_detail);
+        getWindow().setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                    | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         url = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
         share = getIntent().getStringExtra("share");
@@ -449,8 +455,20 @@ public class WebDetail extends BaseActivity {
         webView.getSettings().setGeolocationDatabasePath(
             WebDetail.this.getApplicationContext().getDir("geolocation", Context.MODE_PRIVATE)
                 .getPath());
-        //注册双击全屏事件
+        webView.setDownloadListener(new MyDownloadListener());
         this.regOnDoubleEvent();
+    }
+
+    private class MyDownloadListener implements DownloadListener {
+
+        @Override
+        public void onDownloadStart(String url, String userAgent, String contentDisposition,
+                                    String mimetype, long contentLength) {
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+
     }
 
     //初始化视图控件

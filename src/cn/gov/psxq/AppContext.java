@@ -14,20 +14,15 @@ import java.util.Hashtable;
 import java.util.Properties;
 import java.util.UUID;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import cn.gov.psxq.api.ApiClient;
@@ -65,6 +60,8 @@ import cn.gov.psxq.common.MethodsCompat;
 import cn.gov.psxq.common.StringUtils;
 import cn.gov.psxq.common.UIHelper;
 
+import com.umeng.analytics.MobclickAgent;
+
 /**
  * 全局应用程序类：用于保存和调用全局应用配置及访问网络数据
  * @author liux (http://my.oschina.net/liux)
@@ -72,6 +69,7 @@ import cn.gov.psxq.common.UIHelper;
  * @created 2012-3-21
  */
 public class AppContext extends Application {
+
     public static final int           NETTYPE_WIFI   = 0x01;
     public static final int           NETTYPE_CMWAP  = 0x02;
     public static final int           NETTYPE_CMNET  = 0x03;
@@ -107,8 +105,9 @@ public class AppContext extends Application {
     public void onCreate() {
         super.onCreate();
         appContext = this;
+        MobclickAgent.setCatchUncaughtExceptions(true);
         //注册App异常崩溃处理器
-        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
+        //Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
 
         init();
         //getLocation(this);

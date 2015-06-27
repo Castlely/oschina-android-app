@@ -121,7 +121,11 @@ public class ListViewInformationAdapter extends BaseAdapter {
         }
         String dateString = information.getLast_update();
         dateString = dateString.substring(0, 19);
-        listItemView.lastUpdate.setText(StringUtils.friendly_time(dateString));
+        // listItemView.lastUpdate.setText(StringUtils.friendly_time(dateString));
+        if (dateString != null && dateString.length() > 10)
+            listItemView.lastUpdate.setText(dateString.subSequence(0, 10));
+        else
+            listItemView.lastUpdate.setText("");
         if (!StringUtils.isEmpty(information.getDescription())) {
             String descriptionString = delHTMLTag(information.getDescription());
             descriptionString = descriptionString.replaceAll("　", "");

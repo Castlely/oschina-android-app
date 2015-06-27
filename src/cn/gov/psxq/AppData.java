@@ -109,6 +109,7 @@ public class AppData {
         urlList
             .put("社康中心", "http://www.psxq.gov.cn/app/opendata/getData/68448?pageSize=10&pageNo=");
         urlList.put("WIFI热点", "http://www.psxq.gov.cn/wechat/wxwtssp/html/appwifitest.jsp?x=113.493629&y=24.363468&type=2");
+        //urlList.put("WIFI热点", "http://www.baidu.com");
         urlList.put("办事服务", "");
         urlList.put("办事指南", "http://www.psxq.gov.cn/app/bsdt/index.html");
         urlList.put("在线服务", "http://www.psxq.gov.cn/wexin/menu/10012/index.shtml");

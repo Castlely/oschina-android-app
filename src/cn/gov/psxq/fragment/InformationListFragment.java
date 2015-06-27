@@ -42,7 +42,6 @@ public class InformationListFragment extends Fragment {
 
     private ProgressBar                lvInformation_foot_progress;
     private AppContext                 appContext;
-    
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -78,7 +77,7 @@ public class InformationListFragment extends Fragment {
         //lvInformation.set
         lvInformation.addFooterView(lvInformation_footer);// 添加底部视图 必须在setAdapter前
         lvInformation.setAdapter(lvInformationAdapter);
-        
+
         lvInformation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // 点击头部、底部栏无效
@@ -86,7 +85,8 @@ public class InformationListFragment extends Fragment {
                     return;
                 ListItemView listItemView = (ListItemView) view.getTag();
                 Information information = (Information) listItemView.title.getTag();
-                UIHelper.showWebDetail(view.getContext(), "http://" + information.getLink(),"详细信息",listItemView.title.getText().toString());
+                UIHelper.showWebDetail(view.getContext(), "http://" + information.getLink(),
+                    "详细信息", listItemView.title.getText().toString());
                 /*// 跳转到留言详情
                 UIHelper.showInformationDetail(view.getContext(), AppData.gsonBuilder.create()
                     .toJson(information));*/
@@ -157,6 +157,8 @@ public class InformationListFragment extends Fragment {
                 try {
                     InformationList list = appContext.getInformationList(catalog, pageIndex,
                         isRefresh);
+                    if (list == null)
+                        list = new InformationList();
                     msg.what = list.getPageSize();
                     msg.obj = list;
                 } catch (AppException e) {

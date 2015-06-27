@@ -1,15 +1,19 @@
 package cn.gov.psxq.fragment;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -24,9 +28,12 @@ public class WebFragment extends BackHandledFragment {
     ExtendedWebView            webView;
     private ValueCallback<Uri> mUploadMessage;
     private final static int   FILECHOOSER_RESULTCODE = 1;
+    String                     title;
+    String                     catalogName;
+    ActionBar                  mActionBar;
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    public void getResultData(int requestCode, int resultCode, Intent intent) {
+
         if (requestCode == FILECHOOSER_RESULTCODE) {
             if (null == mUploadMessage)
                 return;
@@ -35,18 +42,22 @@ public class WebFragment extends BackHandledFragment {
             mUploadMessage.onReceiveValue(result);
             mUploadMessage = null;
         }
-       
+
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // 初始化Handler
         View view = inflater.inflate(R.layout.web_fragment, null);
+        getActivity().getWindow().setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                    | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         webView = (ExtendedWebView) view.findViewById(R.id.web_detail_webview);
-        String catalogName = this.getArguments().getString("catalogName");
-        String title = this.getArguments().getString("title");
-        FragmentManager fm=this.getFragmentManager();
+        catalogName = this.getArguments().getString("catalogName");
+        title = this.getArguments().getString("title");
+        FragmentManager fm = this.getFragmentManager();
         webView.loadUrl(AppData.urlList.get(catalogName));
         webView.setWebChromeClient(new WebChromeClient() {
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
@@ -55,7 +66,7 @@ public class WebFragment extends BackHandledFragment {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
                 i.addCategory(Intent.CATEGORY_OPENABLE);
                 i.setType("*/*");
-                WebFragment.this.startActivityForResult(Intent.createChooser(i, "File Chooser"),
+                getParentFragment().startActivityForResult(Intent.createChooser(i, "File Chooser"),
                     FILECHOOSER_RESULTCODE);
 
             }
@@ -73,7 +84,7 @@ public class WebFragment extends BackHandledFragment {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
                 i.addCategory(Intent.CATEGORY_OPENABLE);
                 i.setType("*/*");
-                WebFragment.this.startActivityForResult(Intent.createChooser(i, "File Browser"),
+                getParentFragment().startActivityForResult(Intent.createChooser(i, "File Browser"),
                     FILECHOOSER_RESULTCODE);
             }
 
@@ -84,7 +95,7 @@ public class WebFragment extends BackHandledFragment {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
                 i.addCategory(Intent.CATEGORY_OPENABLE);
                 i.setType("*/*");
-                WebFragment.this.startActivityForResult(Intent.createChooser(i, "File Chooser"),
+                getParentFragment().startActivityForResult(Intent.createChooser(i, "File Chooser"),
                     FILECHOOSER_RESULTCODE);
 
             }
@@ -130,8 +141,32 @@ public class WebFragment extends BackHandledFragment {
         webView.getSettings().setGeolocationDatabasePath(
             this.getActivity().getApplicationContext().getDir("geolocation", Context.MODE_PRIVATE)
                 .getPath());
-
+        webView.setDownloadListener(new MyDownloadListener());
+        webView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+                        webView.goBack(); //后退    
+                        return true; //已处理    
+                    }
+                }
+                return false;
+            }
+        });
         return view;
+    }
+
+    private class MyDownloadListener implements DownloadListener {
+
+        @Override
+        public void onDownloadStart(String url, String userAgent, String contentDisposition,
+                                    String mimetype, long contentLength) {
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+
     }
 
     @Override
@@ -154,11 +189,7 @@ public class WebFragment extends BackHandledFragment {
 
     @Override
     protected boolean onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-            return true;
-        }
-        return false;
-    }
+        return true;
 
+    }
 }

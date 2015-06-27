@@ -785,8 +785,19 @@ public class UIHelper {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //showUrlRedirect(view.getContext(), url);
+                //                    Uri uri = Uri.parse("http://www.psxq.gov.cn"+url);
+                //                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                //                    context.startActivity(intent);
+                Log.i("url", url);
                 view.loadUrl(url);
                 return true;
+            }
+
+            String jsString = "$(\"a\").each(function(){$(this).attr(\"href\",\"http://www.psxq.gov.cn\"+$(this).attr(\"href\"));});";
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
             }
         };
     }
@@ -1266,7 +1277,9 @@ public class UIHelper {
      * 
      * @param cont
      */
+
     public static void Exit(final Context cont) {
+       
         AlertDialog.Builder builder = new AlertDialog.Builder(cont);
         builder.setIcon(android.R.drawable.ic_dialog_info);
         builder.setTitle(R.string.app_menu_surelogout);

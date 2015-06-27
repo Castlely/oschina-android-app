@@ -92,7 +92,7 @@ public class TabButton extends HorizontalScrollView {
         canvas.drawRect(scrollOffset, layoutHeight - sliderSize, scrollOffset + sliderWidth,
             layoutHeight, sliderPaint);
         // 绘制底线
-        canvas.drawRect(0, layoutHeight - bottomLineSize, layoutWidth*20, layoutHeight, bottomPaint);
+        canvas.drawRect(0, layoutHeight - bottomLineSize, layoutWidth*200, layoutHeight, bottomPaint);
     }
 
     private void init(Context context, AttributeSet attrs) {

@@ -1,7 +1,6 @@
 package cn.gov.psxq.fragment;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,7 +16,6 @@ import org.sqk.viewpager.widget.CircleFlowIndicator;
 import org.sqk.viewpager.widget.ViewFlow;
 
 import android.app.ActionBar;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -38,10 +36,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import cn.gov.psxq.AppContext;
 import cn.gov.psxq.AppData;
-import cn.gov.psxq.AppException;
 import cn.gov.psxq.R;
 import cn.gov.psxq.bean.Information;
 import cn.gov.psxq.bean.InformationList;
+import cn.gov.psxq.common.UIHelper;
 import cn.gov.psxq.ui.BackHandledFragment;
 import cn.gov.psxq.ui.MainActivity;
 
@@ -65,7 +63,7 @@ public class IndexFragment extends BackHandledFragment {
     TextView          weatherTextView;
     private byte[]    weatherPicByte;
     ImageView         rightBtn;
-   
+
     public static Drawable resizeImage(Bitmap bitmap, int w, int h) {
         Bitmap BitmapOrg = bitmap;
         int width = BitmapOrg.getWidth();
@@ -211,45 +209,7 @@ public class IndexFragment extends BackHandledFragment {
         weatherImageView = (ImageView) viewTitleBar.findViewById(R.id.weather);
         weatherTextView = (TextView) viewTitleBar.findViewById(R.id.weather_text);
         //String url = "http://www.psxq.gov.cn/app/opendata/getData/65170?pageSize=3&pageNo=1";
-        String url = "http://www.psxq.gov.cn/app/opendata/getData/68432?pageSize=30&pageNo=1";
-        fh.get(url, new AjaxCallBack<String>() {
-
-            @Override
-            public void onSuccess(String resultString) {
-                Gson gson = AppData.gsonBuilder.create();
-                InformationList informationList = gson
-                    .fromJson(resultString, InformationList.class);
-                Map<String, Information> imgMap = Maps.newHashMap();
-                int count = 0;
-                for (int n = 0; n < 30; n++) {
-                    /*AppData.set("information_" + informationList.getDataList().get(n).getId(), gson
-                        .toJson(informationList.getDataList().get(n)), IndexFragment.this
-                        .getActivity().getApplication());
-                    String img = informationList
-                        .getDataList()
-                        .get(n)
-                        .getDescription()
-                        .substring(
-                            informationList.getDataList().get(n).getDescription()
-                                .indexOf("/uploadfiles/"));
-                    img = img.substring(0, img.indexOf("\">"));
-                    img = "http://www.psxq.gov.cn" + img;*/
-                    //imgMap.put(img, informationList.getDataList().get(n));
-                    if (informationList.getDataList().get(n).getIs_picture() != null
-                        && informationList.getDataList().get(n).getIs_picture() == 1) {
-                        imgMap.put("http://"
-                                   + informationList.getDataList().get(n).getLink_picture(),
-                            informationList.getDataList().get(n));
-                        count++;
-                        if (count == 3)
-                            break;
-                    }
-
-                }
-                viewFlow.setAdapter(new ImageAdapter(IndexFragment.this.getActivity(), imgMap));
-            }
-
-        });
+        final String url = "http://www.psxq.gov.cn/app/opendata/getData/68432?pageSize=30&pageNo=1";
         viewFlow = (ViewFlow) view.findViewById(R.id.viewflow);
         viewFlow.setmSideBuffer(3); // 实际图片张数， 我的ImageAdapter实际图片张数为3
         CircleFlowIndicator indic = (CircleFlowIndicator) view.findViewById(R.id.viewflowindic);
@@ -282,6 +242,53 @@ public class IndexFragment extends BackHandledFragment {
             IndexFragment.this.getActivity().getSupportFragmentManager());
         MyGridView.setAdapter(adaper);
         initActionBar(inflater, "坪山新区政府在线");
+        fh.get(url, new AjaxCallBack<String>() {
+
+            @Override
+            public void onSuccess(String resultString) {
+                Gson gson = AppData.gsonBuilder.create();
+                InformationList informationList = gson.fromJson(resultString,
+                    InformationList.class);
+                Map<String, Information> imgMap = Maps.newHashMap();
+                int count = 0;
+                for (int n = 0; n < 30; n++) {
+                    /*AppData.set("information_" + informationList.getDataList().get(n).getId(), gson
+                        .toJson(informationList.getDataList().get(n)), IndexFragment.this
+                        .getActivity().getApplication());
+                    String img = informationList
+                        .getDataList()
+                        .get(n)
+                        .getDescription()
+                        .substring(
+                            informationList.getDataList().get(n).getDescription()
+                                .indexOf("/uploadfiles/"));
+                    img = img.substring(0, img.indexOf("\">"));
+                    img = "http://www.psxq.gov.cn" + img;*/
+                    //imgMap.put(img, informationList.getDataList().get(n));
+                    if (informationList.getDataList().get(n).getIs_picture() != null
+                        && informationList.getDataList().get(n).getIs_picture() == 1) {
+                        imgMap.put(
+                            "http://"
+                                    + informationList.getDataList().get(n)
+                                        .getLink_picture(), informationList.getDataList()
+                                .get(n));
+                        count++;
+                        if (count == 3)
+                            break;
+                    }
+
+                }
+                if (IndexFragment.this.getActivity() != null)
+                    viewFlow.setAdapter(new ImageAdapter(IndexFragment.this.getActivity(),
+                        imgMap));
+                else {
+//                    viewFlow.setAdapter(new ImageAdapter(IndexFragment.this.getActivity()
+//                        .getApplication(), imgMap));
+                    return;
+                }
+            }
+
+        });
         view.post(new Runnable() {
 
             @Override
@@ -298,6 +305,7 @@ public class IndexFragment extends BackHandledFragment {
 
     @Override
     protected boolean onBackPressed() {
+        UIHelper.Exit(getActivity());
         return true;
     }
 

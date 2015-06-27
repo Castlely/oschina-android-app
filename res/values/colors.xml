@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bookmarkListFaviconBackground">#23ffffff</color>
-	<color name="white">#FFFFFF</color>
 	<color name="black">#000000</color>
 	<color name="gray">#808080</color>
-	<color name="red">#FF0000</color>
 	<color name="gold">#FFD700</color>
 	<color name="yellow">#FFFF00</color>
 	<color name="green">#008000</color>
-	<color name="blue">#0000FF</color>
 	<color name="purple">#800080</color>
 	<color name="pink">#FFC0CB</color>
 	<color name="orange">#FFA500</color>
@@ -61,7 +58,6 @@
 	<color name="result_text">#ffffffff</color>
 	<color name="result_view">#b0000000</color>
 	<color name="status_text">#ffffffff</color>
-	<color name="transparent">#00000000</color>
 	<color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
 	<color name="viewfinder_mask">#60000000</color>
 	
@@ -78,7 +74,6 @@
     <color name="add_rss_channel_bg_press">#ff4389d2</color>
     <color name="app_bg_color">#fff7fafe</color>
     <color name="attention_title_color">#fff3f3f3</color>
-    <color name="black">#ff000000</color>
     <color name="blue">#ffccddff</color>
     <color name="car_att_normal_color">#ff9b9b9b</color>
     <color name="car_att_select_color">#ff224e9a</color>
@@ -560,7 +555,6 @@
     <color name="recommend_title_text_color">#ff141414</color>
     <color name="recommend_word_count_color">#ff74787b</color>
     <color name="recommend_word_count_warning_color">#ffe56e0d</color>
-    <color name="red">#ffff0000</color>
     <color name="rmd_txt_gray">#ffaaaaaa</color>
     <color name="root_bg_color">#fff0f0f0</color>
     <color name="rose_audio_play_bg">#ffc7def8</color>
@@ -711,6 +705,5 @@
     <color name="white">#ffffffff</color>
     <color name="write_location_address">#ff828282</color>
     <color name="writing_comment_hit_color">#ff999999</color>
-    <color name="yellow">#ffff8000</color>
     
 </resources>

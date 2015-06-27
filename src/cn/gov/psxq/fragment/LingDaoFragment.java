@@ -57,13 +57,12 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
 
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-
                 IndexFragment indexFragment = new IndexFragment();
                 FragmentManager fragmentManager = LingDaoFragment.this.getActivity()
                     .getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
+                fragmentTransaction.commit();
             }
         });
         ImageView rightImageView = (ImageView) viewTitleBar.findViewById(R.id.right_btn);
@@ -113,7 +112,7 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
                         /*UIHelper.showLingdaoDetail(LingDaoFragment.this.getActivity(), lingdaoName,
                             lingdaoZhiwu, lingdaoImg, lingdaoWebSrc);*/
                         UIHelper.showWebDetail(LingDaoFragment.this.getActivity(),
-                            "http://" + (String) obj.get("link"),"领导成员","领导成员");
+                            "http://" + (String) obj.get("link"), "领导成员", "领导成员");
                     }
                 });
             }
@@ -148,7 +147,8 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
                 zhiWuStr = HtmlRegexpUtils.filterHtml(zhiWuStr).trim();
                 fenGongStr = HtmlRegexpUtils.filterHtml(fenGongStr).trim();
                 zhiWuStr = zhiWuStr.replaceAll(" ", "").replaceAll("　", "").replaceAll("\r\n", "");
-                fenGongStr = fenGongStr.replaceAll(" ", "").replaceAll("　", "").replaceAll("\r\n", "");
+                fenGongStr = fenGongStr.replaceAll(" ", "").replaceAll("　", "")
+                    .replaceAll("\r\n", "");
                 //String zhiWuStr = "";
                 //String fenGongStr = "";
                 String imgUrl = (String) list.get(i).get("link_picture");

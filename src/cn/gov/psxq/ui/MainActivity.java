@@ -1,7 +1,6 @@
 package cn.gov.psxq.ui;
 
 import net.tsz.afinal.FinalHttp;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -10,12 +9,12 @@ import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import cn.gov.psxq.AppContext;
 import cn.gov.psxq.AppData;
 import cn.gov.psxq.AppException;
@@ -31,13 +31,15 @@ import cn.gov.psxq.bean.MyInformation;
 import cn.gov.psxq.bean.Notice;
 import cn.gov.psxq.common.AnimUtil;
 import cn.gov.psxq.common.UIHelper;
-import cn.gov.psxq.fragment.BuMenFragment;
 import cn.gov.psxq.fragment.DingYueFragment;
-import cn.gov.psxq.fragment.GaiKuangFragment;
 import cn.gov.psxq.fragment.GridMainFragment;
 import cn.gov.psxq.fragment.IndexFragment;
 import cn.gov.psxq.fragment.LingDaoFragment;
 import cn.gov.psxq.inteface.FooterViewVisibility;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.umeng.analytics.MobclickAgent;
 
 public class MainActivity extends BaseActionBarActivity implements FooterViewVisibility,
                                                        OnClickListener, BackHandledInterface {
@@ -52,14 +54,36 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
     private RadioButton         fbBuMen;
     private RadioButton         fbDingYue;
     private FinalHttp           finalHttp;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-       super.onActivityResult(requestCode, resultCode, intent);
-       
+        super.onActivityResult(requestCode, resultCode, intent);
+
     }
+
+    
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
         setContentView(R.layout.main_activity_layout);
         finalHttp = new FinalHttp();
         appContext = (AppContext) getApplication();
@@ -70,6 +94,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         // 网络连接判断
         if (!appContext.isNetworkConnected())
             UIHelper.ToastMessage(this, R.string.network_not_connected);
+
         // 初始化登录
         appContext.initLoginInfo();
         // 检查新版本
@@ -79,7 +104,10 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
         // 启动轮询通知信息
         this.foreachUserNotice();
 
+      
+
     }
+
 
     private void initFirstFragment() {
         IndexFragment indexFragment = new IndexFragment();
@@ -93,8 +121,13 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
     private void setFootBarImageSize(RadioButton radioButton, int actionBarHeight) {
         int size = actionBarHeight / 10 * 14;
         Drawable[] drawables = radioButton.getCompoundDrawables();//左上右下
-        radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0],
-            zoomDrawable(drawables[1], size, size), drawables[2], drawables[3]);
+        try {
+            radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0],
+                zoomDrawable(drawables[1], size, size), drawables[2], drawables[3]);
+        } catch (OutOfMemoryError e) {
+            radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(drawables[0], drawables[1],
+                drawables[2], drawables[3]);
+        }
     }
 
     public void setFootBarButtonState(int position, boolean checked) {
@@ -184,6 +217,7 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                 setFootBarImageSize(fbLingDao, actionBarHeight);
                 setFootBarImageSize(fbBuMen, actionBarHeight);
                 setFootBarImageSize(fbDingYue, actionBarHeight);
+
             }
         });
         /* int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
@@ -248,13 +282,20 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                                      .commit();*/
                                                                  {
                                                                      Bundle args = new Bundle();
-                                                                     args.putString("catalogName", "了解坪山");
-                                                                     args.putBoolean("web", AppData.isLink.get("了解坪山"));
+                                                                     args.putString("catalogName",
+                                                                         "了解坪山");
+                                                                     args.putBoolean("web",
+                                                                         AppData.isLink.get("了解坪山"));
                                                                      GridMainFragment gridMainFragment = new GridMainFragment();
-                                                                     gridMainFragment.setArguments(args);
+                                                                     gridMainFragment
+                                                                         .setArguments(args);
                                                                      FragmentManager fragmentManager = fManager;
-                                                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                                     fragmentTransaction.replace(R.id.main_activity_linearlayout, gridMainFragment);
+                                                                     FragmentTransaction fragmentTransaction = fragmentManager
+                                                                         .beginTransaction();
+                                                                     fragmentTransaction
+                                                                         .replace(
+                                                                             R.id.main_activity_linearlayout,
+                                                                             gridMainFragment);
                                                                      //fragmentTransaction.addToBackStack(bundles.get(position).getString("catalogName"));
                                                                      fragmentTransaction.commit();
                                                                  }
@@ -275,11 +316,27 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
                                                                  setFootBarButtonState(2, false);
                                                                  setFootBarButtonState(3, true);
                                                                  setFootBarButtonState(4, false);
-                                                                 fTransaction
-                                                                     .replace(
-                                                                         R.id.main_activity_linearlayout,
-                                                                         new BuMenFragment())
-                                                                     .commit();
+                                                                 {
+
+                                                                     Bundle args = new Bundle();
+                                                                     args.putString("catalogName",
+                                                                         "直属部门");
+                                                                     args.putBoolean("web",
+                                                                         AppData.isLink.get("直属部门"));
+                                                                     GridMainFragment gridMainFragment = new GridMainFragment();
+                                                                     gridMainFragment
+                                                                         .setArguments(args);
+                                                                     FragmentManager fragmentManager = fManager;
+                                                                     FragmentTransaction fragmentTransaction = fragmentManager
+                                                                         .beginTransaction();
+                                                                     fragmentTransaction
+                                                                         .replace(
+                                                                             R.id.main_activity_linearlayout,
+                                                                             gridMainFragment);
+                                                                     //fragmentTransaction.addToBackStack(bundles.get(position).getString("catalogName"));
+                                                                     fragmentTransaction.commit();
+
+                                                                 }
                                                                  break;
                                                              case R.id.main_footbar_dingyue:
                                                                  setFootBarButtonState(1, false);
@@ -381,15 +438,23 @@ public class MainActivity extends BaseActionBarActivity implements FooterViewVis
 
     @Override
     public void onClick(final View v) {
+        
     }
 
     @Override
     public void setSelectedFragment(BackHandledFragment selectedFragment) {
         this.mBackHandedFragment = selectedFragment;
     }
-
+    private static long exitTime = 0;
     @Override
     public void onBackPressed() {
+        if ((System.currentTimeMillis() - exitTime) < 300) {
+            exitTime = System.currentTimeMillis();
+            UIHelper.Exit(this);
+        } 
+        else{
+            exitTime = System.currentTimeMillis();
+        }
         if (mBackHandedFragment == null || !mBackHandedFragment.onBackPressed()) {
             if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 super.onBackPressed();

@@ -13,9 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -31,6 +29,7 @@ import cn.gov.psxq.widget.TabButton;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.sqk.viewpager.ImageAdapter;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class MainFragment extends BackHandledFragment implements
                                                               ActionBarProgressBarVisibility {
@@ -43,26 +42,40 @@ public abstract class MainFragment extends BackHandledFragment implements
     String                    parentString = null;
     ActionBar                 mActionBar;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("MainFragment"); //统计页面
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("MainFragment");
+    }
+
     public void setPageSelect(int pageSelect) {
         this.pageSelect = pageSelect;
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-       super.onActivityResult(requestCode, resultCode, intent);
+        super.onActivityResult(requestCode, resultCode, intent);
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
         viewPager = (ExtendedViewPager) view.findViewById(R.id.fragment_main_viewpager);
         viewPager.setAdapter(getPagerAdapter());
         viewPager.setCurrentItem(pageSelect, true);
-       /* viewPager.setOnTouchListener(new View.OnTouchListener(){
+        /* viewPager.setOnTouchListener(new View.OnTouchListener(){
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-            
-        });*/
+             @Override
+             public boolean onTouch(View v, MotionEvent event) {
+                 return true;
+             }
+             
+         });*/
         TabButton tabsButton = (TabButton) view.findViewById(R.id.fragment_main_tabsbutton);
         tabsButton.setViewPager(viewPager);
         tabsButton.pageSelect = pageSelect;

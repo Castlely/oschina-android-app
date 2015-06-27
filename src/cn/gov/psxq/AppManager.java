@@ -95,10 +95,10 @@ public class AppManager {
      */
     public void AppExit(Context context) {
         try {
-            finishAllActivity();
-            ActivityManager activityMgr = (ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE);
-            activityMgr.restartPackage(context.getPackageName());
+//            finishAllActivity();
+//            ActivityManager activityMgr = (ActivityManager) context
+//                .getSystemService(Context.ACTIVITY_SERVICE);
+//            activityMgr.restartPackage(context.getPackageName());
             System.exit(0);
         } catch (Exception e) {
         }

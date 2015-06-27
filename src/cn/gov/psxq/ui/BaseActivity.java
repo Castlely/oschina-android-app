@@ -1,5 +1,7 @@
 package cn.gov.psxq.ui;
 
+import com.umeng.analytics.MobclickAgent;
+
 import cn.gov.psxq.AppManager;
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,7 +18,7 @@ import android.view.View;
 public class BaseActivity extends Activity {
 
     // 是否允许全屏
-    private boolean allowFullScreen = true;
+    private boolean allowFullScreen = false;
 
     // 是否允许销毁
     private boolean allowDestroy    = true;
@@ -26,7 +28,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allowFullScreen = true;
+        allowFullScreen = false;
         // 添加Activity到堆栈
         AppManager.getAppManager().addActivity(this);
     }
@@ -70,5 +72,16 @@ public class BaseActivity extends Activity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }
