@@ -108,13 +108,13 @@ public class AppData {
         urlList.put("诊所", "http://www.psxq.gov.cn/app/opendata/getData/68447?pageSize=10&pageNo=");
         urlList
             .put("社康中心", "http://www.psxq.gov.cn/app/opendata/getData/68448?pageSize=10&pageNo=");
-        urlList.put("WIFI热点", "http://www.psxq.gov.cn/wechat/wxwtssp/html/appwifitest.jsp?x=113.493629&y=24.363468&type=2");
+        urlList.put("WIFI热点", "http://www.psxq.gov.cn/app/wxwtssp/html/appwifimap.jsp?type=1");
         //urlList.put("WIFI热点", "http://www.baidu.com");
         urlList.put("办事服务", "");
         urlList.put("办事指南", "http://www.psxq.gov.cn/app/bsdt/index.html");
         urlList.put("在线服务", "http://www.psxq.gov.cn/wexin/menu/10012/index.shtml");
         urlList.put("信息自主申报", "http://www.psxq.gov.cn/wexin/zzsbxt/index.shtml");
-        urlList.put("服务地图", "http://www.psxq.gov.cn/wechat/wxwtssp/html/appservermap.jsp?x=113.493629&y=24.363468&type=2");
+        urlList.put("服务地图", "http://www.psxq.gov.cn/app/wxwtssp/html/appservermap.jsp");
         urlList.put("互动交流", "");
         urlList.put("网上民声", "http://www.psxq.gov.cn/smartchat/chat/app/index");
         urlList.put("微调查", "http://www.psxq.gov.cn/wexin/menu/10013/index.shtml");
