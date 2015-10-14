@@ -1861,13 +1861,13 @@ public class AppContext extends Application {
      * @return
      * @throws AppException
      */
-    public InformationList getInformationList(String catalog, int pageIndex, boolean isRefresh)
+    public InformationList getInformationList(String catalog, int pageIndex, boolean isRefresh,String url)
                                                                                                throws AppException {
         InformationList list = null;
         String key = "informationlist_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                list = ApiClient.getInformationList(catalog, this, pageIndex, PAGE_SIZE);
+                list = ApiClient.getInformationList(catalog, this, pageIndex, PAGE_SIZE, url);
                 if (list != null && pageIndex == 0) {
                     Notice notice = list.getNotice();
                     list.setNotice(null);

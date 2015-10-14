@@ -3,8 +3,9 @@ package cn.gov.psxq.fragment;
 import java.util.List;
 import java.util.Map;
 
-import net.tsz.afinal.FinalHttp;
-import net.tsz.afinal.http.AjaxCallBack;
+import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -26,9 +27,8 @@ import cn.gov.psxq.common.HtmlRegexpUtils;
 import cn.gov.psxq.common.StringUtils;
 import cn.gov.psxq.common.UIHelper;
 import cn.gov.psxq.ui.BackHandledFragment;
-
-import com.google.gson.reflect.TypeToken;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
 
 /**
  * home2
@@ -182,8 +182,8 @@ public class LingDaoFragment extends BackHandledFragment implements OnClickListe
             name.setText(nameStr);
             TextView zhiWu = (TextView) itemView.findViewById(R.id.lingdaoZhiwu);
             zhiWu.setText(zhiWuStr);
-            TextView fenGong = (TextView) itemView.findViewById(R.id.lingdaoFengong);
-            fenGong.setText(fenGongStr);
+            //            TextView fenGong = (TextView) itemView.findViewById(R.id.lingdaoFengong);
+            //            fenGong.setText(fenGongStr);
             ImageView image = (ImageView) itemView.findViewById(R.id.lingdaoImage);
             LayoutParams para;
             para = image.getLayoutParams();

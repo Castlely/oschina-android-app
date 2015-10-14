@@ -3,10 +3,11 @@ package cn.gov.psxq.fragment;
 import java.util.Date;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.gov.psxq.AppContext;
+import cn.gov.psxq.AppData;
 import cn.gov.psxq.AppException;
 import cn.gov.psxq.R;
 import cn.gov.psxq.adapter.ListViewInformationAdapter;
@@ -24,12 +26,11 @@ import cn.gov.psxq.bean.Information;
 import cn.gov.psxq.bean.InformationList;
 import cn.gov.psxq.bean.Notice;
 import cn.gov.psxq.common.UIHelper;
+import cn.gov.psxq.ui.BackHandledFragment;
 import cn.gov.psxq.widget.NewDataToast;
 import cn.gov.psxq.widget.PullToRefreshListView;
 
-import com.google.common.collect.Lists;
-
-public class InformationListFragment extends Fragment {
+public class InformationListFragment extends BackHandledFragment {
     private List<Information>          lvInformationData = Lists.newArrayList();
     private Handler                    lvInformationHandler;
     private PullToRefreshListView      lvInformation;
@@ -42,14 +43,20 @@ public class InformationListFragment extends Fragment {
 
     private ProgressBar                lvInformation_foot_progress;
     private AppContext                 appContext;
+    private String                     catalogName;
+    private String                     catalogHolder;
+    LayoutInflater                     inflater;
+    ViewGroup                          container;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.container = container;
+        this.inflater = inflater;
         // 初始化Handler
         appContext = (AppContext) this.getActivity().getApplication();
 
-        String catalogName = this.getArguments().getString("catalogName");
+        catalogName = this.getArguments().getString("catalogName");
         final String title = this.getArguments().getString("title");
         initInformationListView(catalogName, inflater, container);
         lvInformationHandler = this.getLvHandler(lvInformation, lvInformationAdapter,
@@ -57,16 +64,21 @@ public class InformationListFragment extends Fragment {
         // 加载资讯数据
         if (lvInformationData.isEmpty()) {
             loadLvInformationData(catalogName, 0, lvInformationHandler,
-                UIHelper.LISTVIEW_ACTION_INIT);
+                UIHelper.LISTVIEW_ACTION_INIT, null);
         }
         return lvInformation;
     }
 
     private void initInformationListView(final String catalog, LayoutInflater inflater,
                                          ViewGroup container) {
+        catalogHolder = catalog;
+        boolean displayDate = false;
+        if (AppData.displayDateSet.contains(catalog)) {
+            displayDate = true;
+        }
         lvInformationAdapter = new ListViewInformationAdapter(
             InformationListFragment.this.getActivity(), lvInformationData,
-            R.layout.information_listitem);
+            R.layout.information_listitem, displayDate);
         lvInformation_footer = inflater.inflate(R.layout.listview_footer, null);
         lvInformation_foot_more = (TextView) lvInformation_footer
             .findViewById(R.id.listview_foot_more);
@@ -85,11 +97,16 @@ public class InformationListFragment extends Fragment {
                     return;
                 ListItemView listItemView = (ListItemView) view.getTag();
                 Information information = (Information) listItemView.title.getTag();
-                UIHelper.showWebDetail(view.getContext(), "http://" + information.getLink(),
-                    "详细信息", listItemView.title.getText().toString());
-                /*// 跳转到留言详情
-                UIHelper.showInformationDetail(view.getContext(), AppData.gsonBuilder.create()
-                    .toJson(information));*/
+                if (AppData.twoLevelMenuSet.contains(catalog) && information.isMenu()) {
+                    //两层菜单
+                    loadLvInformationData("办事指南", 0, lvInformationHandler,
+                        UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG, "http://" + information.getLink());
+
+                } else {
+                    UIHelper.showWebDetail(view.getContext(),
+                        "http://" + information.getLink().replace("http://", ""), "详细信息",
+                        listItemView.title.getText().toString());
+                }
             }
         });
         lvInformation.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -110,7 +127,6 @@ public class InformationListFragment extends Fragment {
                     scrollEnd = false;
                 }
 
-                //int lvDataState = StringUtils.toInt(lvInformation.getTag());
                 int lvDataState = 1;
                 if (scrollEnd && lvDataState == UIHelper.LISTVIEW_DATA_MORE) {
                     lvInformation.setTag(UIHelper.LISTVIEW_DATA_LOADING);
@@ -119,7 +135,7 @@ public class InformationListFragment extends Fragment {
                     // 当前pageIndex
                     int pageIndex = lvInformationSumData / AppContext.PAGE_SIZE;
                     loadLvInformationData(catalog, pageIndex, lvInformationHandler,
-                        UIHelper.LISTVIEW_ACTION_SCROLL);
+                        UIHelper.LISTVIEW_ACTION_SCROLL, null);
                 }
             }
 
@@ -132,7 +148,7 @@ public class InformationListFragment extends Fragment {
             public void onRefresh() {
                 // 刷新数据
                 loadLvInformationData(catalog, 0, lvInformationHandler,
-                    UIHelper.LISTVIEW_ACTION_REFRESH);
+                    UIHelper.LISTVIEW_ACTION_REFRESH, null);
             }
         });
     }
@@ -146,7 +162,7 @@ public class InformationListFragment extends Fragment {
      * @param action
      */
     private void loadLvInformationData(final String catalog, final int pageIndex,
-                                       final Handler handler, final int action) {
+                                       final Handler handler, final int action, final String url) {
         new Thread() {
             public void run() {
                 Message msg = new Message();
@@ -156,7 +172,16 @@ public class InformationListFragment extends Fragment {
                     isRefresh = true;
                 try {
                     InformationList list = appContext.getInformationList(catalog, pageIndex,
-                        isRefresh);
+                        isRefresh, url);
+                    if (AppData.displayWithImgSet.contains(catalog)) {
+                        List<Information> tmp = Lists.newArrayList();
+                        for (Information information : list.getDataList()) {
+                            if (information.getIs_picture() != null
+                                && information.getIs_picture() == 1)
+                                tmp.add(information);
+                        }
+                        list.setDataList(tmp);
+                    }
                     if (list == null)
                         list = new InformationList();
                     msg.what = list.getPageSize();
@@ -173,7 +198,8 @@ public class InformationListFragment extends Fragment {
     }
 
     private Handler getLvHandler(final PullToRefreshListView lv, final BaseAdapter adapter,
-                                 final TextView more, final ProgressBar progress, final int pageSize) {
+                                 final TextView more, final ProgressBar progress,
+                                 final int pageSize) {
         return new Handler() {
             public void handleMessage(Message msg) {
                 if (msg.what >= 0) {
@@ -206,8 +232,8 @@ public class InformationListFragment extends Fragment {
                 }
                 progress.setVisibility(ProgressBar.GONE);
                 if (msg.arg1 == UIHelper.LISTVIEW_ACTION_REFRESH) {
-                    lv.onRefreshComplete(getString(R.string.pull_to_refresh_update)
-                                         + new Date().toLocaleString());
+                    lv.onRefreshComplete(
+                        getString(R.string.pull_to_refresh_update) + new Date().toLocaleString());
                     lv.setSelection(0);
                 } else if (msg.arg1 == UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG) {
                     lv.onRefreshComplete();
@@ -295,4 +321,10 @@ public class InformationListFragment extends Fragment {
         return notice;
     }
 
+    @Override
+    protected boolean onBackPressed() {
+        loadLvInformationData(catalogName, 0, lvInformationHandler,
+            UIHelper.LISTVIEW_ACTION_REFRESH, null);
+        return true;
+    }
 }

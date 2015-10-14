@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 import cn.gov.psxq.common.StringUtils;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class AppData {
     public static final String              TAG         = "AppData";
@@ -27,9 +27,14 @@ public class AppData {
     public static Map<String, Integer>      ico;
     public static Map<String, Boolean>      LBS;
     public static Set<String>               optionSet;
+    public static Set<String>               displayDateSet;
+    public static Set<String>               displayWithImgSet;
+    public static Set<String>               twoLevelMenuSet;
+    public static Set<String>               twoLevelContentSet;
     public static GsonBuilder               gsonBuilder = new GsonBuilder();
     public static final String              WEATHERAPI  = "http://api.map.baidu.com/telematics/v3/weather?location=%E6%B7%B1%E5%9C%B3&output=json&ak=BPGPMj8GameGHglMDsbgUILZ";
-    public static List<String> list;
+    public static List<String>              list;
+
     public static void set(String key, String value, Context context) {
         SharedPreferences mySharedPreferences = context.getSharedPreferences("data",
             Activity.MODE_PRIVATE);
@@ -70,35 +75,40 @@ public class AppData {
         ico = Maps.newHashMap();
         LBS = Maps.newHashMap();
         list = Lists.newArrayList();
+        twoLevelContentSet = Sets.newHashSet();
         optionSet = Sets.newHashSet("信息公开", "政务动态", "通知公告", "领导成员", "规范性文件", "财政资金", "发展规划",
             "政府工作报告");
+        displayDateSet = Sets.newHashSet("政务动态", "通知公告");
+        displayWithImgSet = Sets.newHashSet("坪山概况", "文化坪山", "产业坪山");
+        twoLevelMenuSet = Sets.newHashSet("个人办事", "企业办事");
+
         urlList.put("了解坪山", "");
-        urlList
-            .put("坪山概况", "http://www.psxq.gov.cn/app/opendata/getData/68429?pageSize=10&pageNo=");
-        urlList
-            .put("文化坪山", "http://www.psxq.gov.cn/app/opendata/getData/68430?pageSize=10&pageNo=");
-        urlList
-            .put("产业坪山", "http://www.psxq.gov.cn/app/opendata/getData/68431?pageSize=10&pageNo=");
+        urlList.put("坪山概况",
+            "http://www.psxq.gov.cn/app/opendata/getData/68429?pageSize=10&pageNo=");
+        urlList.put("文化坪山",
+            "http://www.psxq.gov.cn/app/opendata/getData/68430?pageSize=10&pageNo=");
+        urlList.put("产业坪山",
+            "http://www.psxq.gov.cn/app/opendata/getData/68431?pageSize=10&pageNo=");
         urlList.put("信息公开", "");
-        urlList
-            .put("政务动态", "http://www.psxq.gov.cn/app/opendata/getData/68432?pageSize=10&pageNo=");
-        urlList
-            .put("通知公告", "http://www.psxq.gov.cn/app/opendata/getData/68433?pageSize=10&pageNo=");
-        urlList
-            .put("领导成员", "http://www.psxq.gov.cn/app/opendata/getData/68434?pageSize=10&pageNo=");
+        urlList.put("政务动态",
+            "http://www.psxq.gov.cn/app/opendata/getData/68432?pageSize=10&pageNo=");
+        urlList.put("通知公告",
+            "http://www.psxq.gov.cn/app/opendata/getData/68433?pageSize=10&pageNo=");
+        urlList.put("领导成员",
+            "http://www.psxq.gov.cn/app/opendata/getData/68434?pageSize=10&pageNo=");
         urlList.put("规范性文件",
             "http://www.psxq.gov.cn/app/opendata/getData/68435?pageSize=10&pageNo=");
-        urlList
-            .put("财政资金", "http://www.psxq.gov.cn/app/opendata/getData/68436?pageSize=10&pageNo=");
-        urlList
-            .put("发展规划", "http://www.psxq.gov.cn/app/opendata/getData/68437?pageSize=10&pageNo=");
+        urlList.put("财政资金",
+            "http://www.psxq.gov.cn/app/opendata/getData/68436?pageSize=10&pageNo=");
+        urlList.put("发展规划",
+            "http://www.psxq.gov.cn/app/opendata/getData/68437?pageSize=10&pageNo=");
         urlList.put("政府工作报告",
             "http://www.psxq.gov.cn/app/opendata/getData/68438?pageSize=10&pageNo=");
         urlList.put("名单名录", "");
-        urlList
-            .put("直属部门", "http://www.psxq.gov.cn/app/opendata/getData/68439?pageSize=10&pageNo=");
-        urlList
-            .put("驻区单位", "http://www.psxq.gov.cn/app/opendata/getData/68440?pageSize=10&pageNo=");
+        urlList.put("直属部门",
+            "http://www.psxq.gov.cn/app/opendata/getData/68439?pageSize=10&pageNo=");
+        urlList.put("驻区单位",
+            "http://www.psxq.gov.cn/app/opendata/getData/68440?pageSize=10&pageNo=");
         urlList.put("办事处", "http://www.psxq.gov.cn/app/opendata/getData/68441?pageSize=10&pageNo=");
         urlList.put("中学", "http://www.psxq.gov.cn/app/opendata/getData/68444?pageSize=10&pageNo=");
         urlList.put("小学", "http://www.psxq.gov.cn/app/opendata/getData/68443?pageSize=10&pageNo=");
@@ -106,12 +116,12 @@ public class AppData {
         urlList.put("医院", "http://www.psxq.gov.cn/app/opendata/getData/68445?pageSize=10&pageNo=");
         urlList.put("药店", "http://www.psxq.gov.cn/app/opendata/getData/68446?pageSize=10&pageNo=");
         urlList.put("诊所", "http://www.psxq.gov.cn/app/opendata/getData/68447?pageSize=10&pageNo=");
-        urlList
-            .put("社康中心", "http://www.psxq.gov.cn/app/opendata/getData/68448?pageSize=10&pageNo=");
-        urlList.put("WIFI热点", "http://www.psxq.gov.cn/app/wxwtssp/html/appwifimap.jsp?type=1");
-        //urlList.put("WIFI热点", "http://www.baidu.com");
+        urlList.put("社康中心",
+            "http://www.psxq.gov.cn/app/opendata/getData/68448?pageSize=10&pageNo=");
+        urlList.put("免费WIFI热点", "http://www.psxq.gov.cn/app/wxwtssp/html/appwifimap.jsp?type=1");
         urlList.put("办事服务", "");
-        urlList.put("办事指南", "http://www.psxq.gov.cn/app/bsdt/index.html");
+        urlList.put("企业办事", "http://www.psxq.gov.cn/app/bsdt/getCategoryJson.jsp?id=2&pageSize=100&pageNo=");
+        urlList.put("个人办事", "http://www.psxq.gov.cn/app/bsdt/getCategoryJson.jsp?id=1&pageSize=100&pageNo=");
         urlList.put("在线服务", "http://www.psxq.gov.cn/wexin/menu/10012/index.shtml");
         urlList.put("信息自主申报", "http://www.psxq.gov.cn/wexin/zzsbxt/index.shtml");
         urlList.put("服务地图", "http://www.psxq.gov.cn/app/wxwtssp/html/appservermap.jsp");
@@ -119,10 +129,10 @@ public class AppData {
         urlList.put("网上民声", "http://www.psxq.gov.cn/smartchat/chat/app/index");
         urlList.put("微调查", "http://www.psxq.gov.cn/wexin/menu/10013/index.shtml");
         urlList.put("乐在坪山", "");
-        urlList
-            .put("吃在坪山", "http://www.psxq.gov.cn/app/opendata/getData/68455?pageSize=10&pageNo=");
-        urlList
-            .put("游在坪山", "http://www.psxq.gov.cn/app/opendata/getData/68456?pageSize=10&pageNo=");
+        urlList.put("吃在坪山",
+            "http://www.psxq.gov.cn/app/opendata/getData/68455?pageSize=10&pageNo=");
+        urlList.put("游在坪山",
+            "http://www.psxq.gov.cn/app/opendata/getData/68456?pageSize=10&pageNo=");
         urlList.put("挂号预约", "http://sz.91160.com/search/index/pid-2/cid-5/aid-3366.html");
         urlList.put("婚姻登记预约", "http://210.76.66.108/hyyy/");
         urlList.put("社保查询", "http://www.psxq.gov.cn/weixin/yanyun/social.html");
@@ -152,9 +162,10 @@ public class AppData {
         isShortCut.put("药店", false);
         isShortCut.put("诊所", false);
         isShortCut.put("社康中心", false);
-        isShortCut.put("WIFI热点", true);
+        isShortCut.put("免费WIFI热点", true);
         isShortCut.put("办事服务", true);
-        isShortCut.put("办事指南", false);
+        isShortCut.put("个人办事", false);
+        isShortCut.put("企业办事", false);
         isShortCut.put("在线服务", false);
         isShortCut.put("信息自主申报", false);
         isShortCut.put("服务地图", false);
@@ -193,9 +204,10 @@ public class AppData {
         isLink.put("药店", false);
         isLink.put("诊所", false);
         isLink.put("社康中心", false);
-        isLink.put("WIFI热点", true);
+        isLink.put("免费WIFI热点", true);
         isLink.put("办事服务", false);
-        isLink.put("办事指南", true);
+        isLink.put("个人办事", false);
+        isLink.put("企业办事", false);
         isLink.put("在线服务", true);
         isLink.put("信息自主申报", true);
         isLink.put("服务地图", true);
@@ -234,9 +246,10 @@ public class AppData {
         LBS.put("药店", false);
         LBS.put("诊所", false);
         LBS.put("社康中心", false);
-        LBS.put("WIFI热点", true);
+        LBS.put("免费WIFI热点", true);
         LBS.put("办事服务", false);
-        LBS.put("办事指南", false);
+        LBS.put("个人办事", false);
+        LBS.put("企业办事", false);
         LBS.put("在线服务", false);
         LBS.put("信息自主申报", false);
         LBS.put("服务地图", false);
@@ -275,9 +288,10 @@ public class AppData {
         ico.put("药店", R.drawable.grid23);
         ico.put("诊所", R.drawable.grid24);
         ico.put("社康中心", R.drawable.grid25);
-        ico.put("WIFI热点", R.drawable.grid26);
+        ico.put("免费WIFI热点", R.drawable.grid26);
         ico.put("办事服务", R.drawable.grid4);
-        ico.put("办事指南", R.drawable.grid27);
+        ico.put("个人办事", R.drawable.grid27);
+        ico.put("企业办事", R.drawable.grid27);
         ico.put("在线服务", R.drawable.grid28);
         ico.put("信息自主申报", R.drawable.grid34);
         ico.put("服务地图", R.drawable.grid5);
@@ -316,9 +330,10 @@ public class AppData {
         list.add("药店");
         list.add("诊所");
         list.add("社康中心");
-        list.add("WIFI热点");
+        list.add("免费WIFI热点");
         list.add("办事服务");
-        list.add("办事指南");
+        list.add("个人办事");
+        list.add("企业办事");
         list.add("在线服务");
         list.add("信息自主申报");
         list.add("服务地图");

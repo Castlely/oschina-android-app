@@ -2,6 +2,8 @@ package com.sqk.GridView;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,8 +20,6 @@ import cn.gov.psxq.AppData;
 import cn.gov.psxq.R;
 import cn.gov.psxq.common.UIHelper;
 import cn.gov.psxq.fragment.GridMainFragment;
-
-import com.google.common.collect.Lists;
 
 public class MyGridAdaper extends BaseAdapter {
     private List<Grid_Item> Grid_Items;
@@ -84,10 +84,12 @@ public class MyGridAdaper extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //if (!(Boolean) bundles.get(position).get("web")) {
-                if (bundles.get(position).get(
-                        "catalogName").equals("服务地图")) {
+                if (bundles.get(position).get("catalogName").equals("服务地图")
+                    || bundles.get(position).get("catalogName").equals("免费WIFI热点")) {
                     UIHelper.showWebDetail(context,
-                        AppData.urlList.get(bundles.get(position).get("catalogName")),"服务地图","服务地图");
+                        AppData.urlList.get(bundles.get(position).get("catalogName")),
+                        bundles.get(position).get("catalogName").toString(),
+                        bundles.get(position).get("catalogName").toString());
                 } else {
                     GridMainFragment gridMainFragment = new GridMainFragment();
                     gridMainFragment.setArguments(bundles.get(position));

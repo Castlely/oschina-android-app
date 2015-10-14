@@ -1,35 +1,5 @@
 package cn.gov.psxq.ui;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.view.GestureDetector;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.webkit.CookieManager;
-import android.webkit.DownloadListener;
-import android.webkit.GeolocationPermissions;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import cn.gov.psxq.AppException;
-import cn.gov.psxq.R;
-import cn.gov.psxq.bean.Notice;
-import cn.gov.psxq.common.UIHelper;
-
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMEvernoteHandler;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -61,6 +31,36 @@ import com.umeng.socialize.yixin.controller.UMYXHandler;
 import com.umeng.socialize.ynote.controller.UMYNoteHandler;
 import com.umeng.socialize.ynote.media.YNoteShareContent;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.GestureDetector;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
+import android.webkit.GeolocationPermissions;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import cn.gov.psxq.AppException;
+import cn.gov.psxq.R;
+import cn.gov.psxq.bean.Notice;
+import cn.gov.psxq.common.UIHelper;
+
 /**
  * 博客详情
  * @author liux (http://my.oschina.net/liux)
@@ -71,7 +71,7 @@ public class WebDetail extends BaseActivity {
 
     public final static String    TAG                    = "InformationDetail";
     private final UMSocialService mController            = UMServiceFactory
-                                                             .getUMSocialService("com.umeng.share");
+        .getUMSocialService("com.umeng.share");
     private FrameLayout           mHeader;
     private ImageView             mBack;
     private ImageView             mFavorite;
@@ -285,9 +285,8 @@ public class WebDetail extends BaseActivity {
     private void addWXPlatform() {
         // 注意：在微信授权的时候，必须传递appSecret
         // wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
-        String appId = "wx967daebe835fbeac";
-        String appSecret = "5bb696d9ccd75a38c8a0bfe0675559b3";
-        // 添加微信平台
+        String appId = "wxaae38ece8ab7c806";
+        String appSecret = "8f2926cd8c096fd91106d187043cc629";
         UMWXHandler wxHandler = new UMWXHandler(this, appId, appSecret);
         wxHandler.addToSocialSDK();
 
@@ -347,8 +346,8 @@ public class WebDetail extends BaseActivity {
         if (requestCode == FILECHOOSER_RESULTCODE) {
             if (null == mUploadMessage)
                 return;
-            Uri result = intent == null || resultCode != Activity.RESULT_OK ? null : intent
-                .getData();
+            Uri result = intent == null || resultCode != Activity.RESULT_OK ? null
+                : intent.getData();
             mUploadMessage.onReceiveValue(result);
             mUploadMessage = null;
         }
@@ -358,9 +357,8 @@ public class WebDetail extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_detail);
-        getWindow().setSoftInputMode(
-            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-                    | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                                     | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         url = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
         share = getIntent().getStringExtra("share");
@@ -446,15 +444,12 @@ public class WebDetail extends BaseActivity {
         // HTML5 configuration settings.
         webView.getSettings().setAppCacheMaxSize(3 * 1024 * 1024);
 
-        webView.getSettings().setAppCachePath(
-            WebDetail.this.getApplicationContext().getDir("appcache", Context.MODE_PRIVATE)
-                .getPath());
-        webView.getSettings().setDatabasePath(
-            WebDetail.this.getApplicationContext().getDir("databases", Context.MODE_PRIVATE)
-                .getPath());
-        webView.getSettings().setGeolocationDatabasePath(
-            WebDetail.this.getApplicationContext().getDir("geolocation", Context.MODE_PRIVATE)
-                .getPath());
+        webView.getSettings().setAppCachePath(WebDetail.this.getApplicationContext()
+            .getDir("appcache", Context.MODE_PRIVATE).getPath());
+        webView.getSettings().setDatabasePath(WebDetail.this.getApplicationContext()
+            .getDir("databases", Context.MODE_PRIVATE).getPath());
+        webView.getSettings().setGeolocationDatabasePath(WebDetail.this.getApplicationContext()
+            .getDir("geolocation", Context.MODE_PRIVATE).getPath());
         webView.setDownloadListener(new MyDownloadListener());
         this.regOnDoubleEvent();
     }
@@ -493,7 +488,7 @@ public class WebDetail extends BaseActivity {
             public void onClick(View v) {
                 mController.getConfig().setPlatforms(SHARE_MEDIA.SMS, SHARE_MEDIA.EMAIL,
                     SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA, SHARE_MEDIA.TENCENT,
-                    SHARE_MEDIA.DOUBAN, SHARE_MEDIA.RENREN);
+                    SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE);
                 mController.openShare(WebDetail.this, false);
             }
         });
@@ -589,11 +584,11 @@ public class WebDetail extends BaseActivity {
     }
 
     private View.OnClickListener detailClickListener = new View.OnClickListener() {
-                                                         public void onClick(View v) {
-                                                             //切换到详情
-                                                             viewSwitch(VIEWSWITCH_TYPE_DETAIL);
-                                                         }
-                                                     };
+        public void onClick(View v) {
+            //切换到详情
+            viewSwitch(VIEWSWITCH_TYPE_DETAIL);
+        }
+    };
 
     /**
      * 注册双击全屏事件

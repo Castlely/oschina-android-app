@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +18,16 @@ import cn.gov.psxq.bean.Information;
 import cn.gov.psxq.common.HtmlRegexpUtils;
 import cn.gov.psxq.common.StringUtils;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 /**
  * Module_Form_0的数据展示
  * @author gengchen.ggc
  * @version $Id: ListViewInformationAdapter.java, v 0.1 2015年4月1日 下午9:02:56 gengchen.ggc Exp $
  */
 public class ListViewInformationAdapter extends BaseAdapter {
-    private Context           context;         //运行上下文
-    private List<Information> listItems;       //数据集合
-    private LayoutInflater    listContainer;   //视图容器
+    private List<Information> listItems;        //数据集合
+    private LayoutInflater    listContainer;    //视图容器
     private int               itemViewResource; //自定义项视图源 
+    private boolean           displayDate;
 
     public static class ListItemView { //自定义控件集合  
         public TextView  title;
@@ -42,11 +42,12 @@ public class ListViewInformationAdapter extends BaseAdapter {
      * @param data
      * @param resource
      */
-    public ListViewInformationAdapter(Context context, List<Information> data, int resource) {
-        this.context = context;
+    public ListViewInformationAdapter(Context context, List<Information> data, int resource,
+                                      boolean displayDate) {
         this.listContainer = LayoutInflater.from(context); //创建视图容器并设置上下文
         this.itemViewResource = resource;
         this.listItems = data;
+        this.displayDate = displayDate;
     }
 
     public int getCount() {
@@ -82,8 +83,13 @@ public class ListViewInformationAdapter extends BaseAdapter {
                 .findViewById(R.id.information_listitem_title);
             listItemView.description = (TextView) convertView
                 .findViewById(R.id.information_listitem_description);
-            listItemView.lastUpdate = (TextView) convertView
-                .findViewById(R.id.information_listitem_date);
+
+            //工作动态 通知公告
+            if (displayDate) {
+                listItemView.lastUpdate = (TextView) convertView
+                    .findViewById(R.id.information_listitem_date);
+            }
+
             //设置控件集到convertView
             convertView.setTag(listItemView);
         } else {
@@ -97,35 +103,30 @@ public class ListViewInformationAdapter extends BaseAdapter {
         titleString = titleString.trim();
         listItemView.title.setText(titleString);
         listItemView.title.setTag(information);//设置隐藏参数(实体类)
-        /*        if (information.getDescription().indexOf("/uploadfiles/") != -1) {
-                    String img = information.getDescription().substring(
-                        information.getDescription().indexOf("/uploadfiles/"));
-                    img = img.substring(0, img.indexOf("\">"));
-                    img = "http://www.psxq.gov.cn" + img;
-                    bitmapManager.loadBitmap(img, listItemView.img);
-                } else {
-                    listItemView.img.setVisibility(View.GONE);
-                }*/
         if (information.getIs_picture() != null
             && !StringUtils.isEmpty(information.getLink_picture())) {
-            ImageLoader.getInstance().displayImage("http://" + information.getLink_picture(),
-                listItemView.img);
+            ImageLoader.getInstance().displayImage(
+                "http://" + information.getLink_picture().replace("http://", ""), listItemView.img);
             listItemView.img.setVisibility(View.VISIBLE);
         } else {
             if (StringUtils.isEmpty(information.getX_imgpath()))
                 listItemView.img.setVisibility(View.GONE);
             else {
-                ImageLoader.getInstance().displayImage("http://" + information.getX_imgpath(),
+                ImageLoader.getInstance().displayImage(
+                    "http://" + information.getX_imgpath().replace("http://", ""),
                     listItemView.img);
             }
         }
         String dateString = information.getLast_update();
-        dateString = dateString.substring(0, 19);
+        if (dateString != null)
+            dateString = dateString.substring(0, 19);
         // listItemView.lastUpdate.setText(StringUtils.friendly_time(dateString));
-        if (dateString != null && dateString.length() > 10)
-            listItemView.lastUpdate.setText(dateString.subSequence(0, 10));
-        else
-            listItemView.lastUpdate.setText("");
+        if (displayDate) {
+            if (dateString != null && dateString.length() > 10)
+                listItemView.lastUpdate.setText(dateString.subSequence(0, 10));
+            else
+                listItemView.lastUpdate.setText("");
+        }
         if (!StringUtils.isEmpty(information.getDescription())) {
             String descriptionString = delHTMLTag(information.getDescription());
             descriptionString = descriptionString.replaceAll("　", "");

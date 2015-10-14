@@ -3,6 +3,9 @@ package cn.gov.psxq.fragment;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,9 +31,6 @@ import cn.gov.psxq.common.BitmapUtil;
 import cn.gov.psxq.fragment.DingYueFragment.MyAdapter.ViewHolder;
 import cn.gov.psxq.ui.BackHandledFragment;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
 public class DingYueFragment extends BackHandledFragment {
     ActionBar       mActionBar;
     private boolean isMain;
@@ -53,7 +53,8 @@ public class DingYueFragment extends BackHandledFragment {
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 IndexFragment indexFragment = new IndexFragment();
-                FragmentManager fragmentManager = DingYueFragment.this.getActivity().getSupportFragmentManager();
+                FragmentManager fragmentManager = DingYueFragment.this.getActivity()
+                    .getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_activity_linearlayout, indexFragment);
                 fragmentTransaction.commit();
@@ -78,7 +79,8 @@ public class DingYueFragment extends BackHandledFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dingyue_listview, null);
         final ListView listView = (ListView) v.findViewById(R.id.dingyue_list);
         // 获取Resources对象  
@@ -117,7 +119,8 @@ public class DingYueFragment extends BackHandledFragment {
                 Map<String, Object> menusMap = AppData.getMenu(getResources());
 
                 if (!menusMap.containsKey(vHollder.title.getText().toString())
-                    || vHollder.title.getText().toString().equals("服务地图")) {
+                    || vHollder.title.getText().toString().equals("服务地图")
+                    || vHollder.title.getText().toString().equals("免费WIFI热点")) {
                     isMain = true;
                     //在每次获取点击的item时将对于的checkbox状态改变，同时修改map的值。  
                     vHollder.cBox.toggle();
@@ -130,9 +133,9 @@ public class DingYueFragment extends BackHandledFragment {
                     //更新目录
                     isMain = false;
                     adapter.clear();
-                    Map<String, Object> dataMap = (Map<String, Object>) AppData.getMenu(
-                        DingYueFragment.this.getResources()).get(
-                        vHollder.title.getText().toString());
+                    Map<String, Object> dataMap = (Map<String, Object>) AppData
+                        .getMenu(DingYueFragment.this.getResources())
+                        .get(vHollder.title.getText().toString());
                     for (String key : dataMap.keySet()) {
                         Map<String, Object> item = Maps.newHashMap();
                         item = Maps.newHashMap();
@@ -189,6 +192,7 @@ public class DingYueFragment extends BackHandledFragment {
                 holder = new ViewHolder();
                 convertView = mInflater.inflate(R.layout.dingyue_listitem, null);
                 holder.img = (ImageView) convertView.findViewById(R.id.dingyue_image);
+                holder.img.setVisibility(View.INVISIBLE);
                 holder.title = (TextView) convertView.findViewById(R.id.dingyue_title);
                 holder.cBox = (CheckBox) convertView.findViewById(R.id.dingyue_cb);
                 convertView.setTag(holder);
@@ -200,19 +204,24 @@ public class DingYueFragment extends BackHandledFragment {
             if ((Integer) mData.get(position).get("img") != null) {
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
                     (Integer) mData.get(position).get("img"));
-                holder.img.setBackground(BitmapUtil.bitmapToDrawable(BitmapUtil.getResizedBitmap(
-                    bitmap, 150, 150)));
+                holder.img.setBackground(
+                    BitmapUtil.bitmapToDrawable(BitmapUtil.getResizedBitmap(bitmap, 150, 150)));
             }
 
             holder.title.setText(mData.get(position).get("title").toString());
             if (menusMap.containsKey(mData.get(position).get("title").toString())
-                && !mData.get(position).get("title").toString().equals("服务地图"))//主目录
+                && !mData.get(position).get("title").toString().equals("服务地图")
+                && !mData.get(position).get("title").toString().equals("免费WIFI热点"))//主目录
             {
                 holder.cBox.setVisibility(View.GONE);
             } else {
                 holder.cBox.setVisibility(View.VISIBLE);
             }
-            holder.cBox.setChecked(AppData.isShortCut.get(holder.title.getText().toString()));
+            if (AppData.isShortCut.containsKey(holder.title.getText().toString()))
+                holder.cBox.setChecked(AppData.isShortCut.get(holder.title.getText().toString()));
+            else {
+                throw new RuntimeException(holder.title.getText().toString() + "的shortcut不存在");
+            }
             /*
             if (position % 2 == 1) {
                 convertView.setBackgroundColor(R.color.even_color);
@@ -245,7 +254,7 @@ public class DingYueFragment extends BackHandledFragment {
             fragmentTransaction.replace(R.id.main_activity_linearlayout, dingYueFragment);
             fragmentTransaction.commit();
             return true;
-        
+
         }
     }
 }

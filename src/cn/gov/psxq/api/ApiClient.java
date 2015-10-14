@@ -24,6 +24,8 @@ import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
+import com.google.gson.Gson;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -63,8 +65,6 @@ import cn.gov.psxq.bean.WellcomeImage;
 import cn.gov.psxq.common.FileUtils;
 import cn.gov.psxq.common.ImageUtils;
 import cn.gov.psxq.common.StringUtils;
-
-import com.google.gson.Gson;
 
 /**
  * API客户端接口：用于访问网络数据
@@ -370,7 +370,8 @@ public class ApiClient {
         do {
             try {
                 httpClient = getHttpClient();
-                if(!url.startsWith("http://"))url="http://"+url;
+                if (!url.startsWith("http://"))
+                    url = "http://" + url;
                 httpGet = getHttpGet(url, null, null);
                 int statusCode = httpClient.executeMethod(httpGet);
                 if (statusCode != HttpStatus.SC_OK) {
@@ -472,8 +473,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static User login(AppContext appContext, String username, String pwd)
-                                                                                throws AppException {
+    public static User login(AppContext appContext, String username,
+                             String pwd) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         params.put("pwd", pwd);
@@ -521,8 +522,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result updatePortrait(AppContext appContext, int uid, File portrait)
-                                                                                      throws AppException {
+    public static Result updatePortrait(AppContext appContext, int uid,
+                                        File portrait) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
 
@@ -549,8 +550,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static UserInformation information(AppContext appContext, int uid, int hisuid,
-                                              String hisname, int pageIndex, int pageSize)
-                                                                                          throws AppException {
+                                              String hisname, int pageIndex,
+                                              int pageSize) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("hisuid", hisuid);
@@ -575,8 +576,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result updateRelation(AppContext appContext, int uid, int hisuid, int newrelation)
-                                                                                                    throws AppException {
+    public static Result updateRelation(AppContext appContext, int uid, int hisuid,
+                                        int newrelation) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("hisuid", hisuid);
@@ -640,8 +641,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static FriendList getFriendList(AppContext appContext, final int uid,
-                                           final int relation, final int pageIndex,
+    public static FriendList getFriendList(AppContext appContext, final int uid, final int relation,
+                                           final int pageIndex,
                                            final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.FRIENDS_LIST, new HashMap<String, Object>() {
             {
@@ -671,7 +672,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static NewsList getNewsList(AppContext appContext, final int catalog,
-                                       final int pageIndex, final int pageSize) throws AppException {
+                                       final int pageIndex,
+                                       final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.NEWS_LIST, new HashMap<String, Object>() {
             {
                 put("catalog", catalog);
@@ -699,15 +701,25 @@ public class ApiClient {
      * @throws AppException
      */
     public static InformationList getInformationList(String catalog, AppContext appContext,
-                                                     final int pageIndex, final int pageSize)
-                                                                                             throws AppException {
-        String informationUrl = AppData.urlList.get(catalog) + String.valueOf(pageIndex + 1);
+                                                     final int pageIndex, final int pageSize,
+                                                     String url) throws AppException {
+        String informationUrl = "";
+        if (AppData.urlList.containsKey(catalog))
+            informationUrl = AppData.urlList.get(catalog) + String.valueOf(pageIndex + 1);
+        if (null != url) {
+            informationUrl = url;
+        }
         try {
             Log.i("Information", informationUrl);
             InputStream inputStream = http_get(appContext, informationUrl);
             Log.i("InformationResult", StringUtils.getStrFromInputSteam(inputStream));
-            String result = HttpUtil.getJsonContent(informationUrl);
-            InformationList informationList = InformationList.parse(result);
+            String result = HttpUtil.getJsonContent(informationUrl).replaceAll("\r\n", "");
+            InformationList informationList;
+            if (AppData.twoLevelMenuSet.contains(catalog)) {
+                informationList = InformationList.parseBanShiZhiNan(result);
+            } else {
+                informationList = InformationList.parse(result);
+            }
             /*Gson gson = AppData.gsonBuilder.create();
             for (Information information : informationList.getDataList()) {
                 AppData.set("information_" + information.getId(), gson.toJson(information),
@@ -770,8 +782,8 @@ public class ApiClient {
      */
     public static BlogList getUserBlogList(AppContext appContext, final int authoruid,
                                            final String authorname, final int uid,
-                                           final int pageIndex, final int pageSize)
-                                                                                   throws AppException {
+                                           final int pageIndex,
+                                           final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.USERBLOG_LIST, new HashMap<String, Object>() {
             {
                 put("authoruid", authoruid);
@@ -800,7 +812,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static BlogList getBlogList(AppContext appContext, final String type,
-                                       final int pageIndex, final int pageSize) throws AppException {
+                                       final int pageIndex,
+                                       final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.BLOG_LIST, new HashMap<String, Object>() {
             {
                 put("type", type);
@@ -826,8 +839,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result delBlog(AppContext appContext, int uid, int authoruid, int id)
-                                                                                       throws AppException {
+    public static Result delBlog(AppContext appContext, int uid, int authoruid,
+                                 int id) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("authoruid", authoruid);
@@ -873,7 +886,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static PostList getPostList(AppContext appContext, final int catalog,
-                                       final int pageIndex, final int pageSize) throws AppException {
+                                       final int pageIndex,
+                                       final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.POST_LIST, new HashMap<String, Object>() {
             {
                 put("catalog", catalog);
@@ -900,8 +914,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static PostList getPostListByTag(AppContext appContext, final String tag,
-                                            final int pageIndex, final int pageSize)
-                                                                                    throws AppException {
+                                            final int pageIndex,
+                                            final int pageSize) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("tag", tag);
         params.put("pageIndex", pageIndex);
@@ -994,8 +1008,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Tweet getTweetDetail(AppContext appContext, final int tweet_id)
-                                                                                 throws AppException {
+    public static Tweet getTweetDetail(AppContext appContext,
+                                       final int tweet_id) throws AppException {
         String newUrl = _MakeURL(URLs.TWEET_DETAIL, new HashMap<String, Object>() {
             {
                 put("id", tweet_id);
@@ -1067,8 +1081,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static ActiveList getActiveList(AppContext appContext, final int uid, final int catalog,
-                                           final int pageIndex, final int pageSize)
-                                                                                   throws AppException {
+                                           final int pageIndex,
+                                           final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.ACTIVE_LIST, new HashMap<String, Object>() {
             {
                 put("uid", uid);
@@ -1095,8 +1109,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static MessageList getMessageList(AppContext appContext, final int uid,
-                                             final int pageIndex, final int pageSize)
-                                                                                     throws AppException {
+                                             final int pageIndex,
+                                             final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.MESSAGE_LIST, new HashMap<String, Object>() {
             {
                 put("uid", uid);
@@ -1122,8 +1136,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result pubMessage(AppContext appContext, int uid, int receiver, String content)
-                                                                                                 throws AppException {
+    public static Result pubMessage(AppContext appContext, int uid, int receiver,
+                                    String content) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("receiver", receiver);
@@ -1169,8 +1183,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result delMessage(AppContext appContext, int uid, int friendid)
-                                                                                 throws AppException {
+    public static Result delMessage(AppContext appContext, int uid,
+                                    int friendid) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("friendid", friendid);
@@ -1193,8 +1207,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static BlogCommentList getBlogCommentList(AppContext appContext, final int id,
-                                                     final int pageIndex, final int pageSize)
-                                                                                             throws AppException {
+                                                     final int pageIndex,
+                                                     final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.BLOGCOMMENT_LIST, new HashMap<String, Object>() {
             {
                 put("id", id);
@@ -1220,8 +1234,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result pubBlogComment(AppContext appContext, int blog, int uid, String content)
-                                                                                                 throws AppException {
+    public static Result pubBlogComment(AppContext appContext, int blog, int uid,
+                                        String content) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("blog", blog);
         params.put("uid", uid);
@@ -1301,9 +1315,9 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static CommentList getCommentList(AppContext appContext, final int catalog,
-                                             final int id, final int pageIndex, final int pageSize)
-                                                                                                   throws AppException {
+    public static CommentList getCommentList(AppContext appContext, final int catalog, final int id,
+                                             final int pageIndex,
+                                             final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.COMMENT_LIST, new HashMap<String, Object>() {
             {
                 put("catalog", catalog);
@@ -1415,8 +1429,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static FavoriteList getFavoriteList(AppContext appContext, final int uid,
-                                               final int type, final int pageIndex,
+    public static FavoriteList getFavoriteList(AppContext appContext, final int uid, final int type,
+                                               final int pageIndex,
                                                final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.FAVORITE_LIST, new HashMap<String, Object>() {
             {
@@ -1444,8 +1458,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result addFavorite(AppContext appContext, int uid, int objid, int type)
-                                                                                         throws AppException {
+    public static Result addFavorite(AppContext appContext, int uid, int objid,
+                                     int type) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("objid", objid);
@@ -1468,8 +1482,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Result delFavorite(AppContext appContext, int uid, int objid, int type)
-                                                                                         throws AppException {
+    public static Result delFavorite(AppContext appContext, int uid, int objid,
+                                     int type) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
         params.put("objid", objid);
@@ -1519,8 +1533,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static SoftwareList getSoftwareList(AppContext appContext, final String searchTag,
-                                               final int pageIndex, final int pageSize)
-                                                                                       throws AppException {
+                                               final int pageIndex,
+                                               final int pageSize) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("searchTag", searchTag);
         params.put("pageIndex", pageIndex);
@@ -1544,8 +1558,8 @@ public class ApiClient {
      * @throws AppException
      */
     public static SoftwareList getSoftwareTagList(AppContext appContext, final int searchTag,
-                                                  final int pageIndex, final int pageSize)
-                                                                                          throws AppException {
+                                                  final int pageIndex,
+                                                  final int pageSize) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("searchTag", searchTag);
         params.put("pageIndex", pageIndex);
@@ -1566,14 +1580,14 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static SoftwareCatalogList getSoftwareCatalogList(AppContext appContext, final int tag)
-                                                                                                  throws AppException {
+    public static SoftwareCatalogList getSoftwareCatalogList(AppContext appContext,
+                                                             final int tag) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("tag", tag);
 
         try {
-            return SoftwareCatalogList.parse(_post(appContext, URLs.SOFTWARECATALOG_LIST, params,
-                null));
+            return SoftwareCatalogList
+                .parse(_post(appContext, URLs.SOFTWARECATALOG_LIST, params, null));
         } catch (Exception e) {
             if (e instanceof AppException)
                 throw (AppException) e;
@@ -1587,8 +1601,8 @@ public class ApiClient {
      * @return
      * @throws AppException
      */
-    public static Software getSoftwareDetail(AppContext appContext, final String ident)
-                                                                                       throws AppException {
+    public static Software getSoftwareDetail(AppContext appContext,
+                                             final String ident) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("ident", ident);
 
@@ -1644,8 +1658,8 @@ public class ApiClient {
         }
     }
 
-    public static Information getInformationDetail(AppContext appContext, final int information_id)
-                                                                                                   throws AppException {
+    public static Information getInformationDetail(AppContext appContext,
+                                                   final int information_id) throws AppException {
 
         try {
             Gson gson = AppData.gsonBuilder.create();

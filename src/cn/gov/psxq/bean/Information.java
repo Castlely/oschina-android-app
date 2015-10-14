@@ -27,6 +27,8 @@ public class Information extends Entity {
     private String  link_picture;
 
     private String  x_imgpath;
+    
+    private boolean isMenu = false;
 
     public void setId(Integer id) {
         super.id = id;
@@ -128,6 +130,14 @@ public class Information extends Entity {
      */
     public void setX_imgpath(String x_imgpath) {
         this.x_imgpath = x_imgpath;
+    }
+
+    public boolean isMenu() {
+        return isMenu;
+    }
+
+    public void setMenu(boolean isMenu) {
+        this.isMenu = isMenu;
     }
 
 }

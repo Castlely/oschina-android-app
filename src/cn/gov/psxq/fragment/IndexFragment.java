@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.tsz.afinal.FinalHttp;
-import net.tsz.afinal.http.AjaxCallBack;
-
 import org.sqk.viewpager.widget.CircleFlowIndicator;
 import org.sqk.viewpager.widget.ViewFlow;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.sqk.GridView.Grid_Item;
+import com.sqk.GridView.MyGridAdaper;
+import com.sqk.viewpager.ImageAdapter;
 
 import android.app.ActionBar;
 import android.graphics.Bitmap;
@@ -42,14 +47,8 @@ import cn.gov.psxq.bean.InformationList;
 import cn.gov.psxq.common.UIHelper;
 import cn.gov.psxq.ui.BackHandledFragment;
 import cn.gov.psxq.ui.MainActivity;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.sqk.GridView.Grid_Item;
-import com.sqk.GridView.MyGridAdaper;
-import com.sqk.viewpager.ImageAdapter;
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
 
 public class IndexFragment extends BackHandledFragment {
     private ViewFlow  viewFlow;
